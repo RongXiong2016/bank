@@ -68,10 +68,10 @@ CREATE TABLE `user` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL COMMENT '姓名',
   `password` varchar(64) NOT NULL COMMENT '密码',
-  `idcard` varchar(18) DEFAULT NULL COMMENT '身份证',
+  `id_card` varchar(18) DEFAULT NULL COMMENT '身份证',
   `account` varchar(255) DEFAULT NULL COMMENT '交易账户',
   `phone` varchar(20) DEFAULT NULL COMMENT '联系电话',
   `address` varchar(128) DEFAULT NULL COMMENT '住址',
-  `createtime` datetime DEFAULT NULL COMMENT '创建时间',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

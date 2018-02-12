@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -14,15 +15,26 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String email;
 
-    public User(){}
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
+    @Column(name = "id_card")
+    private String idCard;
+
+    @Column(name = "account")
+    private String account;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
 }
