@@ -3,42 +3,43 @@
 <head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
-    <title>编辑</title>
-    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}" ></link>
+    <title>添加</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
 </head>
 <body>
 <div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
-    <form class="layui-form" action="#" th:action="@{/user/edit}" th:object="${user}" method="post">
-        <input type="hidden" name="id" th:value="${user.id}" th:field="*{id}"/>
-        <input type="hidden" name="password" th:value="${user.password}" th:field="*{password}"/>
+    <form class="layui-form" action="#" th:action="@{/user/add}" th:object="${user}" method="post">
         <div class="layui-form-item magt3">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" placeholder="请输入姓名"  th:value="${user.name}" th:field="*{name}"/>
+                <input type="text" class="layui-input" placeholder="请输入姓名" th:field="*{name}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
             <label class="layui-form-label">身份证</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" placeholder="请输入身份证" th:value="${user.idCard}" th:field="*{idCard}"/>
+                <input type="text" class="layui-input" placeholder="请输入身份证" th:field="*{idCard}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
             <label class="layui-form-label">住址</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入住址" th:value="${user.address}" th:field="*{address}"/>
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入住址"
+                       th:field="*{address}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
             <label class="layui-form-label">账户</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入账户" th:value="${user.account}" th:field="*{account}"/>
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入账户"
+                       th:field="*{account}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
             <label class="layui-form-label">电话</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入电话" th:value="${user.phone}" th:field="*{phone}"/>
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入电话"
+                       th:field="*{phone}"/>
             </div>
         </div>
 
@@ -62,29 +63,29 @@
             layer.msg(JSON.stringify(data.field));
             $.ajax({
                 type: 'POST',
-                url: /*[[@{/user/edit}]]*/'',
-                dataType:'json',
+                url: /*[[@{/user/add}]]*/'',
+                dataType: 'json',
                 data: data.field,
                 async: true,
                 success: function (result) {
                     console.log(result.code)
                     //没加@Responsebody注解
                     if (result.code == 0) {
-                        layer.msg('success:保存成功', {icon: 1, time:1000});
-                        setTimeout(function(){
+                        layer.msg('success:保存成功', {icon: 1, time: 1000});
+                        setTimeout(function () {
                             /*top.layer.closeAll('iframe');
-                            //刷新父亲的页面
-                            parent.refreshIframe();*/
-                            parent.location.href="/user/list";
-                        },800);
+                             //刷新父亲的页面
+                             parent.refreshIframe();*/
+                            parent.location.href = "/user/list";
+                        }, 800);
                     } else {
                         console.alert(result.code);
-                        layer.msg('eles:保存失败！'+result.msg, {icon: 2, time:1000});
+                        layer.msg('eles:保存失败！' + result.msg, {icon: 2, time: 1000});
                         layer.close(index);
                     }
                 },
                 error: function (result, type) {
-                    layer.msg('error:保存失败！', { icon: 2, time:1000 });
+                    layer.msg('error:保存失败！', {icon: 2, time: 1000});
                 }
             });
             console.log(data.field)

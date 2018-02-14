@@ -9,19 +9,19 @@
 </head>
 <body>
 <div style="margin-top: 20px;margin-left: 20px">
-    <button class="layui-btn">添加用户</button>
+    <button id="add-user" class="layui-btn">添加用户</button>
 </div>
 <table class="layui-table" lay-data="{width: 1100, height:500, url:'/user/list1', page:true, id:'idTest'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-        <th lay-data="{field:'name', width:120, sort: true}">姓名</th>
-        <th lay-data="{field:'idCard', width:150}">身份证</th>
-        <th lay-data="{field:'address', width:120}">住址</th>
-        <th lay-data="{field:'account', width:160}">账户</th>
-        <th lay-data="{field:'phone', width:130, sort: true}">电话</th>
-        <th lay-data="{field:'createTime', width:120}">创建时间</th>
-        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">操作</th>
+        <th id="name" lay-data="{field:'name', width:130, sort: true}">姓名</th>
+        <th lay-data="{field:'idCard', width:180}">身份证</th>
+        <th lay-data="{field:'address', width:160}">住址</th>
+        <th lay-data="{field:'account', width:180}">账户</th>
+        <th lay-data="{field:'phone', width:140, sort: true}">电话</th>
+        <!--<th lay-data="{field:'createTime', width:120}">创建时间</th>-->
+        <th lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#barDemo'}">操作</th>
     </tr>
     </thead>
 </table>
@@ -67,15 +67,17 @@
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                /*layer.alert('编辑行：'+ JSON.stringify(data))*/
+                //layer.alert('编辑行：'+ JSON.stringify(data))
                 layer.open({
                     type: 2,
-                    title: '用户登录',
                     maxmin: true,
-                    skin: 'layui-layer-lan',
-                    shadeClose: true, //点击遮罩关闭层
-                    area: ['400px', '280px'],
-                    content: 'edit.html'//弹框显示的url
+                    title: '编辑用户',
+                    content: 'http://localhost:8899/user/toEdit?id='+data.id, //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    area: ['600px', '450px'],
+                    offset: ['50px', '250px'],
+                    success: function (layero, index) {
+                        var name = $("#name").val();
+                    }
                 });
             }
         });
@@ -104,14 +106,22 @@
     });
 
     $(function() {
-        $('#edit').on('click', function () {
-
+        $('#add-user').on('click', function () {
+            layer.open({
+                type: 2,
+                maxmin: true,
+                title: '添加用户',
+                content: 'http://localhost:8899/user/toAdd',
+                area: ['600px', '450px'],
+                offset: ['50px', '250px'],
+                success: function (layero, index) {
+                    var name = $("#name").val();
+                }
+            });
         });
     });
 </script>
 
 <table class="layui-hide" id="test"></table>
-
-
 </body>
 </html>

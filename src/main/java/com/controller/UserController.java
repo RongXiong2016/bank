@@ -8,13 +8,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,21 +85,30 @@ public class UserController {
         return "/user/edit";
     }
 
-    @RequestMapping("/edit")
-    public String edit(User user) {
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public @ResponseBody Map edit(@ModelAttribute(value = "user") User user) {
         userService.edit(user);
-        return "redirect:/list";
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", "0");
+//      return "redirect:/user/list";
+        return resultMap;
     }
 
     @RequestMapping("/toAdd")
-    public String toAdd() {
-        return "user/userAdd";
+    public String toAdd(Model model) {
+        model.addAttribute("user", new User());
+        return "user/add";
     }
 
-    @RequestMapping("/add")
-    public String add(User user) {
+    @RequestMapping(value="/add", method = RequestMethod.POST)
+    public @ResponseBody Map add(@ModelAttribute(value = "user") User user) {
+        user.setCreateTime(new Date());
+        user.setPassword("123456");
         userService.save(user);
-        return "redirect:/list";
+        //return "redirect:/list";
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", "0");
+        return resultMap;
     }
 
     @RequestMapping("/delete")
