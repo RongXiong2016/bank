@@ -1,4 +1,4 @@
-package com.bank;
+package com.bank.dao;
 
 import com.BankApplication;
 import com.dao.UserRepository;
@@ -13,27 +13,30 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
 @SpringBootTest(classes = BankApplication.class) // 指定我们SpringBoot工程的Application启动类
 @WebAppConfiguration
-public class ApplicationTests {
+public class UserDaoTest {
     @Autowired
     private UserRepository userRepository;
 
     @Transactional
-    @Rollback(true)
+    //@Rollback(true)
     @Test
-    public void test() throws Exception {
-        userRepository.save(new User("AAA", "aa@qq.com"));
-        userRepository.save(new User("BBB", "aa@qq.com"));
-        userRepository.save(new User("CCC", "aa@qq.com"));
+    public void testAdd() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName("testAdd");
+        user.setPassword("123456");
+        user.setAccount("134324");
+        user.setCreateTime(new Date());
+        user.setIdCard("332525199510125318");
 
-
-        User user = userRepository.findByName("AAA");
-        System.out.println(user.getId() + user.getName() + user.getEmail());
+        userRepository.save(user);
 
     }
 }

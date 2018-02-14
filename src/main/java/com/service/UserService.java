@@ -17,6 +17,8 @@ public interface UserService {
 
     void save(User user);
 
+    List<User> findAll();
+
     Page<User> findAll(Pageable pageable);
 
 }

@@ -1,111 +1,117 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head id="body">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8"></meta>
-    <title>userList</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
-    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jqPaginator.js}"></script>
-    <script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
-
-        $(function () {
-            var if_first_time = true;
-            var result;
-            $.jqPaginator('#pagination1', {
-                totalCounts:[[${totalCount}]],
-                totalPages: [[${totalPage}]],
-                visiblePages: 5,
-                currentPage: 1,
-                onPageChange: function (num, type) {
-
-                    if (if_first_time) {
-                        if_first_time = false;
-                    } else if (!if_first_time) {
-                        $.ajax({
-                            url:"/list1",
-                            type:"get",
-                            async:false,
-                            dataType:"json",
-                            data:{page:num-1},
-                            success:function(data){
-                                //console.log(data)
-                                 result = data;
-                                console.log(result)
-                                var data = [[${users}]];
-                                if (typeof result === 'string') {
-                                    result = $.parseJSON(result)
-                                }
-                                result = eval(result.content)
-                                // console.log(json)
-                                var html = "";
-                                console.log(result)
-                                $.each(result, function (idx, obj) {
-                                    var id = obj.id;
-                                    var name = obj.name;
-                                    var email = obj.email;
-
-                                    html += "<tr><th scope=\"row\">" + id + "</th>" +
-                                        "<td>" + name + "</td>" +
-                                        "<td>" + email + "</td>" +
-                                        "<td><a href='javascript:openEditDialog(" + id + ");' class='bounceIn'>edit</a>" +
-                                        "<td><a href='javascript:openEditDialog(" + id + ");' class='bounceIn'>delete</a>" +
-                                        "</tr>";
-                                });
-                                console.log(html)
-                                //$("#result-body").replaceWith(html);
-                                $("#result-body").empty().append(html);
-                            },
-                            error:function(){
-                                alert("system error");
-                            }
-                        });
-                    }
-                }
-            });
-        });
-        /*]]>*/
-    </script>
+    <title>用户管理</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
-<body class="container">
-<br/>
-<h1>用户列表</h1>
-
-<br/><br/>
-<div class="with:80%">
-    <table class="table table-hover" id="result-table">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody id="result-body">
-        <tr th:each="user : ${users}">
-            <th scope="row" th:text="${user.id}">1</th>
-            <td th:text="${user.name}">neo</td>
-            <td th:text="${user.email}">Otto</td>
-            <td><a th:href="@{/toEdit(id=${user.id})}">edit</a></td>
-            <td><a th:href="@{/delete(id=${user.id})}">delete</a></td>
-        </tr>
-        </tbody>
-
-    </table>
-
+<body>
+<div style="margin-top: 20px;margin-left: 20px">
+    <button class="layui-btn">添加用户</button>
 </div>
-<div>
-    <p id="p1"></p>
-    <ul class="pagination" id="pagination1"></ul>
-</div>
-<div class="form-group">
-    <div class="col-sm-2 control-label">
-        <a href="/toAdd" th:href="@{/toAdd}" class="btn btn-info">add</a>
-    </div>
-</div>
+<table class="layui-table" lay-data="{width: 1100, height:500, url:'/user/list1', page:true, id:'idTest'}" lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+        <th lay-data="{field:'name', width:120, sort: true}">姓名</th>
+        <th lay-data="{field:'idCard', width:150}">身份证</th>
+        <th lay-data="{field:'address', width:120}">住址</th>
+        <th lay-data="{field:'account', width:160}">账户</th>
+        <th lay-data="{field:'phone', width:130, sort: true}">电话</th>
+        <th lay-data="{field:'createTime', width:120}">创建时间</th>
+        <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}">操作</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script th:inline="javascript">
+    //JavaScript代码区域
+    layui.use(['table','layer'], function(){
+        var table = layui.table,
+            layer = layui.layer;
+
+        /*table.render({
+            elem: '#test'
+            ,url:'/user/list1'
+            ,cellMinWidth: 100
+            ,cols: [[
+                 {field:'id', width:80, title: 'ID', sort: true}
+                ,{field:'name', width:120, title: '姓名', sort: true}
+                ,{field:'idCard', width:120, title: '身份证'}
+                ,{field:'account', width:120, title: '账户'}
+                ,{field:'phone', title: '电话', width: 120}
+                ,{field:'address', width:120, title: '住址', sort: true}
+                ,{field:'createTime', width:120, title: '创建时间'}
+            ]]
+            ,page: true
+        });*/
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                /*layer.alert('编辑行：'+ JSON.stringify(data))*/
+                layer.open({
+                    type: 2,
+                    title: '用户登录',
+                    maxmin: true,
+                    skin: 'layui-layer-lan',
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['400px', '280px'],
+                    content: 'edit.html'//弹框显示的url
+                });
+            }
+        });
+
+        var $ = layui.$, active = {
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            ,getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+            }
+            ,isAll: function(){ //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选': '未全选')
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+    $(function() {
+        $('#edit').on('click', function () {
+
+        });
+    });
+</script>
+
+<table class="layui-hide" id="test"></table>
+
+
 </body>
 </html>
