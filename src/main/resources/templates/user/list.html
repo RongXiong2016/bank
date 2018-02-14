@@ -65,6 +65,14 @@
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
                     layer.close(index);
+                    $.ajax({
+                        type:"GET",
+                        url:'/user/delete?id='+data.id,
+                        success:function(msg){
+
+                        }
+                    });
+
                 });
             } else if(obj.event === 'edit'){
                 //layer.alert('编辑行：'+ JSON.stringify(data))
