@@ -9,7 +9,7 @@
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
+<div class="layui-layout layui-layout-admin" >
     <div class="layui-header">
         <div class="layui-logo">银行理财管理系统后台</div>
 
@@ -31,11 +31,11 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;" ><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe613;</i> 用户管理</a>
+                    <a class="" href="javascript:;" ><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe613;</i> 客户管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a th:href="@{/user/list}" href="user/list.html" class="layui-col-md-offset2" target="target"> 所有用户</a></dd>
+                        <dd><a th:href="@{/user/list}" href="user/list.html" class="layui-col-md-offset2" target="target"> 客户列表</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
@@ -49,6 +49,12 @@
                     <a href="javascript:;"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe60e;</i> 交易管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="layui-col-md-offset2"> 查询交易信息</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe614;</i> 系统设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" class="layui-col-md-offset2"> 日志管理</a></dd>
                     </dl>
                 </li>
             </ul>
