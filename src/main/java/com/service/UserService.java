@@ -21,4 +21,6 @@ public interface UserService {
 
     Page<User> findAll(Pageable pageable);
 
+    Page<User> findAllByNameLike(String name, Pageable pageable);
+
 }

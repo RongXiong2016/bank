@@ -49,4 +49,10 @@ public class UserServiceImpl implements UserService {
     public Page<User> findAll(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<User> findAllByNameLike(String name, Pageable pageable) {
+        name = "%"+name+"%";
+        return userRepository.findAllByNameLike(name,pageable);
+    }
 }

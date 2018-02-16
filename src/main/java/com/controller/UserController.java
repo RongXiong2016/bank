@@ -56,9 +56,10 @@ public class UserController {
     @RequestMapping(value = "/list1", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
-                             @RequestParam(value = "size", defaultValue = "10") Integer limit) {
+                             @RequestParam(value = "size", defaultValue = "10") Integer limit,
+                             @RequestParam(value = "key[name]",defaultValue = "") String name) {
         Pageable pageable = new PageRequest(page - 1, limit);
-        Page<User> users = userService.findAll(pageable);
+        Page<User> users = userService.findAllByNameLike(name,pageable);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", users.getContent());
         resultMap.put("count", "1000");
