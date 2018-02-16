@@ -41,6 +41,12 @@
                 <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入电话" th:value="${user.phone}" th:field="*{phone}"/>
             </div>
         </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入邮箱" th:value="${user.email}" th:field="*{email}"/>
+            </div>
+        </div>
 
         <div class="layui-form-item">
             <div class="layui-input-block">

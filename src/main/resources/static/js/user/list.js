@@ -18,7 +18,7 @@ layui.use(['table','layer'], function(){
             ,{field:'address', width:160, title: '住址', sort: true}
             ,{field:'account', width:120, title: '账户'}
             ,{field:'phone', title: '电话', width: 120}
-            //,{field:'createTime', width:120, title: '创建时间'}
+            ,{field:'email', title: '邮箱', width: 120}
             ,{title: '操作', width:170, templet:'#barDemo',fixed:"right",align:"center"}
         ]]
         ,page: true

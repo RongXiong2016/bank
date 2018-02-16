@@ -12,13 +12,13 @@
         <div class="layui-form-item magt3">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" placeholder="请输入姓名" th:field="*{name}"/>
+                <input name="name" lay-verify="required" type="text" class="layui-input" placeholder="请输入姓名" th:field="*{name}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
             <label class="layui-form-label">身份证</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" placeholder="请输入身份证" th:field="*{idCard}"/>
+                <input name="idCard" lay-verify="identity" type="text" class="layui-input" placeholder="请输入身份证" th:field="*{idCard}"/>
             </div>
         </div>
         <div class="layui-form-item magt3">
@@ -36,10 +36,17 @@
             </div>
         </div>
         <div class="layui-form-item magt3">
-            <label class="layui-form-label">电话</label>
+            <label class="layui-form-label">手机</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入电话"
+                <input name="phone" lay-verify="required|phone" type="tel" class="layui-input newsName" placeholder="请输入电话"
                        th:field="*{phone}"/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="required|email" placeholder="请输入邮箱"
+                       th:field="*{email}"/>
             </div>
         </div>
 
@@ -53,10 +60,18 @@
 </div>
 <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
 <script th:inline="javascript">
-    layui.use(['form', 'element'], function () {
+    layui.use(['layer','form', 'element'], function () {
         var form = layui.form
             , $ = layui.$
-            , element = layui.element;
+            , element = layui.element
+            , layer = layui.layer
+            ,$ = layui.jquery;
+
+        //数据校验
+        form.verify({
+
+        });
+
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
