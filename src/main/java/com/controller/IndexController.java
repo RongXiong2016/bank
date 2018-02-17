@@ -10,8 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/index")
 public class IndexController {
-    @RequestMapping
-    public String index(){
+    /**
+     * 后台首页
+     * @return
+     */
+    @RequestMapping("/admin")
+    public String admin(){
         return "index";
+    }
+
+    @RequestMapping()
+    public String index(){
+        return "/user/index";
     }
 }

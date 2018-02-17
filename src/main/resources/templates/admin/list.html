@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>用户管理</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <style>
+        .layui-table-box, .layui-table-view{
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<!--<div style="margin-top: 20px;margin-left: 20px">
+    <button id="add-user" class="layui-btn">添加用户</button>
+</div>-->
+
+<blockquote class="layui-elem-quote quoteBox">
+    <form class="layui-form">
+        <!--<div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input searchVal" placeholder="请输入用户姓名" />
+            </div>
+            <a class="layui-btn search_btn" data-type="reload">搜索</a>
+        </div>-->
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal addNews_btn" id="add-user">添加用户</a>
+        </div>
+
+    </form>
+</blockquote>
+
+<!--<table class="layui-table" lay-data="{width: 1100, height:500, url:'/user/list1', page:true, id:'idTest'}" lay-filter="demo">
+    <thead>
+    <tr>
+        <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+        <th id="name" lay-data="{field:'name', width:130, sort: true}">姓名</th>
+        <th lay-data="{field:'idCard', width:180}">身份证</th>
+        <th lay-data="{field:'address', width:160, align:'center'}">住址</th>
+        <th lay-data="{field:'account', width:180}">账户</th>
+        <th lay-data="{field:'phone', width:140, sort: true}">电话</th>
+        &lt;!&ndash;<th lay-data="{field:'createTime', width:120}">创建时间</th>&ndash;&gt;
+        <th lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#barDemo'}">操作</th>
+    </tr>
+    </thead>
+</table>-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<!--<script src="../static/js/user/list.js" th:src="@{/js/user/list.js}"></script>-->
+<script th:inline="javascript">
+    //JavaScript代码区域
+    layui.use(['table','layer'], function(){
+        var table = layui.table,
+            layer = layui.layer,
+            $ = layui.jquery;
+
+       var tableIns = table.render({
+            elem: '#test1'
+            ,url:'/admin/list1'
+            ,cellMinWidth: 100
+            ,id:"idTest"
+            ,cols: [[
+                 {field:'id', width:80, title: 'ID', sort: true}
+                ,{field:'name', width:130, title: '姓名', sort: true}
+                ,{field:'title', width:180, title: '职位'}
+                ,{field:'phone', width: 120,title: '电话'}
+                ,{field:'description', width:250, title: '职位描述'}
+                ,{title: '操作', width:170, templet:'#barDemo',fixed:"right",align:"center"}
+            ]]
+            ,page: true
+        });
+        //监听表格复选框选择
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                    $.ajax({
+                        type:"GET",
+                        url:'/admin/delete?id='+data.id,
+                        success:function(msg){
+
+                        }
+                    });
+
+                });
+            } else if(obj.event === 'edit'){
+                //layer.alert('编辑行：'+ JSON.stringify(data))
+                layer.open({
+                    type: 2,
+                    maxmin: true,
+                    title: '编辑用户',
+                    content: '/admin/toEdit?id='+data.id, //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    area: ['600px', '450px'],
+                    offset: ['50px', '250px'],
+                    success: function (layero, index) {
+                        var name = $("#name").val();
+                    }
+                });
+            }
+        });
+
+
+        var $ = layui.$, active = {
+            getCheckData: function(){ //获取选中数据
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+            }
+            ,getCheckLength: function(){ //获取选中数目
+                var checkStatus = table.checkStatus('idTest')
+                    ,data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+            }
+            ,isAll: function(){ //验证是否全选
+                var checkStatus = table.checkStatus('idTest');
+                layer.msg(checkStatus.isAll ? '全选': '未全选')
+            }
+        };
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $(".searchVal");
+                alert(123)
+                //执行重载
+                table.reload('idTest', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            name: demoReload.val()
+                        }
+                    }
+                });
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+
+    $(function() {
+        $('#add-user').on('click', function () {
+            layer.open({
+                type: 2,
+                maxmin: true,
+                title: '添加用户',
+                content: '/admin/toAdd',
+                area: ['600px', '450px'],
+                offset: ['50px', '250px'],
+                success: function (layero, index) {
+                    var name = $("#name").val();
+                }
+            });
+        });
+
+    });
+
+
+</script>
+
+<table class="layui-table" id="test1" lay-filter="demo"></table>
+<table class="layui-hide" id="test"></table>
+</body>
+</html>
