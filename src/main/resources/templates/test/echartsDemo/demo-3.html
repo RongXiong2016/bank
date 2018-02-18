@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <!-- 引入 ECharts 文件 -->
+    <script src="../../../static/js/echarts.js" th:src="@{/js/echarts.js}"></script>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    function setChart(_url,id) {
+        var chart = echarts.init(document.getElementById(id));
+        chart.showLoading({text:'数据正在加载'});
+        
+        $.ajax({
+            url:_url,
+            dataType:"json",
+            success:function (result) {
+                if (result){
+                    console.log(result);
+                    //var data = $.parseJSON(result);
+                    chart.hideLoading();
+                    //var option = eval('('+result+')');
+                    chart.setOption(result);
+                }}
+        });
+    }
+
+    function initEChart() {
+        setChart("http://localhost:8089/index/getData","main");
+    }
+
+    $(function(){
+        initEChart();
+    });
+
+</script>
+</body>
+</html>
