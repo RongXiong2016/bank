@@ -18,7 +18,8 @@ import java.util.Map;
  * @author 范正荣
  * @Date 2018/2/18 0018 16:27.
  */
-@Controller("/project")
+@Controller()
+@RequestMapping("/project")
 public class ProjectController {
 
     @Resource
@@ -32,10 +33,9 @@ public class ProjectController {
     @RequestMapping(value = "/list1", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
-                             @RequestParam(value = "size", defaultValue = "10") Integer limit,
-                             @RequestParam(value = "key[name]",defaultValue = "") String name) {
+                             @RequestParam(value = "size", defaultValue = "10") Integer limit) {
         Pageable pageable = new PageRequest(page - 1, limit);
-        Page<Project> projects = projectService.findAllByNameLike(name,pageable);
+        Page<Project> projects = projectService.findAll(pageable);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", projects.getContent());
         resultMap.put("count", "1000");
@@ -62,13 +62,13 @@ public class ProjectController {
     @RequestMapping("/toAdd")
     public String toAdd(Model model) {
         model.addAttribute("project", new Project());
-        return "project/add";
+        return "/project/add";
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public @ResponseBody Map add(@ModelAttribute(value = "project") Project project) {
         project.setCreateTime(new Date());
-        projectService  .save(project);
+        projectService.save(project);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
         return resultMap;

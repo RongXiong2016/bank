@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @author 范正荣
  * @Date 2018/2/18 0018 16:14.
@@ -20,6 +22,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void edit(Project project) {
+        Project project1 = projectRepository.findOne(project.getId());
+        project.setCreateAdminId(project1.getCreateAdminId());
+        project.setCreateTime(project1.getCreateTime());
         projectRepository.save(project);
     }
 
@@ -35,6 +40,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void save(Project project) {
+        project.setCreateTime(new Date());
+        project.setCreateAdminId(1L);
         projectRepository.save(project);
     }
 

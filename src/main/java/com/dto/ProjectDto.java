@@ -1,37 +1,29 @@
-package com.domain;
+package com.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-import javax.persistence.*;
 import java.util.Date;
 
 /**
  * @author 范正荣
- * @Date 2018/2/18 0018 15:59.
+ * @Date 2018/2/19 0019 19:24.
  */
-@Entity
 @Getter
 @Setter
-@ToString
-public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class ProjectDto {
+
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "create_admin_id")
     private Long createAdminId;
 
-    @Column(name = "create_time")
+    private String createAdminName;
+
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
-
 }
