@@ -5,6 +5,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * @author 范正荣
  * @Date 2018/2/17 0017 14:31.
@@ -32,4 +36,5 @@ public class Admin {
 
     @Column(name = "description")
     private String description;
+
 }

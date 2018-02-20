@@ -30,3 +30,7 @@ spring:
       time-zone: GMT+8
 server:
   port: 8089
+security:
+  user:
+    password: root
+    name: root
