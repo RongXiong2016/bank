@@ -59,7 +59,7 @@
             layer.msg(JSON.stringify(data.field));
             $.ajax({
                 type: 'POST',
-                url: /*[[@{/user/edit}]]*/'',
+                url: /*[[@{/admin/edit}]]*/'',
                 dataType:'json',
                 data: data.field,
                 async: true,
@@ -72,7 +72,7 @@
                             /*top.layer.closeAll('iframe');
                             //刷新父亲的页面
                             parent.refreshIframe();*/
-                            parent.location.href="/user/list";
+                            parent.location.href="/admin/list";
                         },800);
                     } else {
                         console.alert(result.code);
