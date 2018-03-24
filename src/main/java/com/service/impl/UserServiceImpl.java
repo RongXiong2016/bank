@@ -55,4 +55,15 @@ public class UserServiceImpl implements UserService {
         name = "%"+name+"%";
         return userRepository.findAllByNameLike(name,pageable);
     }
+
+    @Override
+    public boolean hasUser(String username, String password) {
+        User user = userRepository.findByName(username);
+        if(password.equals(user.getPassword())){
+            return true;
+        }else{
+        return false;
+        }
+    }
+
 }

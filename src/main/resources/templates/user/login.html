@@ -8,22 +8,21 @@
 </head>
 <body>
 <div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
-    <form class="layui-form" action="">
+    <form class="layui-form" th:action="@{/user/userLogin}"  th:method="post">
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="layui-icon"
                                                style="font-size: 18px; color: #e2e2e2;">&#xe612;</i></label>
             <div class="layui-input-inline">
                 <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
-                       class="layui-input"></input>
+                       class="layui-input" th:field="*{name}"></input>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe62a;</i></label>
             <div class="layui-input-inline">
                 <input type="password" name="password" required="required" lay-verify="required" placeholder="请输入密码"
-                       autocomplete="off" class="layui-input"></input>
+                       autocomplete="off" class="layui-input" th:field="*{password}"></input>
             </div>
-            <!--<div class="layui-form-mid layui-word-aux">密码长度不小于6位</div>-->
         </div>
 
         <div class="layui-form-item">

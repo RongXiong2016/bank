@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "sys_permission")
+@Table(name = "permission")
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

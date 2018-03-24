@@ -23,4 +23,5 @@ public interface UserService{
 
     Page<User> findAllByNameLike(String name, Pageable pageable);
 
+    boolean hasUser(String username, String password);
 }

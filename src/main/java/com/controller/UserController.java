@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,14 +45,6 @@ public class UserController {
         return "/user/list";
     }
 
-    /*@RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(Model model) {
-        List<User> users = userService.findAll();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("users", users);
-        modelAndView.setViewName("/user/list");
-        return modelAndView;
-    }*/
 
     @RequestMapping(value = "/list1", method = RequestMethod.GET)
     public @ResponseBody
@@ -68,16 +61,6 @@ public class UserController {
         return resultMap;
     }
 
-    /*@RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ModelAndView list(Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,
-                             @RequestParam(value = "size", defaultValue = "5") Integer size) {
-        Pageable pageable = new PageRequest(page, size);
-        Page<User> users = userService.findAll(pageable);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("users", users);
-        modelAndView.setViewName("/list");
-        return modelAndView;
-    }*/
 
     @RequestMapping("/toEdit")
     public String edit(Model model, Long id) {
@@ -91,7 +74,6 @@ public class UserController {
         userService.edit(user);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
-//      return "redirect:/user/list";
         return resultMap;
     }
 
@@ -106,7 +88,6 @@ public class UserController {
         user.setCreateTime(new Date());
         user.setPassword("123456");
         userService.save(user);
-        //return "redirect:/list";
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
         return resultMap;
@@ -116,5 +97,21 @@ public class UserController {
     public String delete(Long id) {
         userService.delete(id);
         return "redirect:/list";
+    }
+
+    @RequestMapping("/userLogin")
+    public String userLogin(HttpServletRequest request){
+        String username = request.getParameter("name");
+        String password = request.getParameter("password");
+        try{
+            if(userService.hasUser(username,password)){
+                return "redirect:index";
+            }else{
+                return "redirect:/user/login";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return  "redirect:/";
     }
 }
