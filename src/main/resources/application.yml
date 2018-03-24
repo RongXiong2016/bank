@@ -30,11 +30,11 @@ spring:
       time-zone: GMT+8
 server:
   port: 8089
-security:
-  user:
-    password: root
-    name: root
+#security:
+ # user:
+ #   password: root
+ #   name: root
 
-logging:
-  level:
-    org.springframework.security: INFO
+#logging:
+ # level:
+  #  org.springframework.security: INFO

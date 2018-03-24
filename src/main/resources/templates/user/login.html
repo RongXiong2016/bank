@@ -8,20 +8,20 @@
 </head>
 <body>
 <div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
-    <form class="layui-form" th:action="@{/user/userLogin}"  th:method="post">
+    <form class="layui-form" th:action="@{/user/dologin}" th:object="${login}" th:method="post">
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="layui-icon"
                                                style="font-size: 18px; color: #e2e2e2;">&#xe612;</i></label>
             <div class="layui-input-inline">
                 <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入用户名" autocomplete="off"
-                       class="layui-input" th:field="*{name}"></input>
+                       class="layui-input" th:field="*{name}"/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe62a;</i></label>
             <div class="layui-input-inline">
                 <input type="password" name="password" required="required" lay-verify="required" placeholder="请输入密码"
-                       autocomplete="off" class="layui-input" th:field="*{password}"></input>
+                       autocomplete="off" class="layui-input" th:field="*{password}"/>
             </div>
         </div>
 
@@ -33,15 +33,37 @@
         </div>
     </form>
 </div>
-<script src="../../static/layui/layui.js"></script>
-<script>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+
+<script th:inline="javascript">
     layui.use(['form', 'element'], function () {
         var form = layui.form
-            , element = layui.element;
+            , element = layui.element
+            ,$ = layui.jquery;
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                type: 'POST',
+                url: /*[[@{/user/dologin}]]*/'',
+                dataType: 'json',
+                data: data.field,
+                async: true,
+                success: function (data) {
+                    console.log(data)
+                    if(data.success == false){
+                        alert("登录失败,请重新输入用户名密码")
+                    }else if(data.success == true){
+                        //关闭弹出层
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
+                        parent.location.reload();
+                    }
+                },
+                error: function (data) {
+                    alert("后台接口调用异常")
+                }
+            });
             return false;
         });
     });

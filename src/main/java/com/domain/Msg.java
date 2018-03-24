@@ -10,7 +10,6 @@ import javax.persistence.Entity;
  * @author 范正荣
  * @Date 2018/3/24 0024 12:38.
  */
-@Entity
 @Getter
 @Setter
 @ToString

@@ -1,5 +1,7 @@
 package com.controller;
 
+import com.dao.UserRepository;
+import com.domain.Login;
 import com.domain.User;
 import com.service.UserService;
 import com.sun.org.apache.xml.internal.dtm.DTMDOMException;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,16 +32,14 @@ public class UserController {
 
     @Resource
     UserService userService;
+    @Resource
+    UserRepository userRepository;
 
     @RequestMapping("/register")
     public String register() {
         return "/user/register";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "/user/login";
-    }
 
     @RequestMapping("/list")
     public String list() {
@@ -99,19 +100,36 @@ public class UserController {
         return "redirect:/list";
     }
 
-    @RequestMapping("/userLogin")
-    public String userLogin(HttpServletRequest request){
-        String username = request.getParameter("name");
-        String password = request.getParameter("password");
+    @RequestMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("login", new Login());
+        return "/user/login";
+    }
+
+    @RequestMapping(value="/dologin", method = RequestMethod.POST)
+    public @ResponseBody Map userLogin(@ModelAttribute(value = "login") Login login, HttpSession session){
+        Map<String, Object> resultMap = new HashMap<>();
         try{
-            if(userService.hasUser(username,password)){
-                return "redirect:index";
+            if(userService.hasUser(login.getName(),login.getPassword())){
+                resultMap.put("code", "0");
+                resultMap.put("success", true);
+                session.setAttribute("user",userRepository.findByName(login.getName()));
             }else{
-                return "redirect:/user/login";
+                resultMap.put("code", "0");
+                resultMap.put("success", false);
             }
         }catch (Exception e){
             e.printStackTrace();
+            resultMap.put("code", "0");
+            resultMap.put("success", false);
         }
-        return  "redirect:/";
+        return resultMap;
     }
+
+    @RequestMapping(value="/loginout", method = RequestMethod.GET)
+    public String loginOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/index/admin";
+    }
+
 }

@@ -14,8 +14,8 @@
         <div class="layui-logo">银行理财管理系统后台</div>
 
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <a href="javascript:;">
+            <li class="layui-nav-item" th:unless="${session.user == null}" >
+                <a href="#" th:text="${session.user.name}">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img"></img>
                     管理员
                 </a>
@@ -24,7 +24,9 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a id="u_login">登录</a></li>
+            <li class="layui-nav-item"><a id="u_login" th:unless="${session.user != null}">登录/注册</a></li>
+
+            <li class="layui-nav-item"><a id="u_login_out" th:unless="${session.user == null}" th:href="@{/user/loginout}">退出</a></li>
         </ul>
     </div>
 
@@ -90,9 +92,11 @@
                 skin: 'layui-layer-lan',
                 shadeClose: true, //点击遮罩关闭层
                 area: ['400px', '280px'],
-                content: 'user/login.html'//弹框显示的url
+                content: '/user/login.html'//弹框显示的url
             });
         });
+
+
     });
 </script>
 </body>
