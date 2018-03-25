@@ -34,4 +34,6 @@ public class UserVo {
     private String sex;
 
     private Integer age;
+
+    private String roleName;
 }

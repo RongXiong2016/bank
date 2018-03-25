@@ -5,26 +5,28 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 /**
  * @author 范正荣
- * @Date 2018/3/17 0017 11:34.
+ * @Date 2018/3/25 0025 22:16.
  */
 @Entity
 @Getter
 @Setter
 @ToString
-public class Role {
+@Table(name = "user_role")
+public class UserRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
     private Long id;
-    @Column(name = "name")
-    private String name;
 
-    @OneToMany(mappedBy = "role")
-    private Set<UserRole> userRoleList;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }

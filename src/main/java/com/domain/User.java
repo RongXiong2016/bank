@@ -6,18 +6,19 @@ import lombok.ToString;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
 @ToString
-public class User  {
+public class User implements Serializable {
+    private static final long serialVersionUID = -2332275348019972760L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(name = "name")
@@ -44,7 +45,7 @@ public class User  {
     @Column(name = "create_time")
     private Date createTime;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
-    private List<Role> roles;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserRole> userRoleList;
 
 }

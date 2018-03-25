@@ -19,6 +19,7 @@ import java.util.Date;
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="project_id")
     private Long id;
 
     @Column(name = "name")

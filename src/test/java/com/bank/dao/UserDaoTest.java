@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -46,5 +47,11 @@ public class UserDaoTest {
         Pageable pageable = new PageRequest(0, 10);
         Page<User> users = userRepository.findAllByNameLike("%测试%",pageable);
         System.out.println(users.getTotalElements());
+    }
+
+    @Test
+    public void testfindUsersByUserRoleList(){
+        List<User> users = userRepository.findUsersByUserRoleList(1L);
+        System.out.println(users.size());
     }
 }
