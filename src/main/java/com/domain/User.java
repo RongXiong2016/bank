@@ -13,6 +13,7 @@ import java.util.*;
 @Getter
 @Setter
 @ToString
+@Table(name = "user")
 public class User implements Serializable {
     private static final long serialVersionUID = -2332275348019972760L;
 
@@ -45,7 +46,13 @@ public class User implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<UserRole> userRoleList;
+    //@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    //private Set<UserRole> userRoleList;
+    @ManyToMany(mappedBy = "users")
+    /*@JoinTable(
+            name="user_role",
+            joinColumns={@JoinColumn(name="user_id", referencedColumnName="user_id")},
+            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})*/
 
+    private List<Role> roles;
 }

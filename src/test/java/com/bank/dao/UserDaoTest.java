@@ -3,6 +3,8 @@ package com.bank.dao;
 import com.BankApplication;
 import com.dao.UserRepository;
 import com.domain.User;
+import com.domain.UserRole;
+import com.dto.UserDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +53,7 @@ public class UserDaoTest {
 
     @Test
     public void testfindUsersByUserRoleList(){
-        List<User> users = userRepository.findUsersByUserRoleList(1L);
+        List<UserRole> users = userRepository.findRoleAndUser();
         System.out.println(users.size());
     }
 }
