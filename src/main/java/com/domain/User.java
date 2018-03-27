@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +10,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * @author 范正荣
+ * @date   2018.03.27
+ */
 @Entity
 @Getter
 @Setter
@@ -46,13 +51,12 @@ public class User implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
-    //@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-    //private Set<UserRole> userRoleList;
-    @ManyToMany(mappedBy = "users")
-    /*@JoinTable(
+    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(
             name="user_role",
-            joinColumns={@JoinColumn(name="user_id", referencedColumnName="user_id")},
-            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})*/
+            joinColumns= {@JoinColumn(name="user_id", referencedColumnName="user_id")},
+            inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})
+    private Set<Role> roles;
 
-    private List<Role> roles;
 }

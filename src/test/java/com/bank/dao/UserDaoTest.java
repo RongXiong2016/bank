@@ -1,10 +1,10 @@
 package com.bank.dao;
 
 import com.BankApplication;
+import com.dao.RoleRepository;
 import com.dao.UserRepository;
+import com.domain.Role;
 import com.domain.User;
-import com.domain.UserRole;
-import com.dto.UserDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -28,6 +29,9 @@ import java.util.Map;
 public class UserDaoTest {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Transactional
     //@Rollback(true)
@@ -53,7 +57,35 @@ public class UserDaoTest {
 
     @Test
     public void testfindUsersByUserRoleList(){
-        List<UserRole> users = userRepository.findRoleAndUser();
+        List<User> users = userRepository.findByRoles("USER");
         System.out.println(users.size());
+        System.out.println(users.get(0).getName());
     }
+
+    @Test
+    public void testInsertUser(){
+        Role role = new Role();
+        role.setName("柜员");
+        roleRepository.save(role);
+
+        Set<Role> roles=new HashSet<Role>();
+        roles.add(role);
+
+        User user = new User();
+        user.setName("test0327");
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
+
+    @Test
+    public void testfindByNameAndRolesName(){
+
+        List<User> users =
+                userRepository.findByNameAndRolesName("user","用户",0,20);
+        System.out.println(users.size());
+        for(User u : users){
+           System.out.println(u.getName());
+       }
+    }
+
 }
