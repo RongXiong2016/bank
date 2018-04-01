@@ -88,4 +88,10 @@ public class UserDaoTest {
        }
     }
 
+    @Test
+    public void test(){
+        List<User> users = userRepository.findByName1("user");
+        System.out.println(users.size());
+    }
+
 }

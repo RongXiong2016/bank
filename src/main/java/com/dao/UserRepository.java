@@ -27,13 +27,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByNameAndRolesName(@Param("name1") String userName, @Param("name2")String roleName,
                                       @Param("offset")Integer offset,@Param("q")Integer size);
 
-
-   /* @Query(nativeQuery = true, value = "select * from user u " +
-            "inner join user_role ur on u.user_id = ur.user_id " +
-            "inner join role r on r.role_id = ur.role_id where u.name= ?1 and r.name= ?2" +
-            "limit ?3,?4 ;")
-    List<User> findByNameAndRolesName(@Param("name1") String userName, @Param("name2")String roleName,
-                                      @Param("offset")Integer offset,@Param("q")Integer size);*/
+    @Query("select u from User u where u.name =?1")
+    List<User> findByName1(String name);
 
 
 }
