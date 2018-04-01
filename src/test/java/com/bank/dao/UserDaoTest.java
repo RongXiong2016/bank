@@ -5,6 +5,7 @@ import com.dao.RoleRepository;
 import com.dao.UserRepository;
 import com.domain.Role;
 import com.domain.User;
+import com.domain.UserProjection;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -92,6 +90,12 @@ public class UserDaoTest {
     public void test(){
         List<User> users = userRepository.findByName1("user");
         System.out.println(users.size());
+    }
+
+    @Test
+    public void test2(){
+        Collection<UserProjection> collections = userRepository.findProjectedBy();
+        System.out.println(collections.size());
     }
 
 }
