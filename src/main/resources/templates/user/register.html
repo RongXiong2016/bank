@@ -7,6 +7,101 @@
     <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
 </head>
 <body>
+<div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
+    <form class="layui-form" th:action="@{/user/dologin}" th:object="${login}" th:method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入姓名" autocomplete="off"
+                       class="layui-input" th:field="*{name}"/>
+            </div>
+        </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" required="required" lay-verify="required" placeholder="请输入密码"
+                       autocomplete="off" class="layui-input" th:field="*{password}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入手机号" autocomplete="off"
+                       class="layui-input" th:field="*{name}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">住址</label>
+            <div class="layui-input-inline layui-form" lay-filter="prov">
+                <select id="prov" lay-filter="provSel">
+                    <option value="">全部数据来源</option>
+                </select>
+            </div>
+            <div class="layui-input-inline layui-form" lay-filter="city">
+                <select id="city">
+                    <option value="">全部数据来源</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div style="width:900px;margin:50px auto;">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择地区</label>
+                    <div class="layui-input-inline">
+                        <select name="provid" id="provid" lay-filter="provid" >
+                            <option value="">请选择省</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="cityid" id="cityid" lay-filter="cityid">
+                            <option value="">请选择市</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="areaid" id="areaid" lay-filter="areaid">
+                            <option value="">请选择县/区</option>
+                        </select>
+                    </div>
+                </div>
+
+
+
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="reset" class="layui-btn layui-btn-primary">注册</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" src="../../static/js/data.js" th:src="@{/js/data.js}"></script>
+<script type="text/javascript" src="../../static/js/province-name.js" th:src="@{/js/province-name.js}"></script>
+
+<script th:inline="javascript">
+    layui.use(['form', 'element'], function () {
+        var form = layui.form
+            ,element = layui.element
+            ,$ = layui.jquery;
+
+        var defaults = {
+            s1:'provid',
+            s2:'cityid',
+            s3:'areaid',
+            v1:null,
+            v2:null,
+            v3:null
+        };
+        console.log($("#provid").val())
+        console.log($("#cityid").val())
+        console.log($("#areaid").val())
+    });
+</script>
 </body>
 </html>

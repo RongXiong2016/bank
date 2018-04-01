@@ -24,7 +24,9 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a id="u_login" th:unless="${session.user != null}">登录/注册</a></li>
+            <li class="layui-nav-item"><a id="u_login" th:unless="${session.user != null}">
+                <i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe68e;</i>
+                登录</a></li>
 
             <li class="layui-nav-item"><a id="u_login_out" th:unless="${session.user == null}" th:href="@{/user/loginout}">退出</a></li>
         </ul>
