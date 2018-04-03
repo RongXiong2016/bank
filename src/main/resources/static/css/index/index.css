@@ -1,0 +1,13 @@
+#back-logo {
+    float: left;
+    color: #fff;
+    font-size: 18px;
+    padding-left: 20px;
+    line-height: 45px;
+    width: 200px;
+    margin-top: 9px
+}
+.menu-icon{
+    font-size: 18px;
+    color: #e2e2e2;
+}

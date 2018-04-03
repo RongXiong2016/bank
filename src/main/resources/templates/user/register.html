@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
-    <form class="layui-form" th:action="@{/user/dologin}" th:object="${login}" th:method="post">
+    <form class="layui-form" th:action="@{/user/doregister}" th:object="${register}" th:method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-inline">
@@ -29,53 +29,55 @@
             <label class="layui-form-label">手机</label>
             <div class="layui-input-inline">
                 <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入手机号" autocomplete="off"
-                       class="layui-input" th:field="*{name}"/>
+                       class="layui-input" th:field="*{phone}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入邮箱" autocomplete="off"
+                       class="layui-input" th:field="*{email}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">身份证号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" required="required" lay-verify="required" placeholder="请输入身份证号" autocomplete="off"
+                       class="layui-input" th:field="*{idCard}"/>
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">住址</label>
-            <div class="layui-input-inline layui-form" lay-filter="prov">
-                <select id="prov" lay-filter="provSel">
-                    <option value="">全部数据来源</option>
+            <div class="layui-input-inline">
+                <select name="provid" id="provid" lay-filter="provid" >
+                    <option value="" th:field="*{provid}">请选择省</option>
                 </select>
             </div>
-            <div class="layui-input-inline layui-form" lay-filter="city">
-                <select id="city">
-                    <option value="">全部数据来源</option>
+            <div class="layui-input-inline">
+                <select name="cityid" id="cityid" lay-filter="cityid">
+                    <option value="" th:field="*{cityid}">请选择市</option>
                 </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="areaid" id="areaid" lay-filter="areaid">
+                    <option value="" th:field="*{areaid}">请选择县/区</option>
+                </select>
+            </div>
+
+
+            <div class="layui-input-inline">
+                <input type="text" name="title" required="required" lay-verify="required" placeholder="" autocomplete="off"
+                       class="layui-input" th:field="*{betterAddress}"/>
             </div>
         </div>
 
 
-        <div style="width:900px;margin:50px auto;">
-            <form class="layui-form">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择地区</label>
-                    <div class="layui-input-inline">
-                        <select name="provid" id="provid" lay-filter="provid" >
-                            <option value="">请选择省</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline">
-                        <select name="cityid" id="cityid" lay-filter="cityid">
-                            <option value="">请选择市</option>
-                        </select>
-                    </div>
-                    <div class="layui-input-inline">
-                        <select name="areaid" id="areaid" lay-filter="areaid">
-                            <option value="">请选择县/区</option>
-                        </select>
-                    </div>
-                </div>
-
-
-
-
-
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button type="reset" class="layui-btn layui-btn-primary">注册</button>
+                <button type="reset" class="layui-btn" lay-submit="submit" lay-filter="formDemo">注册</button>
             </div>
         </div>
     </form>
@@ -88,19 +90,42 @@
     layui.use(['form', 'element'], function () {
         var form = layui.form
             ,element = layui.element
-            ,$ = layui.jquery;
+            ,$ = layui.jquery,
+            layer = layui.layer;
 
-        var defaults = {
-            s1:'provid',
-            s2:'cityid',
-            s3:'areaid',
-            v1:null,
-            v2:null,
-            v3:null
-        };
-        console.log($("#provid").val())
+        /*console.log($("#provid").val())
         console.log($("#cityid").val())
-        console.log($("#areaid").val())
+        console.log($("#areaid").val())*/
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            $.ajax({
+                type: 'POST',
+                url: /*[[@{/user/doregister}]]*/'',
+                dataType: 'json',
+                data: data.field,
+                async: true,
+                success: function (data) {
+                    console.log(data)
+                    if(data.success == false){
+                        layer.msg('注册失败');
+                    }else if(data.success == true){
+                        layer.msg('注册成功,即将跳往首页', {
+                            icon: 1,
+                            time: 4000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            //do something
+                            location.href = "../index";
+                        });
+
+                    }
+                },
+                error: function (data) {
+                    alert("后台接口调用异常")
+                }
+            });
+            return false;
+        });
     });
 </script>
 </body>

@@ -1,65 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
     <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
     <title>首页-后台</title>
     <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" href="../static/css/index/index.css" th:src="@{/css/index/index.css}"></link>
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin" >
-    <div class="layui-header">
-        <div class="layui-logo">银行理财管理系统后台</div>
+    <div class="layui-header container">
+        <div class="layui-logo"><a href="#" id="back-logo">银行理财管理系统后台</a></div>
 
         <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a id="index" href="#">前台首页</a></li>
             <li class="layui-nav-item" th:unless="${session.user == null}" >
                 <a href="#" th:text="${session.user.name}">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img"></img>
                     管理员
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="#">基本资料</a></dd>
+                    <dd><a href="#">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a id="u_login" th:unless="${session.user != null}">
+            <li class="layui-nav-item"><a href="#" id="u_login" th:unless="${session.user != null}">
                 <i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe68e;</i>
                 登录</a></li>
 
-            <li class="layui-nav-item"><a id="u_login_out" th:unless="${session.user == null}" th:href="@{/user/loginout}">退出</a></li>
+            <li class="layui-nav-item"><a id="u_login_out" th:unless="${session.user == null}" th:href="@{/user/loginout}" href="#">退出</a></li>
         </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
+        <div class="layui-side-scroll"  >
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test" >
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;" ><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe613;</i> 用户管理</a>
+                <li class="layui-nav-item">
+                   <!-- layui-nav-itemed-->
+                    <a  href="javascript:;" ><i class="layui-icon menu-icon">&#xe613;</i> 用户管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a th:href="@{/user/list}" href="user/list.html" class="layui-col-md-offset2" target="target"> 客户列表</a></dd>
+                        <dd><a th:href="@{/user/list}" href="user/list.html" class="layui-col-md-offset2" target="target">客户列表</a></dd>
                     </dl>
+
+                </li>
+                <li class="layui-nav-item" >
+                    <a href="javascript:;" ><i class="layui-icon menu-icon">&#xe612;</i> 管理员管理</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/admin/list}" href="admin/list.html" class="layui-col-md-offset2" target="target"> 管理员列表</a></dd>
                     </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/admin/list}" href="admin/list.html" class="layui-col-md-offset2" target="target"> 角色管理</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/admin/list}" href="admin/list.html" class="layui-col-md-offset2" target="target"> 权限管理</a></dd>
+                    </dl>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/admin/list}" href="admin/list.html" class="layui-col-md-offset2" target="target"> 权限分类</a></dd>
+                    </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe62d;</i>产品管理</a>
+                    <a href="javascript:;"><i class="layui-icon menu-icon">&#xe62d;</i>产品管理</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/project/list}" href="project/list.html" class="layui-col-md-offset2" target="target">理财项目</a></dd>
                         <dd><a href="product/list.html" class="layui-col-md-offset2" target="target">理财产品</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe60e;</i> 交易管理</a>
+                    <a href="javascript:;"><i class="layui-icon menu-icon">&#xe60e;</i> 交易管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="layui-col-md-offset2"> 查询交易信息</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><i class="layui-icon" style="font-size: 18px; color: #e2e2e2;">&#xe614;</i> 系统设置</a>
+                    <a href="javascript:;"><i class="layui-icon menu-icon">&#xe614;</i> 系统设置</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" class="layui-col-md-offset2"> 日志管理</a></dd>
                     </dl>
@@ -82,7 +97,6 @@
     layui.use(['element','layer'], function(){
         var element = layui.element
             ,layer = layui.layer;
-
     });
 
     $(function() {
@@ -97,8 +111,6 @@
                 content: '/user/login.html'//弹框显示的url
             });
         });
-
-
     });
 </script>
 </body>

@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>银行理财平台</title>
+    <meta name="description" content="长沙软诚网络科技有限公司，小程序，软云小程序，软云，自主创业，软诚科技" />
+    <meta name="keywords" content="长沙软诚网络科技有限公司，小程序，软云小程序，软云，自主创业" />
+    <meta name="referrer" content="unsafe-url" />
+    <meta name="referrer" content="always" />
+    <link href="../../static/layui/css/layui.css" rel="stylesheet" />
+    <link href="../../static/css/index/global.css" rel="stylesheet" />
+    <script src="../../static/js/jquery-3.3.1.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <script src="../../static/js/vue.js"></script>
+</head>
+<body>
+<div class="header layui-bg-cyan">
+    <input type="hidden" id="controller" value="Index" />
+    <div class="layui-header" v-cloak>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="../../">银行理财平台</a></li>
+            <li class="layui-nav-item layui-this" id="Index"><a href="../../">首页</a></li>
+
+            <li class="layui-nav-item" id="Agents"><a href="#">理财产品</a></li>
+            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+
+
+        </ul>
+
+        <ul class="layui-nav layui-right" v-if="User.Id==0">
+            <li class="layui-nav-item">
+                <a v-bind:href="['http://sso.softseeks.cn/?ReturnUrl='+locationhref]">登录</a>
+            </li>
+            <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
+        </ul>
+        <ul class="layui-nav layui-right" v-else>
+            <li class="layui-nav-item">
+                <a href="http://ruanyun.verdor.softseeks.cn">{{User.Name}}</a>
+            </li>
+            <li class="layui-nav-item"><a href="/Index/Logout">退出</a></li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+
+
+<div id="Body" v-cloak>
+
+
+    <div class="slider">
+        <div class="layui-carousel" id="test10">
+            <div carousel-item="">
+                <div>
+                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner2.png">
+                </div>
+                <div>
+                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner5.png">
+                </div>
+                <div>
+                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner4.png">
+                </div>
+
+                <div>
+                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner3.png">
+                </div>
+                <div>
+                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner6.png">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div style="background-color: #ffffff; width: 100%; overflow: hidden;">
+        <div class="g-box">
+            <div class="m-not s-fs12">
+                <div class="g-box">
+                    <span>最新公告</span>
+                    <span>
+                        <a v-for="(item,todo) in ASnnouncementlist" v-bind:data-index="todo"   v-bind:href="'/News/Detitle/'+item.Id"    class="m-not-i"><i></i>{{item.Title}}</a>
+
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap s-bg-gy">
+        <dl class="g-box m-dl">
+            <dt class="m-dt-t1">国内领先、免费、最全的小程序产品</dt>
+           <!-- <dt class="m-dt-t2 g-mb64">软云小程序、电商小程序、服务小程序、O2O小程序，助您畅享小程序流量红利
+
+            </dt>-->
+
+            <dd>
+                <a href="/home/list"   style="margin-left: 1110px;font-size: 15px">查看更多<label></label></a>
+                <ul class="f1">
+                    <li>
+                        <div class="g-tac">
+                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img1@2x.png">
+                            <p class="g-mt20 f1-t1">软云小程序</p>
+                            <p class="g-mt14 s-fc-gy">完全可视化拖拽</p>
+                            <p class="s-fc-gy">三分钟打造自己的小程序</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="g-tac">
+                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img2@2x.png">
+                            <p class="g-mt20 f1-t1">电商小程序</p>
+                            <p class="g-mt14 s-fc-gy">强大稳定的开店系统</p>
+                            <p class="s-fc-gy">快速搭建电商小程序</p>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="g-tac">
+                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img3@2x.png">
+                            <p class="g-mt20 f1-t1">服务小程序</p>
+                            <p class="g-mt14 s-fc-gy">专业服务线下门店</p>
+                            <p class="s-fc-gy">一体化小程序解决方案</p>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="g-tac">
+                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img4@2x.png">
+                            <p class="g-mt20 f1-t1">O2O小程序</p>
+                            <p class="g-mt14 s-fc-gy">一站式全流程管理</p>
+                            <p class="s-fc-gy">轻松解决报名签到与现场互动</p>
+                        </div>
+
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+
+
+    <div style="background-color: #ffffff; overflow: hidden;">
+        <div class="t-box1 wrap">
+            <h1 class="font28 grey333 f-tac">小程序解决方案</h1>
+            <p class="f-tac f-db font16 grey666">无需安装，一键拥有，触手可及，集展示、互动、交易为一体</p>
+            <div class="t-con-new f-cb">
+                <ul>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-1">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon01"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-2">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon02"></i></div>
+                            <h3>新餐饮</h3>
+                            <p>
+                                订座 堂吃点餐 外卖<br>
+                                餐饮行业前厅后厨外卖<br>
+                                一体化解决方案
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-3">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon03"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-4">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon04"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-5">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon05"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-6">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon06"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-7">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon07"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-8">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon08"></i></div>
+                            <h3>新餐饮</h3>
+                            <p>
+                                订座 堂吃点餐 外卖<br>
+                                餐饮行业前厅后厨外卖<br>
+                                一体化解决方案
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-9">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon09"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-10">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon10"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-11">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon11"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" class="t-con-new-item bg-12">
+                            <div class="t-con-new-item-bg"><i class="t-con-new-item-icon12"></i></div>
+                            <h3>新零售</h3>
+                            <p>
+                                商城、营销、会员<br>
+                                门店全方位管理<br>
+                                助力新零售转型升级
+                            </p>
+                            <i class="t-con-new-item-btn">了解更多</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="f-cb" align="center">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div style="padding-bottom: 65px;">
+        <p class="g-title">小程序核心场景</p>
+        <div class="app-scene">
+            <span>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/find-app.svg" alt="" style="width: 28px; height: 34px">
+                <p>分享到群</p>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/accessory-app.svg" alt="" style="width: 38px; height: 34px">
+                <p>附近小程序</p>
+            </span>
+            <span>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/scan-code.svg" alt="" style="width: 32px; height: 39px">
+                <p>线下扫码</p>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/share-wx.svg" alt="" style="width: 29px; height: 34px">
+                <p>支付完成页</p>
+            </span>
+            <span>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/top-search.svg" alt="" style="width: 32px; height: 37px">
+                <p>微信搜索</p>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/mini-apps.svg" alt="" style="width: 33px; height: 34px">
+                <p>小程序列表</p>
+            </span>
+            <span>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/code-drainage.svg" alt="" style="width: 27px; height: 42px">
+                <p>聊天顶部</p>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/WCOA.svg" alt="" style="width: 41px; height: 42px">
+                <p>公众号主页</p>
+            </span>
+            <span>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/recommend-friend.svg" alt="" style="width: 44px; height: 44px">
+                <p>推荐给好友</p>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp_home/img/article.svg" alt="" style="width: 38px; height: 34px">
+                <p>公众号文章</p>
+            </span>
+        </div>
+    </div>
+
+
+
+    <div class="develop-step">
+        <div class="develop-step-title">开发流程</div>
+        <div class="develop-step-content clearfix">
+            <div class="develop-first-step">注册微信小程序并申请微信支付</div>
+            <div class="develop-second-step">制作小程序</div>
+            <div class="develop-third-step">上传并提交审核</div>
+            <div class="develop-firth-step">审核通过，小程序上线</div>
+        </div>
+    </div>
+
+
+
+    <!--<div style="width: 100%; overflow: hidden; background-color: #2589ff">
+        <div class="wrap ft-res-be s-fcw  g-mt100">
+            <div class="g-box g-tac s-fs30">立即注册即可体验最火热的小程序<a href="http://ruanyun.verdor.softseeks.cn/Reg" data-wmdot="tap" data-wmdot-id="rgst_btm" target="_blank" title="立即注册即可体验最火热的小程序" class="ft-res-lnk">立即注册</a></div>
+        </div>
+    </div>-->
+</div>
+
+<script src="../../static/layui/layui.js"></script>
+<script>
+    layui.use(['carousel', 'form'], function () {
+        var carousel = layui.carousel
+            , form = layui.form;
+
+
+        //图片轮播
+        carousel.render({
+            elem: '#test10'
+            , width: '100%'
+            , height: '520px'
+            , interval: 5000
+        });
+
+
+
+
+
+
+    });
+    var app5 = new Vue({
+        el: '#Body',
+        data: {
+            ASnnouncementlist:[]
+        },
+        beforeMount: function () {
+            var that = this;
+            $.ajax({
+                url: "/Index/GetIndexlist",
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    that.ASnnouncementlist = data.result2;
+                }
+            });
+        },
+        methods: {
+        }
+    })
+
+
+
+</script>
+
+
+<div class="footer" style="text-align: left">
+    <div class="footer-top">
+        <div class="wrap">
+            <div class="footer-block w-23">
+                <div class="logo">
+
+                </div>
+
+            </div>
+            <div class="footer-block w-25">
+                <div class="footer-tit">服务产品</div>
+                <div class="footer-tit-title"><a href="#">软云商城</a></div>
+                <div class="footer-tit-title"><a href="#">小程序查询</a></div>
+                <div class="footer-tit-title"><a href="#">软云餐饮</a></div>
+                <div class="footer-tit-title"><a href="#">小程序商店</a></div>
+                <div class="footer-tit-title"><a href="#">软云官网</a></div>
+
+            </div>
+
+            <div class="footer-block w-22">
+                <div class="footer-tit">联系我们</div>
+                <p style="margin-bottom: 10px;">湖南省长沙高新开发区尖山路39号长沙中电软件园总部大楼6楼</p>
+                <p class="mb-10">
+                    <a href="http://crm2.qq.com/page/portalpage/wpa.php?uin=885115820&amp;aty=0&amp;a=0&amp;curl=&amp;ty=1" target="_blank">企业QQ：885115820
+                        <span class="foot-qq"></span>
+                    </a>
+                </p>
+                <p class="mb-10">企业邮箱：zhouyuan@softseeks.cm</p>
+
+
+
+
+
+            </div>
+            <div class="footer-block w-12">
+                <div class="footer-tit">关注公众号</div>
+                <div class="footer-ewm">
+                    <img src="http://soft.softseeks.cn/zhouyuan/20171221/201712211734075216.jpg" alt="长沙软诚网络科技有限公司" class="loading">
+                </div>
+                <!-- <p class="ml">动态和资讯都在这里</p> -->
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div style="height: 35px; line-height: 35px; font-size: 12px; text-align: left; width: 1200px; margin: 0 auto; overflow: visible; color: #fff; padding-top: 10px;">
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div style="height: 25px; line-height: 35px; font-size: 12px; text-align: left; width: 1200px; margin: 0 auto; overflow: visible; color: #fff; padding-top: 10px;">
+            合作伙伴:
+            <a href="http://www.91ud.com/" target="_blank" style="margin-left: 10px; color: #fff;">小程序商店</a>
+            <a href="#" target="_blank" style="margin-left: 10px; color: #fff;">微信公众平台</a>
+            <a href="http://www.liantu.com" target="_blank" style="margin-left: 10px; color: #fff;">二维码</a>
+            <a href="http://www.xiaochengxuwang.cn/" target="_blank" style="margin-left: 10px; color: #fff;">小程序</a>
+            <a href="https://www.atobo.com.cn" target="_blank" style="margin-left: 10px; color: #fff;">阿土伯</a>
+            <a href="https://www.xcx.la/" target="_blank" style="margin-left: 10px; color: #fff;">微信小程序</a>
+            <a href="http://www.v5bjq.com/" target="_blank" style="margin-left: 10px; color: #fff;">微信编辑器</a>
+            <a href="http://www.qixiangwang.cn/" target="_blank" style="margin-left: 10px; color: #fff;">天气预报</a>
+        </div>
+        Copyright 2017 长沙软诚网络科技有限公司 版权所有 <a href="http://www.miitbeian.gov.cn" target="_blank">湘ICP备13039900号-1</a>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    $(function () {
+        var controller = $("#controller").val();
+        $(".layui-nav-item").removeClass("layui-this");
+        $("#" + controller).addClass("layui-this");
+    })
+    var app5 = new Vue({
+        el: '.layui-header',
+        data: {
+            User: [],
+            locationhref: ""
+        },
+        beforeMount: function () {
+            var that = this;
+            that.locationhref = window.location.href;
+            $.ajax({
+                url: "/Base/GetUserInfo",
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    that.User = data;
+
+                }
+            });
+        },
+        methods: {
+        }
+    })
+
+
+</script>

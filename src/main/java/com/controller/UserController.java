@@ -1,24 +1,22 @@
 package com.controller;
 
 import com.dao.UserRepository;
-import com.domain.Login;
+import com.dto.Login;
 import com.domain.User;
+import com.dto.Register;
 import com.service.UserService;
-import com.sun.org.apache.xml.internal.dtm.DTMDOMException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,10 +33,7 @@ public class UserController {
     @Resource
     UserRepository userRepository;
 
-    @RequestMapping("/register")
-    public String register() {
-        return "/user/register";
-    }
+
 
 
     @RequestMapping("/list")
@@ -123,6 +118,26 @@ public class UserController {
             resultMap.put("code", "0");
             resultMap.put("success", false);
         }
+        return resultMap;
+    }
+
+    @RequestMapping("/register")
+    public String register(Model model) {
+        model.addAttribute("register", new Register());
+        return "/user/register";
+    }
+
+    @RequestMapping(value="/doregister", method = RequestMethod.POST)
+    public @ResponseBody Map userRegister(@ModelAttribute(value = "register") Register register, HttpSession session){
+        Map<String, Object> resultMap = new HashMap<>();
+        User user = new User();
+        BeanUtils.copyProperties(register,user);
+        user.setAddress(register.getProvid()+register.getCityid()+register.getAreaid()+register.getBetterAddress());
+        userService.save(user);
+        resultMap.put("code", "0");
+        resultMap.put("success", true);
+
+        session.setAttribute("user",userRepository.findByName(register.getName()));
         return resultMap;
     }
 
