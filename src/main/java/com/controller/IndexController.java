@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dto.Login;
 import com.github.abel533.echarts.Data;
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.axis.CategoryAxis;
@@ -8,6 +9,7 @@ import com.github.abel533.echarts.code.Trigger;
 import com.github.abel533.echarts.json.GsonUtil;
 import com.github.abel533.echarts.series.Bar;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,7 +29,7 @@ public class IndexController {
      *
      * @return
      */
-    @RequestMapping("/admin")
+    @RequestMapping("admin")
     public String admin() {
         return "index";
     }

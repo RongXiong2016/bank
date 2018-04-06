@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.domain.Admin;
+import com.dto.Login;
 import com.service.AdminService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,10 +24,15 @@ public class AdminController {
     @Resource
     AdminService adminService;
 
-    @RequestMapping("/login")
+    @RequestMapping()
+    public String admin(Model model) {
+        model.addAttribute("login", new Login());
+        return "login";
+    }
+   /* @RequestMapping("/login")
     public String login() {
         return "/admin/login";
-    }
+    }*/
 
     @RequestMapping("/list")
     public String list() {

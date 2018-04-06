@@ -107,15 +107,18 @@ public class UserController {
         try{
             if(userService.hasUser(login.getName(),login.getPassword())){
                 resultMap.put("code", "0");
+                resultMap.put("msg","");
                 resultMap.put("success", true);
                 session.setAttribute("user",userRepository.findByName(login.getName()));
             }else{
                 resultMap.put("code", "0");
+                resultMap.put("msg","");
                 resultMap.put("success", false);
             }
         }catch (Exception e){
             e.printStackTrace();
             resultMap.put("code", "0");
+            resultMap.put("msg","");
             resultMap.put("success", false);
         }
         return resultMap;
@@ -144,7 +147,7 @@ public class UserController {
     @RequestMapping(value="/loginout", method = RequestMethod.GET)
     public String loginOut(HttpSession session){
         session.invalidate();
-        return "redirect:/index/admin";
+        return "redirect:/admin";
     }
 
 }
