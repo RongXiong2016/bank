@@ -14,6 +14,7 @@ import java.util.Date;
 /**
  * @author 范正荣
  * @Date 2018/2/18 0018 15:59.
+ * 理财项目
  */
 @Entity
 @Getter

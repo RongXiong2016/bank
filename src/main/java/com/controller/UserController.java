@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.dao.UserRepository;
+import com.domain.Product;
 import com.dto.Login;
 import com.domain.User;
 import com.dto.Register;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,9 +35,6 @@ public class UserController {
     @Resource
     UserRepository userRepository;
 
-
-
-
     @RequestMapping("/list")
     public String list() {
         return "/user/list";
@@ -46,9 +45,9 @@ public class UserController {
     public @ResponseBody
     Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer limit,
-                             @RequestParam(value = "key[name]",defaultValue = "") String name) {
+                             @RequestParam(value = "key[name]", defaultValue = "") String name) {
         Pageable pageable = new PageRequest(page - 1, limit);
-        Page<User> users = userService.findAllByNameLike(name,pageable);
+        Page<User> users = userService.findAllByNameLike(name, pageable);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", users.getContent());
         resultMap.put("count", "1000");
@@ -66,7 +65,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public @ResponseBody Map edit(@ModelAttribute(value = "user") User user) {
+    public @ResponseBody
+    Map edit(@ModelAttribute(value = "user") User user) {
         userService.edit(user);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
@@ -79,8 +79,9 @@ public class UserController {
         return "user/add";
     }
 
-    @RequestMapping(value="/add", method = RequestMethod.POST)
-    public @ResponseBody Map add(@ModelAttribute(value = "user") User user) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public @ResponseBody
+    Map add(@ModelAttribute(value = "user") User user) {
         user.setCreateTime(new Date());
         user.setPassword("123456");
         userService.save(user);
@@ -101,24 +102,25 @@ public class UserController {
         return "/user/login";
     }
 
-    @RequestMapping(value="/dologin", method = RequestMethod.POST)
-    public @ResponseBody Map userLogin(@ModelAttribute(value = "login") Login login, HttpSession session){
+    @RequestMapping(value = "/dologin", method = RequestMethod.POST)
+    public @ResponseBody
+    Map userLogin(@ModelAttribute(value = "login") Login login, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>();
-        try{
-            if(userService.hasUser(login.getName(),login.getPassword())){
+        try {
+            if (userService.hasUser(login.getName(), login.getPassword())) {
                 resultMap.put("code", "0");
-                resultMap.put("msg","");
+                resultMap.put("msg", "");
                 resultMap.put("success", true);
-                session.setAttribute("user",userRepository.findByName(login.getName()));
-            }else{
+                session.setAttribute("user", userRepository.findByName(login.getName()));
+            } else {
                 resultMap.put("code", "0");
-                resultMap.put("msg","");
+                resultMap.put("msg", "");
                 resultMap.put("success", false);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             resultMap.put("code", "0");
-            resultMap.put("msg","");
+            resultMap.put("msg", "");
             resultMap.put("success", false);
         }
         return resultMap;
@@ -130,24 +132,47 @@ public class UserController {
         return "/user/register";
     }
 
-    @RequestMapping(value="/doregister", method = RequestMethod.POST)
-    public @ResponseBody Map userRegister(@ModelAttribute(value = "register") Register register, HttpSession session){
+    @RequestMapping(value = "/doregister", method = RequestMethod.POST)
+    public @ResponseBody
+    Map userRegister(@ModelAttribute(value = "register") Register register, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>();
         User user = new User();
-        BeanUtils.copyProperties(register,user);
-        user.setAddress(register.getProvid()+register.getCityid()+register.getAreaid()+register.getBetterAddress());
+        BeanUtils.copyProperties(register, user);
+        user.setAddress(register.getProvid() + register.getCityid() + register.getAreaid() + register.getBetterAddress());
         userService.save(user);
         resultMap.put("code", "0");
         resultMap.put("success", true);
 
-        session.setAttribute("user",userRepository.findByName(register.getName()));
+        session.setAttribute("user", userRepository.findByName(register.getName()));
         return resultMap;
     }
 
-    @RequestMapping(value="/loginout", method = RequestMethod.GET)
-    public String loginOut(HttpSession session){
+    @RequestMapping(value = "/loginout", method = RequestMethod.GET)
+    public String loginOut(HttpSession session) {
         session.invalidate();
         return "redirect:/admin";
     }
+
+    /**
+     * 加入购物车
+     */
+    public Map<String,Object> addCart(User user, List<Product> products){
+        return null;
+    }
+
+    /**
+     *购买
+     */
+    public Map<String,Object> buyProduct(User user, List<Product> products){
+        return null;
+    }
+
+    /**
+     * 查看收益
+     */
+    public Map<String,Object> showEarning(Product product){
+        return null;
+    }
+
 
 }
