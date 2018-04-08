@@ -1,0 +1,33 @@
+
+
+<div class="header layui-bg-cyan">
+    <input type="hidden" id="controller" value="Index" />
+    <div class="layui-header" v-cloak>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="../../">银行理财平台</a></li>
+            <li class="layui-nav-item layui-this" id="Index"><a href="../../">首页</a></li>
+            <li class="layui-nav-item" id="Agents"><a href="#">理财产品</a></li>
+            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+
+
+        </ul>
+
+        <ul class="layui-nav layui-right" v-if="User.Id==0">
+            <li class="layui-nav-item">
+                <a  href="#">登录</a>
+            </li>
+            <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
+        </ul>
+        <ul class="layui-nav layui-right" v-else>
+            <li class="layui-nav-item">
+                <a href="http://ruanyun.verdor.softseeks.cn">{{User.Name}}</a>
+            </li>
+            <li class="layui-nav-item"><a href="/Index/Logout">退出</a></li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -17,6 +17,7 @@
     <script src="../../static/js/vue.js"></script>
 </head>
 <body>
+<!--<div class="headerpage"></div>-->
 <div class="header layui-bg-cyan">
     <input type="hidden" id="controller" value="Index" />
     <div class="layui-header" v-cloak>
@@ -33,7 +34,7 @@
 
         <ul class="layui-nav layui-right" v-if="User.Id==0">
             <li class="layui-nav-item">
-                <a v-bind:href="['http://sso.softseeks.cn/?ReturnUrl='+locationhref]">登录</a>
+                <a  href="#">登录</a>
             </li>
             <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
         </ul>
@@ -46,8 +47,6 @@
                 <a href="">个人中心<span class="layui-badge-dot"></span></a>
             </li>
         </ul>
-
-
     </div>
 
 </div>
@@ -478,6 +477,7 @@
 </html>
 <script>
     $(function () {
+
         var controller = $("#controller").val();
         $(".layui-nav-item").removeClass("layui-this");
         $("#" + controller).addClass("layui-this");
@@ -505,6 +505,5 @@
         methods: {
         }
     })
-
 
 </script>
