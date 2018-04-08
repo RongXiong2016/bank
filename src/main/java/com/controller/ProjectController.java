@@ -79,4 +79,6 @@ public class ProjectController {
         projectService.delete(id);
         return "redirect:/list";
     }
+
+
 }

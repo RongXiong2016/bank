@@ -3,17 +3,17 @@ package com.controller;
 import com.domain.Product;
 import com.domain.User;
 import com.service.ProductService;
+import com.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,4 +56,44 @@ public class ProductController {
         resultMap.put("msg", "");
         return resultMap;
     }
+
+    @RequestMapping("/toAdd")
+    public String toAdd(Model model) {
+        model.addAttribute("product", new Product());
+        return "product/add";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public @ResponseBody
+    Map add(@ModelAttribute(value = "product") Product product) {
+        product.setProductCode(CommonUtils.getProductCode());
+        productService.save(product);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", "0");
+        return resultMap;
+    }
+
+
+    @RequestMapping(value = "/list1", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
+                             @RequestParam(value = "size", defaultValue = "10") Integer limit
+                             ) {
+        Pageable pageable = new PageRequest(page - 1, limit);
+        Page<Product> products = productService.findAll(pageable);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("data", products.getContent());
+        resultMap.put("count", "1000");
+        resultMap.put("code", "0");
+        resultMap.put("msg", "");
+        return resultMap;
+    }
+
+    @RequestMapping("/list-admin")
+    public String list(){
+        return "/product/list-admin";
+    }
+
+
+
 }

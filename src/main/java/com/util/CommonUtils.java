@@ -16,13 +16,13 @@ public class CommonUtils {
     public static Integer idxSexStart = 16;
     public static Integer birthYearSpan = 4;
 
-    public static String getSex(String certificateNo){
+    public static String getSex(String certificateNo) {
         String idxSexStr = certificateNo.substring(idxSexStart, idxSexStart + 1);
         int idxSex = Integer.parseInt(idxSexStr) % 2;
         return (idxSex == 1) ? "M" : "F";
     }
 
-    public static Integer getAge(String certificateNo){
+    public static Integer getAge(String certificateNo) {
         String year = (birthYearSpan == 2 ? "19" : "") + certificateNo.substring(6, 6 + birthYearSpan);
         String month = certificateNo.substring(6 + birthYearSpan, 6 + birthYearSpan + 2);
         String day = certificateNo.substring(8 + birthYearSpan, 8 + birthYearSpan + 2);
@@ -32,18 +32,39 @@ public class CommonUtils {
         //年龄
         Calendar certificateCal = Calendar.getInstance();
         Calendar currentTimeCal = Calendar.getInstance();
-        certificateCal.set(Integer.parseInt(year), Integer.parseInt(month)-1, Integer.parseInt(day));
+        certificateCal.set(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
         int yearAge = (currentTimeCal.get(currentTimeCal.YEAR)) - (certificateCal.get(certificateCal.YEAR));
-        certificateCal.set(currentTimeCal.get(Calendar.YEAR), Integer.parseInt(month)-1, Integer.parseInt(day));
+        certificateCal.set(currentTimeCal.get(Calendar.YEAR), Integer.parseInt(month) - 1, Integer.parseInt(day));
         int monthFloor = (currentTimeCal.before(certificateCal) ? 1 : 0);
         return yearAge - monthFloor;
+    }
+
+    public static String getProductCode() {
+        String productCode = "";
+        //获取当前时间戳
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+        String temp = sf.format(new Date());
+        //获取6位随机数
+        int random = (int) ((Math.random() + 1) * 100000);
+        productCode = temp + random;
+        return productCode;
+    }
+
+    public static String getTradeNo() {
+        String tradeNo = "";
+        //获取当前时间戳
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String temp = sf.format(new Date());
+        //获取6位随机数
+        int random = (int) ((Math.random() + 1) * 100000);
+        tradeNo = temp + random;
+        return tradeNo;
     }
 
 
 
     /*public static void main(String[] args) throws ParseException {
-        String certificateNo = "332525199510125318";
-        System.out.println(getSex(certificateNo));
-        System.out.println(getAge(certificateNo));
+        String productCode = getProductCode();
+        System.out.println(productCode);
     }*/
 }

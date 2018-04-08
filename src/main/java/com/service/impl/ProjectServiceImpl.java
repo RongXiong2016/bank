@@ -23,7 +23,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void edit(Project project) {
         Project project1 = projectRepository.findOne(project.getId());
-        project.setCreateAdminId(project1.getCreateAdminId());
+        project.setCreate_user_id(project.getCreate_user_id());
         project.setCreateTime(project1.getCreateTime());
         projectRepository.save(project);
     }
@@ -41,7 +41,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void save(Project project) {
         project.setCreateTime(new Date());
-        project.setCreateAdminId(1L);
+        project.setCreate_user_id(1L);
         projectRepository.save(project);
     }
 

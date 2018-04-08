@@ -9,6 +9,7 @@ import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,7 +21,10 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Project {
+public class Project  implements Serializable {
+
+    private static final long serialVersionUID = -1122438315340197898L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="project_id")
@@ -32,8 +36,8 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "create_admin_id")
-    private Long createAdminId;
+    @Column(name = "create_user_id")
+    private Long create_user_id;
 
     @Column(name = "create_time")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
