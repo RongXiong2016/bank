@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
         Trade trade = new Trade();
         Integer quantity = 1;
         trade.setTrade_no(CommonUtils.getTradeNo());
-        trade.setAmount( product.getPrice().multiply(new BigDecimal(quantity.toString())));
+        trade.setAmount(product.getPrice().multiply(new BigDecimal(quantity.toString())));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //计算收益

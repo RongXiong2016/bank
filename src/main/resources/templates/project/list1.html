@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>银行理财平台</title>
+    <meta name="referrer" content="unsafe-url" />
+    <meta name="referrer" content="always" />
+    <link href="../../static/layui/css/layui.css" rel="stylesheet" />
+    <link href="../../static/css/index/global.css" rel="stylesheet" />
+    <link href="../../static/css/index/page.css" rel="stylesheet" ></link>
+    <script src="../../static/js/jquery-3.3.1.js"></script>
+    <script src="../../static/layui/layui.js"></script>
+    <script src="../../static/js/vue.js"></script>
+</head>
+
+<body>
+
+    <div class="header layui-bg-cyan">
+        <input type="hidden" id="controller" value="Index" />
+        <div class="layui-header" v-cloak>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="#">银行理财平台</a></li>
+                <li class="layui-nav-item " ><a href="#">首页</a></li>
+                <li class="layui-nav-item " id="Index"><a href="#">理财产品</a></li>
+                <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+                <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+            </ul>
+
+            <ul class="layui-nav layui-right" v-if="User.Id==0">
+                <li class="layui-nav-item">
+                    <a href="#">登录</a>
+                </li>
+                <li class="layui-nav-item"><a href="#">注册</a></li>
+            </ul>
+            <ul class="layui-nav layui-right" v-else>
+                <li class="layui-nav-item">
+                    <a href="http://ruanyun.verdor.softseeks.cn">{{User.Name}}</a>
+                </li>
+                <li class="layui-nav-item"><a href="/Index/Logout">退出</a></li>
+                <li class="layui-nav-item">
+                    <a href="">个人中心<span class="layui-badge-dot"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--搜索框-->
+    <div class="content_box">
+
+        <div class="condition_box">
+            <form class="layui-form" id="sysMiCondForm">
+                <div class="layui-form-item">
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 110px;">产品期限：</label>
+                        <div class="layui-input-inline" style="width: 90px;">
+                            <select name="term">
+                                <option value="0">全部</option>
+                                <option value="1">0-7天</option>
+                                <option value="2">8-14天</option>
+                                <option value="3">15-30天</option>
+                                <option value="4">31-90天</option>
+                                <option value="5">91-181天</option>
+                                <option value="6">181-365天</option>
+                                <option value="7">365天以上</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 75px;">产品类型：</label>
+                        <div class="layui-input-inline">
+                            <select name="type">
+                                <option value="0">全部</option>
+                                <option value="1">保本</option>
+                                <option value="2">非保本</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 75px;">风险：</label>
+                        <div class="layui-input-inline">
+                            <select lay-search="" name="suffix">
+                                <!--谨慎型产品(R1)、稳健型产品(R2)、平衡型产品(R3)、进取型产品(R4)、激进型产品(R5)-->
+                                <option value="0">全部</option>
+                                <option value="R1">谨慎型产品</option>
+                                <option value="R2">稳健型产品</option>
+                                <option value="R3">平衡型产品</option>
+                                <option value="R4">进取型产品</option>
+                                <option value="R5">激进型产品</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 75px;">状态：</label>
+                        <div class="layui-input-inline">
+                            <select name="jieGou">
+                                <option value="0">全部</option>
+                                <option value="1">在售</option>
+                                <option value="2">待售</option>
+                                <option value="3">已售完</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 75px;">产品名称：</label>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input autocomplete="off" class="layui-input" name="mis" placeholder="请输入产品名称" type="text" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item tc">
+                    <input class="layui-btn layui-btn-primary" type="reset" value="重置" />
+                    <input class="layui-btn yellow_btn" lay-filter="sysMiCondBtn" lay-submit="" type="button" value="搜索" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!--产品列表-->
+    <div class="item_sertable clearfix">
+        <table id="sysMiTable" lay-filter="sysMiTable"></table>
+        <form class="layui-form fl mt5" id="sysMiForm" method="post">
+            <input id="ids" name="ids" type="hidden" />
+            <input name="market" type="hidden" value="1" />
+        </form>
+        <div class="fr" id="sysMiPage"></div>
+    </div>
+
+
+<script src="../../static/layui/layui.js"></script>
+
+    <script id="checkBar" type="text/html">
+        <a target="_self" class="layui-table-link" lay-event="wx">{{d.strStatusWx}}</a>
+        <a target="_blank" class="layui-table-link" lay-event="360" href="http://webscan.360.cn/index/checkwebsite?url={{d.mi}}">{{d.strStatusSll}}</a>
+        <a target="_blank" class="layui-table-link" lay-event="qq" href="https://guanjia.qq.com/online_server/result.html?url={{d.mi}}">{{d.strStatusQq}}</a>
+    </script>
+    <script id="buyBar" type="text/html">
+        <a target="_self" class="focus_cell" lay-event="buy" href="/toBuy?market=1&ids={{d.id}}">购买</a>
+    </script>
+    <script id="detailBar" type="text/html">
+        <a target="_self" class="layui-table-link" lay-event="detail" href="/showDetail?market=1&id={{d.id}}">{{d.mi}}</a>
+    </script>
+    <script type="text/javascript">
+        layui.use(['form', 'laypage', 'table', 'layer'], function(){
+            var form = layui.form, laypage=layui.laypage, layer=layui.layer, table=layui.table;
+            form.render('select');
+            var page_options={
+                elem: 'sysMiPage'
+                ,first: '首页'
+                ,last: '尾页'
+                ,groups: 5
+                ,theme: '#ff6700'
+                ,limits: [20,50,100,200]
+                ,layout: ['count', 'prev', 'page', 'next', 'limit']
+                ,jump: function(obj, first){
+                    if(!first){
+                        table_options.url="/getSysmi?"+$('#sysMiCondForm').serialize()+"&page="+obj.curr+"&pageSize="+obj.limit;
+                        tableIns.reload(table_options);
+                    }
+                }
+            };
+            var table_options={
+                elem: '#sysMiTable'
+                ,id: 'sysMiTable'
+                ,url: '/getSysmi'
+                ,method: 'get'
+                ,page: false
+                ,cols: [[ //标题栏
+                    {field: 'id', checkbox: true, LAY_CHECKED: false}
+                    ,{field: 'mi', title: '域名', width: 161, toolbar: '#detailBar'}
+                    ,{field: 'outMoney', title: '价格', width: 60}
+                    ,{field: 'strBaType', title: '性质', width: 60}
+                    ,{field: 'baNumber', title: '建站编号', width: 180}
+                    ,{field: 'baName', title: '建站记录', width: 265}
+                    ,{field: 'startDate', title: '注册时间', width: 105, align:'center'}
+                    ,{field: 'endDate', title: '到期时间', width: 105, align:'center'}
+                    ,{title: '微信-360-管家', width:125, align:'center', toolbar: '#checkBar'}
+                    ,{fixed: 'right', title: '购买', width:80, align:'center', toolbar: '#buyBar'}
+                ]]
+                ,done: function(res){
+                    page_options.curr=res.page;
+                    page_options.count=res.count;
+                    page_options.limit=res.pageSize;
+                    laypage.render(page_options);
+                }
+            };
+
+            var tableIns = table.render(table_options);
+
+            form.on("submit(sysMiCondBtn)", function(data){
+                table_options.url="/getSysmi?"+$("#sysMiCondForm").serialize();
+                tableIns.reload(table_options);
+            });
+
+            $("#sysMiBtn").click(function(){
+                var suffix = $("#suffix").val();
+                $("#sysMiForm").attr("action",suffix=="buy"?"/toBuy":"/download");
+                if(suffix.indexOf("all")!=0){
+                    var checkStatus = table.checkStatus("sysMiTable");
+                    if(checkStatus.data.length<1){
+                        layer.msg("至少选择一行", {icon:5,anim:6});
+                        return false;
+                    }
+                    var ids="";
+                    $.each(checkStatus.data, function(idx, obj) {
+                        ids+=obj.id+",";
+                    });
+                    $("#ids").val(ids);//使用隐藏域
+                }
+                $("#sysMiForm").submit();
+            });
+        });
+    </script>
+
+<script>
+    layui.use(['carousel', 'form'], function () {
+        var carousel = layui.carousel
+            , form = layui.form;
+    });
+</script>
+
+</body>
+</html>
+<script>
+    $(function () {
+
+        var controller = $("#controller").val();
+        $(".layui-nav-item").removeClass("layui-this");
+        $("#" + controller).addClass("layui-this");
+    })
+    var app5 = new Vue({
+        el: '.layui-header',
+        data: {
+            User: [],
+            locationhref: ""
+        },
+        beforeMount: function () {
+            var that = this;
+            that.locationhref = window.location.href;
+            $.ajax({
+                url: "/Base/GetUserInfo",
+                data: {},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    that.User = data;
+
+                }
+            });
+        },
+        methods: {
+        }
+    })
+
+</script>

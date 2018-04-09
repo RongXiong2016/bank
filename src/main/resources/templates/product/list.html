@@ -4,11 +4,17 @@
     <meta charset="UTF-8"></meta>
     <title>理财产品</title>
     <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
-    <link rel="stylesheet" href="../../static/css/index/page.css" th:href="@{/css/index/page.css}"></link
+    <link rel="stylesheet" href="../../static/css/index/page.css" th:href="@{/css/index/page.css}"></link>
+    <link href="../../static/css/index/global.css" rel="stylesheet"></link>
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
     <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+
+    <script src="../../static/layui/layui.js"></script>
+    <script src="../../static/js/vue.js"></script>
 </head>
+
 <body>
+
 
 <div class="content_box">
 
@@ -94,7 +100,38 @@
     </div>
 
 </div>
+<div class="header layui-bg-cyan">
+    <input type="hidden" id="controller" value="Index" />
+    <div class="layui-header" v-cloak>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="../../">银行理财平台</a></li>
+            <li class="layui-nav-item layui-this" id="Index"><a href="../../">首页</a></li>
 
+            <li class="layui-nav-item" id="Agents"><a href="#">理财产品</a></li>
+            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+
+
+        </ul>
+
+        <ul class="layui-nav layui-right" v-if="User.Id==0">
+            <li class="layui-nav-item">
+                <a  href="#">登录</a>
+            </li>
+            <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
+        </ul>
+        <ul class="layui-nav layui-right" v-else>
+            <li class="layui-nav-item">
+                <a href="http://ruanyun.verdor.softseeks.cn">{{User.Name}}</a>
+            </li>
+            <li class="layui-nav-item"><a href="/Index/Logout">退出</a></li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>
 </body>
 <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">

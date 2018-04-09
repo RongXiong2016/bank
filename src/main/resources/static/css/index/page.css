@@ -108,7 +108,7 @@ textarea.textarea_yumi{width: 452px; height: 180px; overflow-y: auto;}
 .push_newform .layui-form-label.push_frominput{margin-top:73px;}
 .new_min_icon{display:inline-block;*display:inline;*zoom:1;width:16px;height:16px;vertical-align:middle;background:url(../images/icon.png) no-repeat -114px 0;margin-left:5px;}
 .new_min_icon:hover{cursor: pointer;}
-.content_box{max-width: 1200px; margin: 20px auto;}
+.content_box{max-width: 1200px; margin: 80px auto 20px auto;}
 .content_box .block_head img {margin-right:10px; vertical-align:middle;}
 .content_box .block_head span {color:#ff3145;font-size:24px;font-weight:400;line-height:70px;vertical-align:middle;}
 .content_box .block_head .newmore {display:block;float:right;color:#2789ed;font-size:14px;font-weight:400;line-height:70px;}

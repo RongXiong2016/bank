@@ -166,10 +166,10 @@ public class UserController {
      *购买
      */
     @RequestMapping(value = "/buyProduct", method = RequestMethod.POST)
-    public  @ResponseBody Map<String,Object> buyProduct(List<Product> products,HttpSession session){
+    public  @ResponseBody Map<String,Object> buyProduct(Product product,HttpSession session){
         Map<String, Object> resultMap = new HashMap<>();
         User user = (User) session.getAttribute("user");
-        //resultMap = userService.buyProuct(user,products);
+        resultMap = userService.buyProuct(user,product);
         resultMap.put("code", "0");
         resultMap.put("success", true);
         return null;

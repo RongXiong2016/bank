@@ -1,0 +1,592 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>全网最好DJ曲库  - 做全网最好的DJ音乐站</title>
+    <link rel="stylesheet" type="text/css" href="/static/index/jPlayer/jplayer.flat.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/index/jPlayer/css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/index/jPlayer/css/simple-line-icons.css"/>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css"></link>
+    <!--STYLESHEET-->
+    <link href="../../static/css/bootstrap.css" rel="stylesheet">
+    <link href='/static/index/default/css/font-face.css' rel='stylesheet' type='text/css'>
+    <link href="../../static/css/product/nifty.min.css" rel="stylesheet">
+    <link href="../../static/index/default/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
+    <link href="/static/index/default/css/demo/nifty-demo.min.css" rel="stylesheet">
+    <link href="/static/index/default/plugins/nprogress/nprogress.css" rel="stylesheet">
+    <link href="/static/index/default/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/hack/layui/css/layui.css" rel="stylesheet">
+    <link href="../../static/css/product/global.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="page-loading">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+
+
+<!--Pjax Start-->
+<div id="container">
+
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md8">
+                <div class="layui-card">
+                    <div class="layui-card-header">舞曲类别</div>
+                    <div class="layui-card-body">
+
+                        <p class="text-semibold text-main">精确搜索</p>
+                        <div class="pad-ver bord-top">
+                            <form action="/index/music/index.html" class="form-inline layui-form" method="get" data-pjax>
+                                <div class="form-group">
+                                    <label for="keywords" class="sr-only">精确搜索</label>
+                                    <input type="text" name="keywords" value="" placeholder="可搜索关键词、歌曲ID" id="keywords" class="form-control" style="height: 33px;" lay-verify="required">
+                                </div>
+                                <button type="submit" class="btn btn-primary">搜索</button>
+                            </form>
+                        </div>
+
+                        <p class="text-semibold text-main">类别、类型</p>
+                        <div class="pad-ver bord-top">
+                            <div style="width: 100%">
+                                <div class="btn-group mar-rgt">
+                                    <a class="btn btn-primary btn-active-purple btn-sm" href="/index/music/index/scene/0/genre/0.html" data-pjax >不限</a>
+                                    <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/scene/1.html" data-pjax >电音House</a>
+                                    <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/scene/2.html" data-pjax >酒吧Club</a>
+                                    <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/scene/3.html" data-pjax >的高Disco</a>
+                                    <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/scene/4.html" data-pjax >舞曲Dance</a>
+                                    <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/scene/5.html" data-pjax >其他</a>
+                                </div>
+
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-primary" href="/index/music/index/type/0.html" data-pjax >不限</a>
+                                    <a class="btn btn-sm btn-default" href="/index/music/index/type/1.html" data-pjax >单曲</a>
+                                    <a class="btn btn-sm btn-default" href="/index/music/index/type/2.html" data-pjax >串烧</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <p class="text-semibold text-main">语言、时间</p>
+                        <div class="pad-ver mar-btm bord-top">
+                            <!--Horizontal Button Groups-->
+                            <!--===================================================-->
+                            <div class="btn-group mar-rgt">
+                                <a class="btn btn-primary btn-active-purple btn-sm" href="/index/music/index/lang/0.html" data-pjax >不限</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/1.html" data-pjax >国语</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/2.html" data-pjax >英文</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/3.html" data-pjax >粤语</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/4.html" data-pjax >中英文</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/5.html" data-pjax >国粤语</a>
+                                <a class="btn btn-default btn-active-purple btn-sm" href="/index/music/index/lang/6.html" data-pjax >其他</a>
+                            </div>
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-primary" href="/index/music/index/time/0.html" data-pjax >不限</a>
+                                <a class="btn btn-sm btn-default" href="/index/music/index/time/1.html" data-pjax >本周内</a>
+                                <a class="btn btn-sm btn-default" href="/index/music/index/time/2.html" data-pjax >一个月内</a>
+                                <a class="btn btn-sm btn-default" href="/index/music/index/time/3.html" data-pjax >三个月内</a>
+                            </div>
+                            <!--===================================================-->
+                        </div>
+
+                    </div>
+                </div>
+
+                <table class="layui-table setClick" lay-skin="line">
+                    <colgroup>
+                        <col width="30">
+                        <col width="">
+                        <col width="80">
+                        <col width="105">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>舞曲名称</th>
+                        <th>试听数</th>
+                        <th>日期</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49166"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49166.html" data-pjax="">05 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>12</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49166"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49166" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49167"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49167.html" data-pjax="">06 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>2</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49167"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49167" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49168"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49168.html" data-pjax="">07 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49168"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49168" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49169"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49169.html" data-pjax="">08 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>2</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49169"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49169" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49170"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49170.html" data-pjax="">01 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>3</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49170"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49170" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49171"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49171.html" data-pjax="">02 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>3</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49171"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49171" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49153"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49153.html" data-pjax="">16 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>1</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49153"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49153" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49154"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49154.html" data-pjax="">17 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>1</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49154"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49154" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49155"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49155.html" data-pjax="">18 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49155"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49155" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49156"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49156.html" data-pjax="">第3257批 推荐深度早场DEEP HOUSE</a></td>
+                        <td>5</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49156"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49156" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49157"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49157.html" data-pjax="">09 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49157"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49157" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49158"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49158.html" data-pjax="">10 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49158"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49158" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49159"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49159.html" data-pjax="">11 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>1</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49159"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49159" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49160"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49160.html" data-pjax="">12 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49160"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49160" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49161"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49161.html" data-pjax="">13 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>1</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49161"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49161" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49162"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49162.html" data-pjax="">14 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49162"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49162" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49163"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49163.html" data-pjax="">15 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49163"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49163" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="49164"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/49164.html" data-pjax="">03 推荐深度早场DEEP HOUSE_kekedj</a></td>
+                        <td>0</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="49164"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="49164" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-29                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="48973"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/48973.html" data-pjax="">【第015批 前场串烧】中文 经典蓝调女声串烧(60Min)) =kekedj=</a></td>
+                        <td>39</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="48973"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="48973" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-14                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="48974"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/48974.html" data-pjax="">【第015批 前场串烧】早场蓝调 =kekedj=</a></td>
+                        <td>7</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="48974"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="48974" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-14                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="48975"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/48975.html" data-pjax="">【第015批 前场串烧】早场蓝调Funky R&B串烧(60Min) =kekedj=</a></td>
+                        <td>7</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="48975"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="48975" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-14                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="48976"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/48976.html" data-pjax="">【第015批 前场串烧】早场蓝调R&B串烧(56Min) =kekedj=</a></td>
+                        <td>40</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="48976"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="48976" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-14                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;" class="SMPlay" data-id="48977"><i class="layui-icon" style="font-size: 18px;">&#xe6fc;</i></a></td>
+                        <td style="max-width: 300px;" class="layui-elip"><a href="/index/music/show/id/48977.html" data-pjax="">【第015批 前场串烧】武汉东音集团暖场暖场待客串烧 =kekedj=</a></td>
+                        <td>16</td>
+                        <td>
+                            <div class="changeAfter" style="display: none">
+                                <a href="javascript:;" class="SMPlay" data-id="48977"><i class="fa fa-play-circle-o" style="font-size: 17px;"></i></a>
+                                <a href="javascript:;" class="active collectThis" data-toggle="class" data-id="48977" data-mid="4">
+                                    <i class="fa fa-star-o text-active"></i>
+                                    <i class="fa fa-check-circle text-primary text"></i>
+                                </a>
+                                <a href="javascript:;" onclick="layer.tips('未开放下载', this,{tips:1})"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                            <div class="changeBefore">
+                                2018-03-14                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                   </div>
+            <div class="layui-col-md4">
+                <div class="layui-card">
+                    <div class="layui-card-header">推荐网站</div>
+                    <div class="layui-card-body">
+                        <a href="http://www.kekedj.com" target="_blank" class="layui-btn" style="width: 100%;margin: 5px 0;background: #ec6c64">生活有音乐，音乐有可可</a>
+                        <a href="http://www.cfchi.com/cp.html" target="_blank" class="layui-btn layui-btn-normal" style="width: 100%;margin: 5px 0;background: #2c2f4e">股票指标公式分享平台</a>
+                        <a href="http://www.vvvdj.com" target="_blank" class="layui-btn layui-btn-normal" style="width: 100%;margin: 5px 0;background: #dd316f">好音质，更动人</a>
+                        <a href="http://www.dj368.com/" target="_blank" class="layui-btn layui-btn-normal" style="width: 100%;margin: 5px 0;background: #442992">DJ电音吧</a>
+                    </div>
+                </div>
+
+
+                <div class="layui-card">
+                    <div class="layui-card-header">热门标签</div>
+                    <div class="layui-card-body">
+                        <a href="/index/music/index/keywords/%E6%9C%80%E6%96%B0.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">最新</a>
+                        <a href="/index/music/index/keywords/%E4%B8%B2%E7%83%A7.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">串烧</a>
+                        <a href="/index/music/index/keywords/%E7%B2%A4%E8%AF%AD.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">粤语</a>
+                        <a href="/index/music/index/keywords/%E8%B6%85%E5%97%A8.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">超嗨</a>
+                        <a href="/index/music/index/keywords/%E6%B1%BD%E8%BD%A6%E9%9F%B3%E5%93%8D.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">汽车音响</a>
+                        <a href="/index/music/index/keywords/%E7%99%BE%E5%BA%A6.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">百度</a>
+                        <a href="/index/music/index/keywords/%E5%A5%BD%E5%90%AC.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">好听</a>
+                        <a href="/index/music/index/keywords/%E8%BD%A6%E8%BD%BD.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">车载</a>
+                        <a href="/index/music/index/keywords/%E5%8D%95%E6%9B%B2.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">单曲</a>
+                        <a href="/index/music/index/keywords/%E4%B8%AD%E5%9C%BA.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">中场</a>
+                        <a href="/index/music/index/keywords/%E6%A6%9C%E5%8D%95.html" data-pjax="" class="btn btn-mint btn-sm" style="margin-bottom: 5px;">榜单</a>
+                         </div>
+                </div>
+
+                <div class="layui-card">
+                    <div class="layui-card-header">每周榜单</div>
+                    <div class="layui-card-body">
+                        <ul class="fly-panel-main fly-list-static">
+                            <li><a href="javascript:;" class="SMPlay" data-id="48523">于文文 - 体面（湛江DJ志喜汽车蓝调Rnb)</a></li>
+                            <li><a href="javascript:;" class="SMPlay" data-id="48654">Electro中文梁海洋 - 猴哥(2016弹ElectroHouse)光音坊DjViper Rmx</a></li>
+                            <li><a href="javascript:;" class="SMPlay" data-id="48967">【第016批 前场串烧】前场待客蓝调串烧A =kekedj=</a></li>
+                            <li><a href="javascript:;" class="SMPlay" data-id="44542">魔宫车载DJ国飞【全重低音伤感中文极品车载慢摇串烧大碟】</a></li>
+                            <li><a href="javascript:;" class="SMPlay" data-id="48655">Electro中文梁静茹 - 会呼吸的痛(2016ElectroHouse)Mcyy Rmx</a></li>
+                            <li><a href="javascript:;" class="SMPlay" data-id="48977">【第015批 前场串烧】武汉东音集团暖场暖场待客串烧 =kekedj=</a></li>
+                            </ul>
+                    </div>
+                </div>
+
+                <div class="layui-card">
+                    <div class="layui-card-header">充值优惠信息</div>
+                    <div class="layui-card-body">
+                        <a href="http://www.kekedj.com/index.php?ac=activity_recharge" target="_blank"><img src="/uploads/index/rechange-2.jpg" alt=""></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--JAVASCRIPT-->
+<script src="/static/js/jquery-1.10.2.min.js"></script>
+<script src="/static/js/jquery.cookie.js"></script>
+<script src="/static/js/jquery.pjax.js"></script>
+
+<!-- Bootstrap And Player -->
+<script src="/static/hack/layui/layui.js"></script>
+<script src="/static/index/default/js/nifty.min.js"></script>
+<script src="/static/index/default/plugins/nprogress/nprogress.js"></script>
+<script src="/static/index/jPlayer/bootstrap.js"></script>
+<script src="/static/index/jPlayer/jquery.jplayer.min.js"></script>
+<script src="/static/index/jPlayer/add-on/jplayer.playlist.js"></script>
+<script src="/static/index/jPlayer/jplayer.init.js"></script>
+<script>
+    layui.config({
+        version: "2.0"
+        , base: '/static/index//mods/' //这里实际使用时，建议改成绝对路径
+    }).use('music');
+</script>
+
+</body>
+</html>
