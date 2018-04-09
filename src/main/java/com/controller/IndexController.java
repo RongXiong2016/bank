@@ -29,10 +29,10 @@ public class IndexController {
      *
      * @return
      */
-/*    @RequestMapping("admin")
+    @RequestMapping("admin")
     public String admin() {
         return "index";
-    }*/
+    }
 
     @RequestMapping()
     public String index() {

@@ -6,6 +6,7 @@ import lombok.ToString;
 import sun.rmi.runtime.Log;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,7 +19,9 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class Product {
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 8608574579715433815L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="product_id")
@@ -39,9 +42,6 @@ public class Product {
     @Column(name = "currency")
     private String currency;
 
-    @Column(name = "channel")
-    private String channel;
-
     @Column(name = "risk_level")
     private String riskLevel;
 
@@ -49,13 +49,13 @@ public class Product {
     private BigDecimal returnRate;
 
     @Column(name = "start_sale_time")
-    private Date startSaleTime;
+    private String start_sale_time;
 
     @Column(name = "end_sale_time")
-    private Date endSaleTime;
+    private String end_sale_time;
 
-    @Column(name = "start_interest_time")
-    private Date startInterestTime;
+    @Column(name = "ran_out_time")
+    private String ran_out_time;
 
     @Column(name = "description")
     private String description;

@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"></meta>
+    <title>理财产品</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+    <script src="../../static/js/product/list-admin.js" th:src="@{/js/product/list-admin.js}"></script>
 </head>
 <body>
-展示理财产品
+
+<blockquote class="layui-elem-quote quoteBox">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input searchVal" placeholder="请输入产品名称" />
+            </div>
+            <a class="layui-btn search_btn" data-type="reload">搜索</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal addNews_btn" id="add-product">新增理财产品</a>
+        </div>
+
+    </form>
+</blockquote>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<table class="layui-table" id="test1" lay-filter="demo"></table>
+<table class="layui-hide" id="test"></table>
 </body>
 </html>

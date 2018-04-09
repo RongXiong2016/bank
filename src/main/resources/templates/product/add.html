@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+    <title>添加</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+</head>
+<body>
+<div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
+    <form class="layui-form" action="#" th:action="@{/product/add}" th:object="${product}" method="post">
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input name="name" lay-verify="required" type="text" class="layui-input" placeholder="请输入名称" th:field="*{name}"/>
+            </div>
+        </div>
+        <!--radio-->
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">产品类型</label>
+            <div class="layui-input-inline" style="width: 360px;">
+                <input type="radio" name="type" value="保本浮动" title="保本浮动" th:checked="${product.type}"/>
+                <input type="radio" name="type" value="不保本浮动"  title="不保本浮动"/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">销售状态</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="status" value="在售" title="在售"  th:checked="${product.status}"/>
+                <input type="radio" name="status" value="即将发售"  title="即将发售"/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">币种</label>
+            <div class="layui-input-inline">
+                <input type="radio" name="currency" value="人民币" title="人民币" th:checked="${product.currency}"/>
+                <input type="radio" name="currency" value="外币"  title="外币"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">风险等级</label>
+            <div class="layui-input-inline" style="width: 360px;">
+                <input type="radio" name="riskLevel" value="R1" title="R1" th:checked="${product.riskLevel}"/>
+                <input type="radio" name="riskLevel" value="R2"  title="R2"/>
+                <input type="radio" name="riskLevel" value="R3"  title="R3"/>
+                <input type="radio" name="riskLevel" value="R4"  title="R4"/>
+                <input type="radio" name="riskLevel" value="R5"  title="R5"/>
+
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">收益率</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="required" placeholder="请输入收益率(%)"
+                       th:field="*{returnRate}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">起售时间</label>
+            <div class="layui-input-inline"  >
+                <input class="layui-input laydate-icon" placeholder="起售时间" id="test1" type="text"
+                       th:field="*{start_sale_time}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item"  >
+            <label class="layui-form-label">停售时间</label>
+            <div class="layui-input-inline">
+
+                <input class="layui-input laydate-icon" placeholder="停售时间" id="test2" type="text"
+                       th:field="*{end_sale_time}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item" >
+            <label class="layui-form-label">到期日期</label>
+            <div class="layui-input-inline">
+                <input class="layui-input laydate-icon" placeholder="到期时间" id="test3" type="text"
+                th:field="*{ran_out_time}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">产品描述</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="required" placeholder="请输入产品描述"
+                       th:field="*{description}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="submit" lay-filter="formDemo">添加</button>
+                <button id="cancel" type="reset" class="layui-btn layui-btn-primary">取消</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script th:inline="javascript">
+    layui.use(['layer','form', 'element','laydate'], function () {
+        var form = layui.form
+            , $ = layui.$
+            , element = layui.element
+            , layer = layui.layer
+            ,$ = layui.jquery
+            ,laydate = layui.laydate;
+
+
+        laydate.render({
+            elem: '#test1'
+        });
+
+        laydate.render({
+            elem: '#test2'
+        });
+
+        laydate.render({
+            elem: '#test3'
+        });
+
+
+        //数据校验
+        form.verify({
+
+        });
+
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                type: 'POST',
+                url: /*[[@{/product/add}]]*/'',
+                dataType: 'json',
+                data: data.field,
+                async: true,
+                success: function (result) {
+                    console.log(result.code)
+                    //没加@Responsebody注解
+                    if (result.code == 0) {
+                        layer.msg('success:保存成功', {icon: 1, time: 1000});
+                        setTimeout(function () {
+                            top.layer.closeAll('iframe');
+                             //刷新父亲的页面
+                             parent.refreshIframe();
+                            parent.location.href = "/product/list1";
+                        }, 1000);
+                    } else {
+                        console.alert(result.code);
+                        layer.msg('eles:保存失败！' + result.msg, {icon: 2, time: 1000});
+                        layer.close(index);
+                    }
+                },
+                error: function (result, type) {
+                    layer.msg('error:保存失败！', {icon: 2, time: 1000});
+                }
+            });
+            console.log(data.field)
+            return false;
+        });
+        //取消按钮 关闭弹出层
+        $('#cancel').on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        });
+
+    });
+
+
+
+</script>
+
+</body>
+</html>

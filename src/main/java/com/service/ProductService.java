@@ -14,4 +14,8 @@ public interface ProductService {
      * 6.分页
      **/
     Page<Product> list(String name,String term,String riskLevel,String type,String saleStatus,Pageable pageable);
+
+    Page<Product> findAll(Pageable pageable);
+
+    void save(Product product);
 }

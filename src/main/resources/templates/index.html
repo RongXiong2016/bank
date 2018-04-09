@@ -6,7 +6,7 @@
     <title>首页-后台</title>
     <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css"></link>
-    <link rel="stylesheet" href="../static/css/index/index.css" th:src="@{/css/index/index.css}"></link>
+    <link rel="stylesheet" href="../static/css/index/index.css" th:href="@{/css/index/index.css}"></link>
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 <body class="layui-layout-body">
@@ -46,26 +46,12 @@
                     </dl>
 
                 </li>
-               <!-- <li class="layui-nav-item" >
-                    <a href="javascript:;" ><i class="layui-icon menu-icon">&#xe612;</i> 管理员管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a th:href="@{/admin/list}" href="admin/list-admin.html" class="layui-col-md-offset2" target="target"> 管理员列表</a></dd>
-                    </dl>
-                    <dl class="layui-nav-child">
-                        <dd><a th:href="@{/admin/list}" href="admin/list-admin.html" class="layui-col-md-offset2" target="target"> 角色管理</a></dd>
-                    </dl>
-                    <dl class="layui-nav-child">
-                        <dd><a th:href="@{/admin/list}" href="admin/list-admin.html" class="layui-col-md-offset2" target="target"> 权限管理</a></dd>
-                    </dl>
-                    <dl class="layui-nav-child">
-                        <dd><a th:href="@{/admin/list}" href="admin/list-admin.html" class="layui-col-md-offset2" target="target"> 权限分类</a></dd>
-                    </dl>
-                </li>-->
+
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="layui-icon menu-icon">&#xe62d;</i>产品管理</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/project/list}" href="project/list.html" class="layui-col-md-offset2" target="target">理财项目</a></dd>
-                        <dd><a href="product/list-admin.html" class="layui-col-md-offset2" target="target">理财产品</a></dd>
+                        <dd><a th:href="@{/product/list-admin}" href="product/list-admin.html" class="layui-col-md-offset2" target="target">理财产品</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
