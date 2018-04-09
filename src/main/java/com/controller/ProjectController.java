@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.domain.Project;
+import com.domain.User;
 import com.service.ProjectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +54,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public @ResponseBody Map edit(@ModelAttribute(value = "project") Project project) {
+    public @ResponseBody Map edit(@ModelAttribute(value = "project") Project project,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        project.setCreate_user_name(user.getName());
         projectService.edit(project);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
@@ -66,7 +70,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
-    public @ResponseBody Map add(@ModelAttribute(value = "project") Project project) {
+    public @ResponseBody Map add(@ModelAttribute(value = "project") Project project,HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        project.setCreate_user_name(user.getName());
         project.setCreateTime(new Date());
         projectService.save(project);
         Map<String, Object> resultMap = new HashMap<>();

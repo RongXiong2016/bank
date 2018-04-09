@@ -18,8 +18,12 @@ layui.use(['table','layer'], function(){
             ,{field:'name', width:150, title: '名称'}
             ,{field:'type', width:160, title: '类型', sort: true}
             ,{field:'status', width:120, title: '状态'}
-            ,{field:'currency',width: 120, title: '币种'}
-            ,{field:'riskLevel',width: 120, title: '风险等级'}
+            ,{field:'currency',width: 100, title: '币种'}
+            ,{field:'riskLevel',width: 100, title: '风险等级'}
+            ,{field:'returnRate',width: 80, title: '收益率(%)'}
+            ,{field:'start_sale_time', width:120, title: '起售时间'}
+            ,{field:'end_sale_time', width:120, title: '停售时间'}
+            ,{field:'ran_out_time', width:120, title: '到期时间'}
             ,{title: '操作', width:170, templet:'#barDemo',fixed:"right",align:"center"}
         ]]
         ,page: true
@@ -52,8 +56,9 @@ layui.use(['table','layer'], function(){
                 maxmin: true,
                 title: '编辑理财产品',
                 content: '/product/toEdit?id='+data.id, //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-                area: ['600px', '450px'],
+                area: ['700px', '450px'],
                 offset: ['50px', '250px'],
+                shadeClose:true, //点击弹出框外可关闭弹出框
                 success: function (layero, index) {
                     var name = $("#name").val();
                 }
@@ -114,8 +119,9 @@ $(function() {
             maxmin: true,
             title: '新增理财产品',
             content: '/product/toAdd',
-            area: ['600px', '450px'],
+            area: ['700px', '450px'],
             offset: ['50px', '250px'],
+            shadeClose:true,
             success: function (layero, index) {
                 var name = $("#name").val();
             }

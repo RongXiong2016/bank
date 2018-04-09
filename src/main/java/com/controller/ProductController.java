@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,7 +34,7 @@ public class ProductController {
      * 2.产品风险等级 谨慎型产品(R1)、稳健型产品(R2)、平衡型产品(R3)、进取型产品(R4)、激进型产品(R5)
      * 3.类型
      * 4.产品关键字
-     * 5.销售状态
+     * 5.销售状态 在售 即将发售
      * 6.分页
      **/
     @RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -94,6 +95,28 @@ public class ProductController {
         return "/product/list-admin";
     }
 
+
+    @RequestMapping("/delete")
+    public String delete(Long id) {
+        productService.delete(id);
+        return "redirect:/list";
+    }
+
+    @RequestMapping("/toEdit")
+    public String edit(Model model, Long id) {
+        Product product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        return "/product/edit";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public @ResponseBody
+    Map edit(@ModelAttribute(value = "product") Product product) {
+        productService.edit(product);
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("code", "0");
+        return resultMap;
+    }
 
 
 }

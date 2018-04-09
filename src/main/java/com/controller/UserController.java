@@ -157,15 +157,25 @@ public class UserController {
      * 加入购物车
      */
     public Map<String,Object> addCart(User user, List<Product> products){
+
         return null;
     }
+
 
     /**
      *购买
      */
-    public Map<String,Object> buyProduct(User user, List<Product> products){
+    @RequestMapping(value = "/buyProduct", method = RequestMethod.POST)
+    public  @ResponseBody Map<String,Object> buyProduct(List<Product> products,HttpSession session){
+        Map<String, Object> resultMap = new HashMap<>();
+        User user = (User) session.getAttribute("user");
+        //resultMap = userService.buyProuct(user,products);
+        resultMap.put("code", "0");
+        resultMap.put("success", true);
         return null;
     }
+
+
 
     /**
      * 查看收益

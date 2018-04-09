@@ -2,6 +2,7 @@ package com.service.impl;
 
 import com.dao.ProductRepository;
 import com.domain.Product;
+import com.domain.User;
 import com.service.ProductService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(Product product) {
+        productRepository.save(product);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.delete(id);
+    }
+
+    @Override
+    public Product findProductById(Long id) {
+        return productRepository.findOne(id);
+    }
+
+    @Override
+    public void edit(Product product) {
         productRepository.save(product);
     }
 }

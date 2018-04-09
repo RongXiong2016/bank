@@ -36,8 +36,8 @@ public class Project  implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "create_user_id")
-    private Long create_user_id;
+    @Column(name = "create_user_name")
+    private String create_user_name;
 
     @Column(name = "create_time")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")

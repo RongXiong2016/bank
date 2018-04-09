@@ -62,4 +62,7 @@ public class Product implements Serializable {
 
     @Column(name = "project_id")
     private Long projectId;
+
+    @Column(name = "price")
+    private BigDecimal price;
 }

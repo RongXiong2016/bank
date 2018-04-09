@@ -1,7 +1,9 @@
 package com.util;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -59,6 +61,13 @@ public class CommonUtils {
         int random = (int) ((Math.random() + 1) * 100000);
         tradeNo = temp + random;
         return tradeNo;
+    }
+
+    public static Long getDays(String start, String end){
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.parse(start,df);
+        LocalDate endDate = LocalDate.parse(end,df);
+        return startDate.until(endDate, ChronoUnit.DAYS);
     }
 
 
