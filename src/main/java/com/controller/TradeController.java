@@ -1,7 +1,6 @@
 package com.controller;
 
-import com.domain.Trade;
-import com.domain.User;
+import com.dto.TradeDTO;
 import com.projection.TradeProjection;
 import com.service.TradeService;
 import org.springframework.data.domain.Page;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -38,6 +38,7 @@ public class TradeController {
                              @RequestParam(value = "key[name]", defaultValue = "") String name) {
         Pageable pageable = new PageRequest(page - 1, limit);
         Page<TradeProjection> trades = tradeService.findAllWithUserAndProductWithPro(pageable);
+       // List<TradeProjection> trades = tradeService.findAllWithUserAndProductWithProList(pageable);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", trades.getContent());
         resultMap.put("count", "1000");

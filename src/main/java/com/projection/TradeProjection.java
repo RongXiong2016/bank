@@ -1,18 +1,27 @@
 package com.projection;
 
+
+import org.springframework.beans.factory.annotation.Value;
+
 public interface TradeProjection {
+    @Value("#{target.trade_id}")
+    Long getTradeid();
 
-    Long getId();
+    @Value("#{target.trade_no}")
+    String getTradeno();
 
-    String getTrade_no();
+    @Value("#{target.username}")
+    String getUsername();
 
-    String getUser_name();
+    @Value("#{target.productname}")
+    String getProductname();
 
-    String getProduct_name();
-
+    @Value("#{target.income}")
     String getIncome();
 
+    @Value("#{target.amount}")
     String getAmount();
 
-    String getTrade_time();
+    @Value("#{target.trade_time}")
+    String getTradeTime();
 }

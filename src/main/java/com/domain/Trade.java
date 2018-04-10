@@ -43,4 +43,5 @@ public class Trade implements Serializable {
 
     @Column(name = "trade_time")
     private String trade_time;
+
 }
