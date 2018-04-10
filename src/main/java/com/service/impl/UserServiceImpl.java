@@ -94,9 +94,10 @@ public class UserServiceImpl implements UserService {
         String start_time = sdf.format(new Date());
         Integer days =  CommonUtils.getDays(start_time,ran_out_time).intValue();
         //收益=本金*收益率*投资天数/365
-        trade.setIncome(trade.getAmount().multiply(product.getReturnRate()).multiply(new BigDecimal((days.toString()))).divide(new BigDecimal(365+"")));
+        trade.setIncome(trade.getAmount().multiply(product.getReturnRate()).multiply(new BigDecimal((days.toString()))).divide(new BigDecimal(365+""),2,BigDecimal.ROUND_HALF_EVEN));
         trade.setUser_id(user.getId());
         trade.setProduct_id(product.getId());
+        trade.setTrade_time(start_time);
 
         tradeRepository.save(trade);
         Map<String, Object> resMap = new HashMap<>();

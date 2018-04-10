@@ -42,5 +42,5 @@ public class Trade implements Serializable {
     private BigDecimal income;
 
     @Column(name = "trade_time")
-    private Date trade_time;
+    private String trade_time;
 }

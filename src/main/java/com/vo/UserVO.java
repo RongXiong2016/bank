@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class UserVo {
+public class UserVO {
     private Long id;
 
     private String name;
