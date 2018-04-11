@@ -57,6 +57,9 @@ public class Product implements Serializable {
     @Column(name = "ran_out_time")
     private String ran_out_time;
 
+    @Column(name = "term")
+    private Long term;
+
     @Column(name = "description")
     private String description;
 

@@ -70,10 +70,4 @@ public class CommonUtils {
         return startDate.until(endDate, ChronoUnit.DAYS);
     }
 
-
-
-    /*public static void main(String[] args) throws ParseException {
-        String productCode = getProductCode();
-        System.out.println(productCode);
-    }*/
 }

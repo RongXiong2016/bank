@@ -4,6 +4,7 @@ import com.domain.Product;
 import com.domain.User;
 import com.service.ProductService;
 import com.util.CommonUtils;
+import com.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +32,8 @@ public class ProductController {
 
 
     @RequestMapping(value = "show")
-    public String show(){
+    public String show(Model model){
+        model.addAttribute("product", new ProductVO());
         return "/product/list";
     }
 
@@ -75,6 +77,7 @@ public class ProductController {
     public @ResponseBody
     Map add(@ModelAttribute(value = "product") Product product) {
         product.setProductCode(CommonUtils.getProductCode());
+        product.setTerm(CommonUtils.getDays(product.getEnd_sale_time(),product.getRan_out_time()));
         productService.save(product);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");
@@ -119,6 +122,7 @@ public class ProductController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public @ResponseBody
     Map edit(@ModelAttribute(value = "product") Product product) {
+
         productService.edit(product);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", "0");

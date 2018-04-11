@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>理财产品</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <link rel="stylesheet" href="../../static/css/index/page.css" th:href="@{/css/index/page.css}"></link>
+    <link href="../../static/css/index/global.css" th:href="@{/css/index/global.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+
+    <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+    <script src="../../static/js/vue.js" th:src="@{/js/vue.js}"></script>
+</head>
+
+<body>
+
+
+<div class="content_box">
+
+
+    <div class="breadcrumb_item">
+
+    </div>
+    <div class="condition_box">
+        <form class="layui-form" id="sysMiCondForm">
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 110px;">产品期限：</label>
+                    <div class="layui-input-inline" style="width: 90px;">
+                        <select name="term">
+                            <option value="0">全部</option>
+                            <option value="1">0-7天</option>
+                            <option value="2">8-14天</option>
+                            <option value="3">15-30天</option>
+                            <option value="4">31-90天</option>
+                            <option value="5">91-181天</option>
+                            <option value="6">181-365天</option>
+                            <option value="7">365天以上</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">产品类型：</label>
+                    <div class="layui-input-inline">
+                        <select name="type">
+                            <option value="0">全部</option>
+                            <option value="1">保本</option>
+                            <option value="2">非保本</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">风险：</label>
+                    <div class="layui-input-inline">
+                        <select lay-search="" name="suffix">
+                            <!--谨慎型产品(R1)、稳健型产品(R2)、平衡型产品(R3)、进取型产品(R4)、激进型产品(R5)-->
+                            <option value="0">全部</option>
+                            <option value="R1">谨慎型产品</option>
+                            <option value="R2">稳健型产品</option>
+                            <option value="R3">平衡型产品</option>
+                            <option value="R4">进取型产品</option>
+                            <option value="R5">激进型产品</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">状态：</label>
+                    <div class="layui-input-inline">
+                        <select name="jieGou">
+                            <option value="0">全部</option>
+                            <option value="1">在售</option>
+                            <option value="2">待售</option>
+                            <option value="3">已售完</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width: 75px;">产品名称：</label>
+                    <div class="layui-input-inline" style="width: 140px;">
+                        <input autocomplete="off" class="layui-input" name="mis" placeholder="请输入产品名称" type="text" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="layui-form-item tc">
+                <input class="layui-btn layui-btn-primary" type="reset" value="重置" />
+                <input class="layui-btn yellow_btn" lay-filter="sysMiCondBtn" lay-submit="" type="button" value="搜索" />
+            </div>
+        </form>
+    </div>
+
+</div>
+<div class="header layui-bg-cyan">
+    <input type="hidden" id="controller" value="Index" />
+    <div class="layui-header"  >
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="#">银行理财平台</a></li>
+            <li class="layui-nav-item" ><a href="#" th:href="@{/index/home}">首页</a></li>
+            <li class="layui-nav-item layui-this" id="Agents"><a href="#">理财产品</a></li>
+            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+        </ul>
+
+        <ul class="layui-nav layui-right" th:unless="${session.user != null}">
+            <li class="layui-nav-item">
+                <a href="#">登录</a>
+            </li>
+            <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
+        </ul>
+        <ul class="layui-nav layui-right" th:unless="${session.user == null}">
+            <li class="layui-nav-item">
+                <a href="http://ruanyun.verdor.softseeks.cn" th:text="${session.user.name}"></a>
+            </li>
+            <li class="layui-nav-item"><a href="#" id="logout" th:href="@{/user/loginout1}">退出</a></li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    layui.use(['form', 'laypage', 'table', 'layer'], function(){
+        var form = layui.form,
+            laypage=layui.laypage,
+            layer=layui.layer,
+            table=layui.table;
+
+        form.render('select');
+        var page_options={
+            elem: 'sysMiPage'
+            ,first: '首页'
+            ,last: '尾页'
+            ,groups: 5
+            ,theme: '#ff6700'
+            ,limits: [20,50,100,200]
+            ,layout: ['count', 'prev', 'page', 'next', 'limit']
+            ,jump: function(obj, first){
+                if(!first){
+                    table_options.url="/getSysmi?"+$('#sysMiCondForm').serialize()+"&amp;page="+obj.curr+"&amp;pageSize="+obj.limit;
+                    tableIns.reload(table_options);
+                }
+            }
+        };
+        var table_options={
+            elem: '#sysMiTable'
+            ,id: 'sysMiTable'
+            ,url: '/getSysmi'
+            ,method: 'get'
+            ,page: false
+            ,cols: [[ //标题栏
+                {field: 'id', checkbox: true, LAY_CHECKED: false}
+                ,{field: 'mi', title: '域名', width: 161, toolbar: '#detailBar'}
+                ,{field: 'outMoney', title: '价格', width: 60}
+                ,{field: 'strBaType', title: '性质', width: 60}
+                ,{field: 'baNumber', title: '建站编号', width: 180}
+                ,{field: 'baName', title: '建站记录', width: 265}
+                ,{field: 'startDate', title: '注册时间', width: 105, align:'center'}
+                ,{field: 'endDate', title: '到期时间', width: 105, align:'center'}
+                ,{title: '微信-360-管家', width:125, align:'center', toolbar: '#checkBar'}
+                ,{fixed: 'right', title: '购买', width:80, align:'center', toolbar: '#buyBar'}
+            ]]
+            ,done: function(res){
+                page_options.curr=res.page;
+                page_options.count=res.count;
+                page_options.limit=res.pageSize;
+                laypage.render(page_options);
+            }
+        };
+
+        var tableIns = table.render(table_options);
+
+        form.on("submit(sysMiCondBtn)", function(data){
+            table_options.url="/getSysmi?"+$("#sysMiCondForm").serialize();
+            tableIns.reload(table_options);
+        });
+
+        $("#sysMiBtn").click(function(){
+            var suffix = $("#suffix").val();
+            $("#sysMiForm").attr("action",suffix=="buy"?"/toBuy":"/download");
+            if(suffix.indexOf("all")!=0){
+                var checkStatus = table.checkStatus("sysMiTable");
+                    if( checkStatus.data.length <![CDATA['<']]>1 ){
+                    layer.msg("至少选择一行", {icon:5,anim:6});
+                    return false;
+                }
+                var ids="";
+                $.each(checkStatus.data, function(idx, obj) {
+                    ids+=obj.id+",";
+                });
+                $("#ids").val(ids);//使用隐藏域
+            }
+            $("#sysMiForm").submit();
+        });
+    });
+</script>
+
+</html>

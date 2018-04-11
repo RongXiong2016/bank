@@ -4,6 +4,7 @@ import com.dao.ProductRepository;
 import com.domain.Product;
 import com.domain.User;
 import com.service.ProductService;
+import com.util.CommonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -94,6 +95,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void edit(Product product) {
+        product.setTerm(CommonUtils.getDays(product.getEnd_sale_time(),product.getRan_out_time()));
         productRepository.save(product);
     }
 }
