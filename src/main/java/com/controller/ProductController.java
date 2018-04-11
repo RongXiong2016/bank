@@ -29,6 +29,13 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+
+    @RequestMapping(value = "show")
+    public String show(){
+        return "/product/list";
+    }
+
+
     /**
      * 1.产品期限
      * 2.产品风险等级 谨慎型产品(R1)、稳健型产品(R2)、平衡型产品(R3)、进取型产品(R4)、激进型产品(R5)

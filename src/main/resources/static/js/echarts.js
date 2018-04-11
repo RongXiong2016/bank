@@ -10681,7 +10681,7 @@ ZRender.prototype = {
 
         // var log = document.getElementById('log');
         // if (log) {
-        //     log.innerHTML = log.innerHTML + '<br>' + (end - start);
+        //     log.innerHTML = log.innerHTML + '<br/>' + (end - start);
         // }
     },
 

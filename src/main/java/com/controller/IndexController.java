@@ -44,6 +44,12 @@ public class IndexController {
         return "/test/echartsDemo/demo-3";
     }
 
+
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
+    }
+
     @RequestMapping("getData")
     @ResponseBody
     public String getData(HttpServletRequest request, HttpServletResponse response) {

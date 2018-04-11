@@ -153,6 +153,12 @@ public class UserController {
         return "redirect:/admin";
     }
 
+    @RequestMapping(value = "/loginout1", method = RequestMethod.GET)
+    public String loginOut1(HttpSession session) {
+        session.invalidate();
+        return "redirect:/index/home";
+    }
+
     /**
      * 加入购物车
      */
