@@ -8,8 +8,7 @@ import sun.rmi.runtime.Log;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author 范正荣
@@ -66,5 +65,8 @@ public class Product implements Serializable {
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
+    private Set<Trade> trades = new TreeSet<Trade>();
 
 }

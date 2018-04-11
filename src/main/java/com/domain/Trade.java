@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,12 +29,12 @@ public class Trade implements Serializable {
 
     @Column(name = "trade_no")
     private String trade_no;
-
+/*
     @Column(name = "user_id")
     private Long user_id;
 
     @Column(name = "product_id")
-    private Long product_id;
+    private Long product_id;*/
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -43,5 +44,15 @@ public class Trade implements Serializable {
 
     @Column(name = "trade_time")
     private String trade_time;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",foreignKey = @ForeignKey(name = "fk_user_fc"))
+    @JsonIgnoreProperties("trades")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id",foreignKey = @ForeignKey(name = "fk_product_fc"))
+    @JsonIgnoreProperties("trades")
+    private Product product;
 
 }

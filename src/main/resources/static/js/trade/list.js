@@ -13,13 +13,13 @@ layui.use(['table','layer'], function(){
         ,cellMinWidth: 100
         ,id:"idTest"
         ,cols: [[
-            {field:'Tradeid', width:80, title: 'ID', sort: true}
-            ,{field:'Tradeno', width:166, title: '交易流水号', sort: true}
-            ,{field:'Username', width:150, title: '客户名称'}
-            ,{field:'Productname', width:160, title: '产品名称', sort: true}
-            ,{field:'Income', width:120, title: '状态'}
-            ,{field:'Amount',width: 100, title: '预期收益'}
-            ,{field:'TradeTime', width:120, title: '交易时间'}
+            {field:'amount', width:80, title: 'ID', sort: true}
+            ,{field:'income', width:166, title: '交易流水号', sort: true}
+            ,{field:'productname', width:150, title: '客户名称'}
+            ,{field:'tradeTime', width:160, title: '产品名称', sort: true}
+            ,{field:'tradeid', width:120, title: '金额'}
+            ,{field:'tradeno',width: 100, title: '预期收益'}
+            ,{field:'username', width:120, title: '交易时间'}
            /* ,{title: '操作', width:170, templet:'#barDemo',fixed:"right",align:"center"}*/
         ]]
         ,page: true
