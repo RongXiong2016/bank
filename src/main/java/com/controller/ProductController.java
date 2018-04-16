@@ -46,7 +46,7 @@ public class ProductController {
      * 5.销售状态 在售 即将发售
      * 6.分页
      **/
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                              @RequestParam(value = "size", defaultValue = "10") Integer limit, HttpServletRequest request) {
@@ -58,7 +58,8 @@ public class ProductController {
         String saleStatus = request.getParameter("saleStatus");
         Pageable pageable = new PageRequest(page - 1, limit);
 
-        Page<Product> products = productService.list(name, term, riskLevel, type, saleStatus, pageable);
+        //Page<Product> products = productService.list(name, term, riskLevel, type, saleStatus, pageable);
+        Page<Product> products = productService.findAll(pageable);
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", products.getContent());
         resultMap.put("count", "1000");

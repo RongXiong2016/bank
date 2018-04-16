@@ -27,7 +27,7 @@
 
     </div>
     <div class="condition_box">
-        <form class="layui-form" id="query_form" th:object="${product}" method="post" lay-filter="layform">
+        <form class="layui-form" id="sysMiCondForm"   th:object="${product}" method="post">
             <div class="layui-form-item">
 
                 <div class="layui-inline">
@@ -61,6 +61,7 @@
                     <label class="layui-form-label" style="width: 75px;">风险：</label>
                     <div class="layui-input-inline">
                         <select lay-search="" name="riskLevel" id="riskLevel">
+                            <!--谨慎型产品(R1)、稳健型产品(R2)、平衡型产品(R3)、进取型产品(R4)、激进型产品(R5)-->
                             <option value="0">全部</option>
                             <option value="R1" th:selected="${product.riskLevel == 'R1'}">谨慎型产品</option>
                             <option value="R2" th:selected="${product.riskLevel == 'R2'}">稳健型产品</option>
@@ -94,7 +95,8 @@
 
             <div class="layui-form-item tc">
                 <input class="layui-btn layui-btn-primary" type="reset" value="重置"/>
-                <button class="layui-btn" data-type="reload" id="query_button" lay-submit="" lay-filter="Search">搜索</button>
+                <!-- <input class="layui-btn yellow_btn" lay-filter="search" lay-submit="submit" type="button" data-type="reload" value="搜索"/>-->
+                <button class="layui-btn" data-type="reload">搜索</button>
             </div>
         </form>
     </div>
@@ -139,38 +141,133 @@
 
 <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">
-    layui.use(['form', 'table'], function () {
-        var table = layui.table
-            , form = layui.form;
 
+    layui.use('table', function(){
+        var table = layui.table;
+
+        //方法级渲染
         table.render({
             elem: '#product-list'
-            , url: '/product/list'
+            , url: '/product/list1'
             , page: {
                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+                //,curr: 5 //设定初始在第 5 页
                 , groups: 1 //只显示 1 个连续页码
                 , first: false //不显示首页
                 , last: false //不显示尾页
 
             }
+            ,id: 'testReload'
             ,skin:'line'
             ,even:true
             , cols: [[
-              {field: 'id', width: 80, title: 'ID', sort: true}
-            , {field: 'productCode', width: 166, title: '产品编码'}
-            , {field: 'name', width: 150, title: '名称'}
-            , {field: 'type', width: 120, title: '类型', sort: true}
-            , {field: 'status', width: 130, title: '状态'}
-            , {field: 'riskLevel', width: 90, title: '风险等级'}
-            , {field: 'returnRate', width: 124, title: '收益率(%)',sort: true}
-            , {field: 'term', width: 130, title: '投资期限',sort: true}
-            , {field: 'ran_out_time', width: 120, title: '到期时间'}
-            , {title: '操作', width: 87, templet: '#barDemo', fixed: "right", align: "left"}
-        ]]
+                {field: 'id', width: 80, title: 'ID', sort: true}
+                , {field: 'productCode', width: 166, title: '产品编码'}
+                , {field: 'name', width: 150, title: '名称'}
+                , {field: 'type', width: 120, title: '类型', sort: true}
+                , {field: 'status', width: 130, title: '状态'}
+                , {field: 'riskLevel', width: 90, title: '风险等级'}
+                , {field: 'returnRate', width: 124, title: '收益率(%)',sort: true}
+                , {field: 'term', width: 130, title: '投资期限',sort: true}
+                , {field: 'ran_out_time', width: 120, title: '到期时间'}
+                , {title: '操作', width: 87, templet: '#barDemo', fixed: "right", align: "left"}
+            ]]
+        });
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var term = $('#term');
+                var type = $('#type');
+                var reskLevel = $('#reskLevel');
+                var status = $('#status');
+                var name = $('#name')
+
+                //执行重载
+                table.reload('testReload', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+
+                    ,where: {
+                        term: term.val(),
+                        type: type.val(),
+                        reskLevel:reskLevel.val(),
+                        status:status.val(),
+                        name:name.val()
+                    }
+                });
+            }
+        };
+
+        $('.condition_box .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 
 
-    });
+    /* layui.use(['form', 'table'], function () {
+         var table = layui.table
+             , form = layui.form;
+
+         table.render({
+             elem: '#product-list'
+             , url: '/product/list'
+             , page: {
+                 layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+                 //,curr: 5 //设定初始在第 5 页
+                 , groups: 1 //只显示 1 个连续页码
+                 , first: false //不显示首页
+                 , last: false //不显示尾页
+
+             }
+             /!*,height:475*!/
+             ,skin:'line'
+             ,even:true
+             , cols: [[
+                   {field: 'id', width: 80, title: 'ID', sort: true}
+                 , {field: 'productCode', width: 166, title: '产品编码'}
+                 , {field: 'name', width: 150, title: '名称'}
+                 , {field: 'type', width: 120, title: '类型', sort: true}
+                 , {field: 'status', width: 130, title: '状态'}
+                 , {field: 'riskLevel', width: 90, title: '风险等级'}
+                 , {field: 'returnRate', width: 124, title: '收益率(%)',sort: true}
+                 , {field: 'term', width: 130, title: '投资期限',sort: true}
+                 , {field: 'ran_out_time', width: 120, title: '到期时间'}
+                 , {title: '操作', width: 87, templet: '#barDemo', fixed: "right", align: "left"}
+             ]]
+         });
+
+         //监听提交----搜索
+         form.on('submit(search)', function (data) {
+             layer.msg(JSON.stringify(data.field));
+             $.ajax({
+                 type: 'POST',
+                 url: /!*[[@{/product/list}]]*!/'',
+                 dataType: 'json',
+                 data: data.field,
+                 async: true,
+                 success: function (result) {
+                     console.log(result.code)
+                     if (result.code == 0) {
+                         layer.msg('success:保存成功', {icon: 1, time: 1000});
+                         setTimeout(function () {
+                            /!* parent.location.href = "/product/show";*!/
+                         }, 1000);
+                     } else {
+                         console.alert(result.code);
+                         layer.msg('error:保存失败！' + result.msg, {icon: 2, time: 1000});
+                         layer.close(index);
+                     }
+                 },
+                 error: function (result, type) {
+                     layer.msg('error:保存失败！', {icon: 2, time: 1000});
+                 }
+             });
+             console.log(data.field)
+             return false;
+         });
+     });*/
 
 
 </script>
