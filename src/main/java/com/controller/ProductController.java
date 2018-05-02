@@ -130,5 +130,13 @@ public class ProductController {
         return resultMap;
     }
 
+    @RequestMapping(value="/detail", method = RequestMethod.GET)
+    public String detail(Model model,HttpServletRequest request){
+        String productCode = request.getParameter("productCode");
+        Product product = productService.findByProductByProductCode(productCode);
+        model.addAttribute("product", product);
+        return "/product/detail";
+    }
+
 
 }

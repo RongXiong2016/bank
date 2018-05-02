@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -69,6 +70,7 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
     private Set<Trade> trades = new TreeSet<Trade>();
 

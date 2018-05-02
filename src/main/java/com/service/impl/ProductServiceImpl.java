@@ -33,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> list(String name, String term, String riskLevel, String type, String saleStatus,Pageable pageable) {
-        pageable = new PageRequest(1,10);
+        pageable = new PageRequest(0,10);
         Specification<Product> specification = new Specification<Product>() {
             @Override
             public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -98,4 +98,12 @@ public class ProductServiceImpl implements ProductService {
         product.setTerm(CommonUtils.getDays(product.getEnd_sale_time(),product.getRan_out_time()));
         productRepository.save(product);
     }
+
+    @Override
+    public Product findByProductByProductCode(String productCode) {
+        Product product = productRepository.findProductByProductCode(productCode);
+        return product;
+    }
+
+
 }

@@ -3,15 +3,20 @@ package com.bank.dao;
 import com.BankApplication;
 import com.dao.ProductRepository;
 import com.domain.Product;
+import com.service.ProductService;
 import com.util.CommonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author 范正荣
@@ -23,6 +28,8 @@ import java.math.BigDecimal;
 public class TestProduct {
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    ProductService productService;
 
     @Test
     public void testAdd(){
@@ -45,5 +52,21 @@ public class TestProduct {
 
             productRepository.save(product);
         }
+    }
+
+    @Test
+    public void testList(){
+        String name = "1号理财产品";
+        String type = "";
+        String term = "";
+        String riskLevel = "";
+        String saleStatus = "";
+        Pageable pageable = new PageRequest(0,10);
+        Page page = productService.list(name,term,riskLevel,type,saleStatus,pageable);
+        List<Product> list = page.getContent();
+        System.out.println("----------------start--------------------");
+        System.out.println("list的长度"+list.size());
+        list.stream().forEach(p -> System.out.println(p.getName()));
+        System.out.println("----------------end--------------------");
     }
 }

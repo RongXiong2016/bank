@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,7 +53,8 @@ public class Trade implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product_id",foreignKey = @ForeignKey(name = "fk_product_fc"))
-    @JsonIgnoreProperties("trades")
+    //@JsonIgnoreProperties("trades")
+    @JsonIgnore
     private Product product;
 
 }

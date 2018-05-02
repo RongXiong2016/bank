@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface ProductRepository extends JpaSpecificationExecutor<Product>,JpaRepository<Product, Long> {
 
+    Product findProductByProductCode(String productCode);
+
 }

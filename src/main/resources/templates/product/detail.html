@@ -1,10 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>产品详情页</title>
+    <meta charset="UTF-8" />
+    <meta content="IE=9" http-equiv="X-UA-Compatible" />
+    <title>理财产品信息</title>
+    <script type="text/javascript" src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"/>
 </head>
-<body>
+<style>
+    @media screen and (min-width: 1000px) {
+        .layui-col-md3 {
+            width: 25%;
+        }
+    }
 
-</body>
-</html>
+    @media screen and (min-width: 992px) {
+        .layui-col-md4 {
+            width: 21%;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .layui-col-md8 {
+            width: 77%;
+        }
+    }
+</style>
+<body>
+<div>
+    <header class="am-topbar am-topbar-fixed-top qing-header">
+        <div class="am-g am-g-fixed"></div>
+    </header>
+
+</div>
+<div class="layui-container layui-row">
+    <div class="layui-col-md12">
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">产品信息</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show layui-row">
+                    <div class="layui-col-md4"></div>
+                    <div class="layui-col-md8 ">
+                        <table class="layui-table" lay-even="" lay-skin="nob">
+                            <thead>
+                            <tr>
+                                <th colspan="4">基本信息</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td align="center" width="90">产品名称</td>
+                                <td></td>
+                                <td align="center" width="90">产品编码</td>
+                                <td width="180">犯罪/恐怖/惊悚/悬疑/优酷出品/网络大电影</td>
+                            </tr>
+                            <tr>
+                                <td align="center" width="60">类型</td>
+                                <td>主演：唐禹哲/王丽语/王宝光</td>
+                                <td align="center" width="60">销售状态</td>
+                                <td>更新完成</td>
+                            </tr>
+                            <tr>
+                                <td align="center" width="60">风险等级</td>
+                                <td>大陆</td>
+                                <td align="center" width="60">收益率</td>
+                                <td>2017</td>
+                            </tr>
+                            <tr>
+                                <td align="center" width="60">投资期限</td>
+                                <td>2017-09-22</td>
+                                <td align="center" width="60">起购金额</td>
+                                <td>9.9</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-tab layui-tab-brief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">购买须知</li>
+                    <li>产品协议</li>
+                </ul>
+                <div class="layui-tab-content" style="max-height: 300px;overflow-y:auto">
+                    <div class="layui-tab-item layui-show">
+                        <span>
+                            <a class="layui-btn layui-btn-small" style="margin: 5px;" target="_blank" href="http://play.ljthm.cn/play.html#646,0">西河口秘闻</a>
+                        </span>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div style="width: 100%;line-height: 30px;text-align: center;">
+                            <p>
+                                <span tyle="text-align: justify;">&nbsp;</span>
+                                <span class="desc_txt" style="text-align: justify;">
+<span class="txt _desc_txt_lineHight" itemprop="description"> 竟有两具尸体，而且两具尸体的头颅都不翼而  场始于二十多年前的家族恩怨纠纷，终于浮出水面。</span>
+</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="layui-btn layui-btn-warm layui-btn-radius layui-btn-lg" style="background-color: #E6162D; color: white">立即购买</button>
+            </div>
+        </div>
+    </div>
+    <div data-use="reward" id="cyReward" role="cylabs" style="margin-left: 40%"></div>
+
+</div>
+<script type="text/javascript" src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var id = 228;
+    var AD = 7;
+    var p = 1;
+    layui.use(['element', 'layedit', 'layer'], function () {
+        var form = layui.form;
+        var element = layui.element;
+        var layedit = layui.layedit;
+        var editIndex = layedit.build('L_content', {
+            tool: ['face', '|', 'left', 'center', 'right']
+            , height: 120
+        });
+
+        form.on('submit(formtijiao)', function (data) {
+
+            var pl = layedit.getContent(editIndex);
+            if (pl == "") {
+                layer.msg("请填写需要评论的内容再提交");
+                return;
+            }
+            ;
+            var code = $("#code").val();
+            if (code == "") {
+                layer.msg("请填写验证码再提交");
+                return;
+            }
+            ;
+            $.ajax({
+                url: '/pinglun.html',
+                data: {"pl": pl, "id": id, "code": code, "AD": AD},
+                type: "POST",
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.status == 2) {
+                        layer.msg(data.msg, {time: 1200}, function () {
+                            location.reload();
+                        });
+                        return;
+                    }
+                    if (data.status == 1) {
+                        layer.msg(data.msg);
+                        return;
+                    }
+                }
+            });
+
+        });
+    });
+
+   /* var product = [[${product}]]
+    console.log(product)
+*/
+
+
+</script>
+</body></html>

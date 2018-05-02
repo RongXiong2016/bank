@@ -25,4 +25,6 @@ public interface ProductService {
     Product findProductById(Long id);
 
     void edit(Product product);
+
+    Product findByProductByProductCode(String productCode);
 }
