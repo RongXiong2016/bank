@@ -135,8 +135,12 @@ public class ProductController {
         String productCode = request.getParameter("productCode");
         Product product = productService.findByProductByProductCode(productCode);
         model.addAttribute("product", product);
-        return "/product/detail";
+        model.addAttribute("code","0");
+        return "/product/details";
+
     }
+
+
 
 
 }

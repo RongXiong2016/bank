@@ -30,12 +30,6 @@ public class Trade implements Serializable {
 
     @Column(name = "trade_no")
     private String trade_no;
-/*
-    @Column(name = "user_id")
-    private Long user_id;
-
-    @Column(name = "product_id")
-    private Long product_id;*/
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -51,10 +45,9 @@ public class Trade implements Serializable {
     @JsonIgnoreProperties("trades")
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id",foreignKey = @ForeignKey(name = "fk_product_fc"))
-    //@JsonIgnoreProperties("trades")
-    @JsonIgnore
     private Product product;
 
 }

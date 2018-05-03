@@ -70,8 +70,8 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
-    private Set<Trade> trades = new TreeSet<Trade>();
+    private Set<Trade> trades = new TreeSet<>();*/
 
 }

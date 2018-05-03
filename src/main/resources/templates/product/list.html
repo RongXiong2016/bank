@@ -134,7 +134,7 @@
 </body>
 
 <script type="text/html" id="barDemo">
-    <a href="#" th:href="@{product/buy}" id="detail">
+    <a>
         <i class="layui-icon" style="font-size: 30px; color: #FF5722;">&#xe698;</i>
     </a>
 </script>
@@ -173,25 +173,27 @@
         });
     });
 
-    $(document).on('click', '.layui-table>tbody>tr', function (){
+
+
+    /*$(document).on('click', '.layui-table>tbody>tr', function () {
         var productCode = $(this).children().eq(1).text();
+
         $.ajax({
-            type:"GET",
-            url:'/product/detail',
-            data:{
-                productCode:productCode
+            type: 'get',
+            url: "/product/detail",
+            async: true,
+            dataType: 'json',
+            error: "重新请求",
+            data: {
+                'productCode': productCode
             },
-        dataType:"json",
-            success: function(data) {
-            alert(122);
-        },
-        error: function(msg) {
-            alert(123);
-        }
-        });
-
-
-    });
+            success:function (data) {
+                if(data.code == 0){
+                    alert(121)
+                }
+            }
+        })
+    })*/
 
 </script>
 

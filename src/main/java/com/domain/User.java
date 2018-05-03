@@ -59,9 +59,10 @@ public class User implements Serializable {
             inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="role_id")})
     private Set<Role> roles;
 
+   /* @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "user")
     private Set<Trade> trades = new TreeSet<Trade>();
-
+*/
 
 
 }
