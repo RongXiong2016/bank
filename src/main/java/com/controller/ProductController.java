@@ -137,7 +137,6 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("code","0");
         return "/product/details";
-
     }
 
 

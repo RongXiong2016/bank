@@ -154,7 +154,6 @@
                 , groups: 1 //只显示 1 个连续页码
                 , first: false //不显示首页
                 , last: false //不显示尾页
-
             }
             ,skin:'line'
             ,even:true
@@ -173,28 +172,10 @@
         });
     });
 
-
-
-    /*$(document).on('click', '.layui-table>tbody>tr', function () {
+    $(document).on('click','.layui-table>tbody>tr',function () {
         var productCode = $(this).children().eq(1).text();
-
-        $.ajax({
-            type: 'get',
-            url: "/product/detail",
-            async: true,
-            dataType: 'json',
-            error: "重新请求",
-            data: {
-                'productCode': productCode
-            },
-            success:function (data) {
-                if(data.code == 0){
-                    alert(121)
-                }
-            }
-        })
-    })*/
-
+        window.location.href = '/product/detail?productCode='+productCode
+    })
 </script>
 
 </html>
