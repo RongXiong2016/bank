@@ -18,8 +18,8 @@ layui.use(['table','layer'], function(){
             ,{field:'productname', width:150, title: '客户名称'}
             ,{field:'tradeTime', width:160, title: '产品名称', sort: true}
             ,{field:'tradeid', width:120, title: '金额'}
-            ,{field:'tradeno',width: 100, title: '预期收益'}
-            ,{field:'username', width:120, title: '交易时间'}
+            ,{field:'tradeno',width: 120, title: '预期收益'}
+            ,{field:'username', width:200, title: '交易时间'}
            /* ,{title: '操作', width:170, templet:'#barDemo',fixed:"right",align:"center"}*/
         ]]
         ,page: true

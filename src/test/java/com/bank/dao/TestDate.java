@@ -1,5 +1,8 @@
 package com.bank.dao;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.time.LocalDate;
 
 import java.time.format.DateTimeFormatter;
@@ -27,5 +30,8 @@ public class TestDate {
 
         List listNoCup=new ArrayList(new HashSet(listHasCup));
         System.out.println(listNoCup.size());
+
+       // ApplicationContext
+        ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml");
     }
 }
