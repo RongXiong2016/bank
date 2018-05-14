@@ -72,7 +72,7 @@ public class ProjectController {
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public @ResponseBody Map add(@ModelAttribute(value = "project") Project project,HttpSession session) {
         User user = (User) session.getAttribute("user");
-        project.setCreate_user_name(user.getName());
+        project.setCreate_user_name("理财经理");
         project.setCreateTime(new Date());
         projectService.save(project);
         Map<String, Object> resultMap = new HashMap<>();
