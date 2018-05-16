@@ -123,4 +123,7 @@ $(function() {
         });
     });
 
+    $('#export-user').on('click',function () {
+        window.location.href='/user/export'
+    })
 });

@@ -54,7 +54,7 @@ public class TestProduct {
         }
     }
 
-    @Test
+ /*   @Test
     public void testList(){
         String name = "1号理财产品";
         String type = "";
@@ -68,5 +68,5 @@ public class TestProduct {
         System.out.println("list的长度"+list.size());
         list.stream().forEach(p -> System.out.println(p.getName()));
         System.out.println("----------------end--------------------");
-    }
+    }*/
 }
