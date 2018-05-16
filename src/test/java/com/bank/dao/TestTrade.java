@@ -22,6 +22,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -45,7 +46,7 @@ public class TestTrade {
         User user = userRepository.findOne(1L);
         Product product = productRepository.findOne(3L);
 
-        Map resMap = userService.buyProuct(user,product);
+        Map resMap = userService.buyProuct(user,product,new Date());
         System.out.println(resMap.get("trade"));
     }
 

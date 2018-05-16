@@ -12,4 +12,6 @@ public interface ProductRepository extends JpaSpecificationExecutor<Product>,Jpa
 
     Product findProductByProductCode(String productCode);
 
+    Product findByName(String name);
+
 }

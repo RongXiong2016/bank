@@ -15,7 +15,7 @@ layui.use(['table','layer'], function(){
         ,cols: [[
             {field:'amount', width:80, title: 'ID', sort: true}
             ,{field:'income', width:166, title: '交易流水号', sort: true}
-            ,{field:'productname', width:150, title: '客户名称'}
+            ,{field:'productname', width:150, title: '客户姓名'}
             ,{field:'tradeTime', width:160, title: '产品名称', sort: true}
             ,{field:'tradeid', width:120, title: '金额'}
             ,{field:'tradeno',width: 120, title: '预期收益'}
@@ -109,12 +109,12 @@ layui.use(['table','layer'], function(){
 });
 
 $(function() {
-    $('#add-product').on('click', function () {
+    $('#add-trade').on('click', function () {
         layer.open({
             type: 2,
             maxmin: true,
             title: '新增理财产品',
-            content: '/product/toAdd',
+            content: '/trade/toAdd',
             area: ['700px', '450px'],
             offset: ['50px', '250px'],
             shadeClose:true,

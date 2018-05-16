@@ -82,9 +82,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, Object> buyProuct(User user, Product product) {
+    public Map<String, Object> buyProuct(User user, Product product,Date date) {
         Trade trade = new Trade();
-        Integer quantity = 1;
+        Integer quantity =1;
         trade.setTrade_no(CommonUtils.getTradeNo());
         trade.setAmount(product.getPrice().multiply(new BigDecimal(quantity.toString())));
 

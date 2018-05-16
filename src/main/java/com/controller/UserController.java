@@ -175,7 +175,7 @@ public class UserController {
     public  @ResponseBody Map<String,Object> buyProduct(Product product,HttpSession session){
         Map<String, Object> resultMap = new HashMap<>();
         User user = (User) session.getAttribute("user");
-        resultMap = userService.buyProuct(user,product);
+        resultMap = userService.buyProuct(user,product,new Date());
         resultMap.put("code", "0");
         resultMap.put("success", true);
         return null;
