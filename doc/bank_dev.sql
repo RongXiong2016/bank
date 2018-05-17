@@ -148,4 +148,15 @@ CREATE TABLE `user_role`  (
   CONSTRAINT `FKa68196081fvovjhkek5m97n3y` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+DROP TABLE IF EXISTS `notice`;
+CREATE TABLE `notice` (
+  `notice_id` int(10) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) DEFAULT NULL COMMENT '发布内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `trade_sn` varchar(255) DEFAULT NULL COMMENT '交易流水号',
+  `create_user_id` int(10) DEFAULT NULL COMMENT '创建人',
+  `type` varchar(255) DEFAULT NULL COMMENT '发布方式',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 SET FOREIGN_KEY_CHECKS = 1;
