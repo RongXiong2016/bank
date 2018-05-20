@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>收益情况统计折线表</title>
+    <meta charset="utf-8"></meta>
+    <!-- 引入 ECharts 文件 -->
+    <script src="../../../static/js/echarts.js" th:src="@{/js/echarts.js}"></script>
+    <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById("main"));
+
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [0.66, 0.66, 0.67, 0.61, 0.4, 0.58, 0.66],
+            type: 'line'
+        }]
+    };
+
+    myChart.setOption(option);
+
+</script>
+</body>
+</html>
