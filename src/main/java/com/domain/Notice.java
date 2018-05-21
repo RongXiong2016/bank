@@ -26,9 +26,6 @@ public class Notice {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "trade_sn")
     private String tradeSn;
 
@@ -37,4 +34,7 @@ public class Notice {
 
     @Column(name = "create_time")
     private Date createTime;
+
+    @Column(name = "status")
+    private String status;
 }

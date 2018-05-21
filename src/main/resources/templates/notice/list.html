@@ -2,12 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
-    <title>用户管理</title>
+    <title>公告管理</title>
     <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
+
 <body>
-aaa
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">发布</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script src="../../static/js/notice/list.js" th:src="@{/js/notice/list.js}"></script>
+<button data-method="confirmTrans" class="layui-btn">配置一个透明的询问框</button>
+<table class="layui-table" id="test1" lay-filter="demo"></table>
+<table class="layui-hide" id="test"></table>
 </body>
 </html>

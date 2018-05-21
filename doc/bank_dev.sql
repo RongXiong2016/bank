@@ -152,11 +152,11 @@ DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
   `notice_id` int(10) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) DEFAULT NULL COMMENT '发布内容',
+  `status` varchar(255) DEFAULT NULL COMMENT '公告状态',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `trade_sn` varchar(255) DEFAULT NULL COMMENT '交易流水号',
   `create_user_id` int(10) DEFAULT NULL COMMENT '创建人',
   `type` varchar(255) DEFAULT NULL COMMENT '发布方式',
-  PRIMARY KEY (`id`)
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`notice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-SET FOREIGN_KEY_CHECKS = 1;
