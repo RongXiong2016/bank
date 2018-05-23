@@ -35,9 +35,10 @@
     </div>
 
     <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll"  >
+        <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test" lay-shrink="all">
+                <li class="layui-nav-item" id="shouye" href="www.baidu.com" target="target">首页</li>
                 <li class="layui-nav-item">
                    <!-- layui-nav-itemed-->
                     <a  href="javascript:;"  ><i class="layui-icon menu-icon">&#xe612;</i> 用户管理</a>
@@ -102,6 +103,11 @@
     layui.use(['element','layer'], function(){
         var element = layui.element
             ,layer = layui.layer;
+    });
+
+    $(document).ready(function() {
+        $("#demoAdmin").attr("src", 'layout.html')
+
     });
 
     $(function() {
