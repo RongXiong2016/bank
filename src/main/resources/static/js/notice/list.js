@@ -78,25 +78,6 @@ layui.use(['table','layer'], function(){
 
 
     var $ = layui.$, active = {
-       /* getCheckData: function(){ //获取选中数据
-            var checkStatus = table.checkStatus('idTest')
-                ,data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
-        }
-        ,getCheckLength: function(){ //获取选中数目
-            var checkStatus = table.checkStatus('idTest')
-                ,data = checkStatus.data;
-            layer.msg('选中了：'+ data.length + ' 个');
-        }
-        ,isAll: function(){ //验证是否全选
-            var checkStatus = table.checkStatus('idTest');
-            layer.msg(checkStatus.isAll ? '全选': '未全选')
-        },*/
-
-
-    };
-
-    var $ = layui.$, active = {
         reload: function(){
             var demoReload = $(".searchVal");
             //alert(123)
@@ -117,6 +98,59 @@ layui.use(['table','layer'], function(){
     $('.demoTable .layui-btn').on('click', function(){
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
+    });
+
+    var active = {
+        setTop: function(){
+            var that = this;
+            //多窗口模式，层叠置顶
+            layer.open({
+                type: 2 //此处以iframe举例
+                ,title: '当你选择该窗体时，即会在最顶端'
+                ,area: ['390px', '260px']
+                ,shade: 0
+                ,maxmin: true
+                ,offset: [ //为了演示，随机坐标
+                    Math.random()*($(window).height()-300)
+                    ,Math.random()*($(window).width()-390)
+                ]
+                ,content: 'http://layer.layui.com/test/settop.html'
+                ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+                ,yes: function(){
+                    $(that).click();
+                }
+                ,btn2: function(){
+                    layer.closeAll();
+                }
+
+                ,zIndex: layer.zIndex //重点1
+                ,success: function(layero){
+                    layer.setTop(layero); //重点2
+                }
+            });
+        }
+        ,offset: function(othis){
+            var type = othis.data('type')
+                ,text = othis.text();
+
+            layer.open({
+                type: 1
+                ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                ,id: 'layerDemo'+type //防止重复弹出
+                ,content: '<div style="padding: 20px 100px;">'+ text +'</div>'
+                ,btn: '确认'
+                ,btnAlign: 'c' //按钮居中
+                ,shade: 0 //不显示遮罩
+                ,yes: function(){
+                    layer.closeAll();
+                }
+            });
+        }
+    };
+
+    $('#layerDemo .layui-btn').on('click', function(){
+        var othis = $(this), method = othis.data('method');
+        active[method] ? active[method].call(this, othis) : '';
     });
 
 
