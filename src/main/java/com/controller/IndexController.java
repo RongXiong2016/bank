@@ -74,4 +74,10 @@ public class IndexController {
         System.out.println(jsonVal);
         return jsonVal;
     }
+
+    @RequestMapping("/layout")
+    public String layout() {
+        return "/layout";
+    }
+
 }
