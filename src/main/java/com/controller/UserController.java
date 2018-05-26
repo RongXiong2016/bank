@@ -278,4 +278,9 @@ public class UserController {
         return "redirect:/review1";
     }
 
+    @RequestMapping(value = "riskQuestion")
+    public String riskQuestion(){
+        return "/user/question";
+    }
+
 }

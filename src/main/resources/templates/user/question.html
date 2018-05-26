@@ -4,102 +4,146 @@
     <meta charset="UTF-8">
     <title>理财风险评估</title>
     <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
-    <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <style>
+     .qs-title{
+         margin-left: 100px;
+     }
+    </style>
 </head>
 <body >
 <p style="margin-left: 70px;margin-top: 30px;margin-bottom: 20px;">
-    重要提示：<br>
-    1、本问卷有效期为1年。当发生可能影响您自身风险承担能力的情形时，请您主动要求重新评估。<br>
-    2、本问卷旨在了解您的财务状况、投资经验、投资风格和风险承受能力等，借此协助您选择合适的理财产品类别，以达到您的投资目标。<br>
-    3、投资理财产品需要承担各类风险，如市场风险、流动性风险、信用风险、利率风险、赋税风险等，可能遭受本金损失。<br>
-    4、以下10个题请选择唯一选项。本次评估问卷的准确性视乎您所填写的答案而定，请您客观仔细填写，谢谢您的配合！<br>
+    重要提示：<br/>
+    1、本问卷有效期为1年。当发生可能影响您自身风险承担能力的情形时，请您主动要求重新评估。<br/>
+    2、本问卷旨在了解您的财务状况、投资经验、投资风格和风险承受能力等，借此协助您选择合适的理财产品类别，以达到您的投资目标。<br/>
+    3、投资理财产品需要承担各类风险，如市场风险、流动性风险、信用风险、利率风险、赋税风险等，可能遭受本金损失。<br/>
+    4、以下10个题请选择唯一选项。本次评估问卷的准确性视乎您所填写的答案而定，请您客观仔细填写，谢谢您的配合！<br/>
 </p>
-<form class="layui-form" action="" lay-filter="example">
+<form class="layui-form" action="" lay-filter="example" id="qs-from">
 
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+        <legend> 一、个人及财务状况评估</legend>
+    </fieldset>
     <div class="layui-form-item">
-        <!--<label class="layui-form-label" style="width: 100px;margin-bottom: 10px;margin-right: 10px">1.您的年龄是</label>-->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend>1.您的年龄是</legend>
-        </fieldset>
+        <!--<fieldset class="layui-elem-field layui-field-title">
+            <legend>1.您理财投资的年限</legend>
+        </fieldset>-->
+        <div class="qs-title">1.您理财投资的年限</div>
         <div class="layui-input-block">
-            <input type="radio" name="1" value="1" title="A 18-20岁"><br>
-            <input type="radio" name="1" value="2" title="B 26-50岁"><br>
-            <input type="radio" name="1" value="3" title="C 51-60岁"><br>
-            <input type="radio" name="1" value="4" title="D 高于60岁">
+            <input type="radio" name="1" value="5" title="A 10年以上"><br/>
+            <input type="radio" name="1" value="4" title="B 5-10年"><br/>
+            <input type="radio" name="1" value="3" title="C 2-5年"><br/>
+            <input type="radio" name="1" value="2" title="D 2年以下">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <!--<label class="layui-form-label" style="width: 100px;margin-bottom: 10px;margin-right: 10px">
-            2.您的家庭总资产净值为（折合人民币）
-        </label>-->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend>2.您的家庭总资产净值为（折合人民币）</legend>
-        </fieldset>
+       <!-- <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend>2.您家庭的就业状况是</legend>
+        </fieldset>-->
+        <div class="qs-title">2.您家庭的就业状况是</div>
         <div class="layui-input-block" >
-            <input type="radio" name="2" value="1" title="A 15万元（含）以下"><br>
-            <input type="radio" name="2" value="2" title="B 15万元（不含）-50万元（含）"><br>
-            <input type="radio" name="2" value="3" title="C 50万元（不含）-100万元（含）"><br>
-            <input type="radio" name="2" value="4" title="D 100万元（不含）-1000万元（含）">
+            <input type="radio" name="2" value="5" title="A 您与配偶（如有）均有稳定收入的工作"><br/>
+            <input type="radio" name="2" value="3" title="B 您与配偶（如有）其中一人有稳定收入的工作"><br/>
+            <input type="radio" name="2" value="1" title="C 您与配偶（如有）均没有稳定收入的工作或者已退休"><br/>
         </div>
     </div>
 
     <div class="layui-form-item">
 
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend> 3.在您家庭总资产净值中，可用于金融投资（储蓄存款外）的比例为</legend>
-        </fieldset>
+       <!-- <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 3.您曾或现阶段持有过的金融品种或以此为主要投资对象的理财产品有</legend>
+        </fieldset>-->
+        <div class="qs-title">3.您曾或现阶段持有过的金融品种或以此为主要投资对象的理财产品有</div>
     <div class="layui-input-block">
-        <input type="radio" name="3" value="1" title="A 小于10%"><br>
-        <input type="radio" name="3" value="2" title="B 10%至25%"><br>
-        <input type="radio" name="3" value="3" title="C 25%至50%"><br>
-        <input type="radio" name="3" value="4" title="D 大于50%">
+        <input type="radio" name="3" value="1" title="A 银行存款/国债、货币市场基金等"><br/>
+        <input type="radio" name="3" value="3" title="B 债券基金、投资连接型保险等"><br/>
+        <input type="radio" name="3" value="5" title="C 股票、股票型基金、期货、权证等"><br/>
     </div>
     </div>
 
     <div class="layui-form-item">
-        <!--<label class="layui-form-label" style="width: 100px;margin-bottom: 10px;margin-right: 10px">
-            4.您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验
-        </label>-->
+<!--
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend> 4.您有多少年投资股票、基金、外汇、金融衍生产品等风险投资品的经验</legend>
-        </fieldset>
+            <legend> 4.一般情况下，在您的家庭年收入中，可用作投资</legend>
+        </fieldset>-->
+        <div class="qs-title"> 4.一般情况下，在您的家庭年收入中，可用作投资</div>
         <div class="layui-input-block">
-            <input type="radio" name="4" value="1" title="A 小于2年"><br>
-            <input type="radio" name="4" value="2" title="B 2至5年"><br>
-            <input type="radio" name="4" value="3" title="C 5至8年"><br>
-            <input type="radio" name="4" value="4" title="D 8年以上">
+            <input type="radio" name="4" value="5" title="A 50%以上 "><br/>
+            <input type="radio" name="4" value="4" title="B 20%-50%"><br/>
+            <input type="radio" name="4" value="3" title="C 25%—35%"><br/>
+            <input type="radio" name="4" value="2" title="D 10%-25%"><br/>
+            <input type="radio" name="4" value="1" title="E 10%以下">
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+        <legend>二、风险偏好评估</legend>
+    </fieldset>
+    <div class="layui-form-item">
+    <!--    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 5.假设您有100万元人民币建立投资组合，您会选择</legend>
+        </fieldset>-->
+        <div class="qs-title"> 5.假设您有100万元人民币建立投资组合，您会选择</div>
+        <div class="layui-input-block">
+            <input type="radio" name="5" value="5" title="A 低风险（如银行存款、国债、货币市场基金）占10%，中等风险（如债券基金、投资连接险等）占40%， 高风险（股票、期货及外汇交易等）占50%"><br/>
+            <input type="radio" name="5" value="3" title="B 低风险占30%，中等风险占40%，高风险占30%"><br/>
+            <input type="radio" name="5" value="1" title="C 低风险占60%，中等风险占30%，高风险占10%"><br/>
         </div>
     </div>
 
     <div class="layui-form-item">
-        <!--<label class="layui-form-label" style="width: 100px;margin-bottom: 10px;margin-right: 10px">
-            5.投资于金融投资品（不含存款和国债）时，您可接受的最长投资期限是多久？
-        </label>-->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend> 5.投资于金融投资品（不含存款和国债）时，您可接受的最长投资期限是多久？</legend>
-        </fieldset>
+    <!--    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 6.假设您目前有100万元，有一个投资产品，有80%的可能盈利200％，同样也有80%的可能血本无归。您会投资多少</legend>
+        </fieldset>-->
+        <div class="qs-title"> 6.假设您目前有100万元，有一个投资产品，有80%的可能盈利200％，同样也有80%的可能血本无归。您会投资多少</div>
         <div class="layui-input-block">
-            <input type="radio" name="5" value="1" title="A 1年之内"><br>
-            <input type="radio" name="5" value="2" title="B 1-3年"><br>
-            <input type="radio" name="5" value="3" title="C 3-5年"><br>
-            <input type="radio" name="5" value="4" title="D 5年以上">
+            <input type="radio" name="6" value="5" title="A 100万"><br/>
+            <input type="radio" name="6" value="4" title="B 50-80万"><br/>
+            <input type="radio" name="6" value="3" title="C 30-50万"><br/>
+            <input type="radio" name="6" value="2" title="D 10-30万"><br/>
+            <input type="radio" name="6" value="1" title="E 0-10万">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <!--<label class="layui-form-label" style="width: 100px;margin-bottom: 10px;margin-right: 10px">
-            5.投资于金融投资品（不含存款和国债）时，您可接受的最长投资期限是多久？
-        </label>-->
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
-            <legend> 10.您的投资出现何种程度的波动时，您会呈现明显的焦虑</legend>
-        </fieldset>
+        <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 7.您的投资理财目标是</legend>
+        </fieldset>-->
+        <div class="qs-title">7.您的投资理财目标是</div>
         <div class="layui-input-block">
-            <input type="radio" name="5" value="1" title="A 本金无损失，但收益未达预期"><br>
-            <input type="radio" name="5" value="2" title="B 出现轻微本金损失"><br>
-            <input type="radio" name="5" value="3" title="C 本金10％以内的损失"><br>
-            <input type="radio" name="5" value="4" title="D 本金20-50％的损失">
+            <input type="radio" name="7" value="5" title="A 资产迅速成长"><br/>
+            <input type="radio" name="7" value="3" title="B 资产稳健成长"><br/>
+            <input type="radio" name="7" value="1" title="C 避免财产损失"><br/>
+        </div>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+        <legend>三、风险承受力评估</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 8.根据您以往投资的经验，当有30%的可用资金被分配到高风险的股票或是其他不确定收益的项目中时，您通常</legend>
+        </fieldset>-->
+        <div class="qs-title"> 8.根据您以往投资的经验，当有30%的可用资金被分配到高风险的股票或是其他不确定收益的项目中时，您通常</div>
+        <div class="layui-input-block">
+            <input type="radio" name="8" value="5" title="A 不太在意、较少关注"><br/>
+            <input type="radio" name="8" value="3" title="B 比较在意、经常关注"><br/>
+            <input type="radio" name="8" value="1" title="C 非常在意、频繁关注"><br/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+       <!-- <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+            <legend> 9.假设您有一笔庞大的金额投资在有价证券中，并且在短期内该投资呈现三级跳的跌幅———比如说：一个月下跌了20％，您是否感到压力，压力多大</legend>
+        </fieldset>-->
+        <div class="qs-title">9.假设您有一笔庞大的金额投资在有价证券中，并且在短期内该投资呈现三级跳的跌幅———比如说：一个月下跌了20％，您是否感到压力，压力多大</div>
+        <div class="layui-input-block">
+            <input type="radio" name="9" value="5" title="A 没有任何压力，且增加投资金额"><br/>
+            <input type="radio" name="9" value="4" title="B 没有任何压力，继续持有该证券"><br/>
+            <input type="radio" name="9" value="3" title="C 感到轻微压力，卖掉少半可缓解"><br/>
+            <input type="radio" name="9" value="2" title="D 感觉压力较大，需卖掉大半来缓解"><br/>
+            <input type="radio" name="9" value="1" title="E 感觉压力非常大，需全部卖掉才能缓解压力">
         </div>
     </div>
 
@@ -111,60 +155,41 @@
     </div>
 </form>
 <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
-<script>
+<script th:inline="javascript">
     layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
-            ,laydate = layui.laydate;
-
-        //日期
-        laydate.render({
-            elem: '#date'
-        });
-        laydate.render({
-            elem: '#date1'
-        });
-
-        //创建一个编辑器
-        var editIndex = layedit.build('LAY_demo_editor');
-
-        //自定义验证规则
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
-
-
+            ,laydate = layui.laydate
+            ,$ = layui.jquery;
 
         //监听提交
         form.on('submit(demo1)', function(data){
+            var valuearr = getRadioValue()
+            console.log(valuearr)
+
             layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             })
             return false;
         });
-
-        //表单初始赋值
-        form.val('example', {
-            "username": "贤心" // "name": "value"
-            ,"password": "123456"
-            ,"interest": 1
-            ,"like[write]": true //复选框选中状态
-            ,"close": true //开关状态
-            ,"sex": "女"
-            ,"desc": "我爱 layui"
-        })
-
-
     });
+
+    function getRadioValue(){
+        var arr = new Array(9)
+        arr[0] = $("input[name='1']:checked").val()
+        arr[1] = $("input[name='2']:checked").val()
+        arr[2] = $("input[name='3']:checked").val()
+
+        arr[3] = $("input[name='4']:checked").val()
+        arr[4] = $("input[name='5']:checked").val()
+        arr[5] = $("input[name='6']:checked").val()
+
+        arr[6] = $("input[name='7']:checked").val()
+        arr[7] = $("input[name='8']:checked").val()
+        arr[8] = $("input[name='9']:checked").val()
+        return arr
+    }
 </script>
 </body>
 </html>
