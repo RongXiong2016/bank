@@ -29,4 +29,6 @@ public interface UserService{
     boolean hasUser(String username, String password);
 
     Map<String,Object> buyProuct(User user, Product product,Date date);
+
+    void review(long id);
 }

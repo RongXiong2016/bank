@@ -51,6 +51,9 @@ public class User implements Serializable {
     @Column(name = "create_time")
     private Date createTime;
 
+    @Column(name = "review_status")
+    private String reviewSatatus;
+
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(

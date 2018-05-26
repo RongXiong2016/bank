@@ -107,4 +107,11 @@ public class UserServiceImpl implements UserService {
         return resMap;
     }
 
+    @Override
+    public void review(long id) {
+       User user = userRepository.findOne(id);
+       user.setReviewSatatus("Y");
+       userRepository.save(user);
+    }
+
 }
