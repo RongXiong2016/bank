@@ -31,4 +31,6 @@ public interface UserService{
     Map<String,Object> buyProuct(User user, Product product,Date date);
 
     void review(long id);
+
+    Map<String,Object> doRiskTest(User user, String[] data);
 }

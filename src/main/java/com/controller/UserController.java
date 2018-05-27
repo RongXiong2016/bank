@@ -278,9 +278,19 @@ public class UserController {
         return "redirect:/review1";
     }
 
-    @RequestMapping(value = "riskQuestion")
+    @RequestMapping(value = "/riskQuestion")
     public String riskQuestion(){
         return "/user/question";
+    }
+
+    @RequestMapping(value = "/doRiskTest")
+    public Map<String,Object> doRiskTest(@RequestParam(value = "value")String[] value,HttpSession session){
+        Map<String,Object> resMap = new HashMap<>();
+        User user = (User)session.getAttribute("user");
+        resMap = userService.doRiskTest(user,value);
+        resMap.put("code",0);
+
+        return resMap;
     }
 
 }

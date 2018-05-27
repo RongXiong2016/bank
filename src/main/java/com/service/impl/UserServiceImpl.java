@@ -114,4 +114,28 @@ public class UserServiceImpl implements UserService {
        userRepository.save(user);
     }
 
+    @Override
+    public Map<String, Object> doRiskTest(User user, String[] data) {
+        Map<String, Object> resMap = new HashMap<>();
+        int sum = 0;
+        for (int i=0;i<data.length;i++){
+            sum += Integer.parseInt(data[i]);
+        }
+        if(sum<=14){
+            resMap.put("保守型",sum);
+        }if(15<=sum && sum<=21){
+            resMap.put("安稳型",sum);
+        }
+        if(22<=sum && sum<=29){
+            resMap.put("稳健型",sum);
+        }
+        if(30<=sum && sum<=38){
+            resMap.put("成长型",sum);
+        }
+        if(39<=sum){
+            resMap.put("积极型",sum);
+        }
+        return resMap;
+    }
+
 }
