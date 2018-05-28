@@ -52,9 +52,6 @@ public class UserController {
         return "/user/list";
     }
 
-
-
-
     @RequestMapping(value = "/list1", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,

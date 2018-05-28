@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>用户管理</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" th:href="@{http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css}"></link>
+    <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+
+</head>
+<body>
+<table class="layui-table">
+    <colgroup>
+        <col width="150"/>
+        <col width="200"/>
+        <col/>
+    </colgroup>
+    <thead>
+    <tr>
+        <th>风险等级</th>
+        <th>评分</th>
+        <th>适合的理财产品</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>保守型</td>
+        <td>8－14分</td>
+        <td>R1,R2</td>
+    </tr>
+    <tr>
+        <td>安稳型 </td>
+        <td>15－21分</td>
+        <td>R2,R3</td>
+    </tr>
+    <tr>
+        <td>稳健型</td>
+        <td>22－29分</td>
+        <td>R2,R3</td>
+    </tr>
+    <tr>
+        <td>成长型 </td>
+        <td>30－38分</td>
+        <td>R3,R4</td>
+    </tr>
+    <tr>
+        <td>积极型 </td>
+        <td>39－45分</td>
+        <td>R4,R5</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
