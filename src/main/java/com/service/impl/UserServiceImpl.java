@@ -122,18 +122,18 @@ public class UserServiceImpl implements UserService {
             sum += Integer.parseInt(data[i]);
         }
         if(sum<=14){
-            resMap.put("保守型",sum);
+            resMap.put("type","保守型");
         }if(15<=sum && sum<=21){
-            resMap.put("安稳型",sum);
+            resMap.put("type","安稳型");
         }
         if(22<=sum && sum<=29){
-            resMap.put("稳健型",sum);
+            resMap.put("type","稳健型");
         }
         if(30<=sum && sum<=38){
-            resMap.put("成长型",sum);
+            resMap.put("type","成长型");
         }
         if(39<=sum){
-            resMap.put("积极型",sum);
+            resMap.put("type","积极型");
         }
         return resMap;
     }

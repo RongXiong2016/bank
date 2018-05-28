@@ -168,7 +168,7 @@
             var valuearr = getRadioValue();
             console.log(valuearr);
             $.ajax({
-                url:/*[[@{/user/doRiskTest}]]*/'',
+                url:/*[[@{doRiskTest}]]*/'',
                 type:"POST",
                 data:{
                     value:valuearr
@@ -177,7 +177,10 @@
                 success:function(result)
                 {
                     if(result.code == 0){
-                        alert(result+"123");
+                        console.log(result.code)
+                        console.log(result.type)
+                        alert("您的风险评估为:"+result.type);
+                        window.location.href='/index/home'
                     }
 
                 },

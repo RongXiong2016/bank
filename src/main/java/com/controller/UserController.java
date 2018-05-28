@@ -284,8 +284,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/doRiskTest")
+    @ResponseBody
     public Map<String,Object> doRiskTest(@RequestParam(value = "value")String[] value,HttpSession session){
-        Map<String,Object> resMap = new HashMap<>();
+        Map<String,Object> resMap = new HashMap<String,Object>();
         User user = (User)session.getAttribute("user");
         resMap = userService.doRiskTest(user,value);
         resMap.put("code",0);
