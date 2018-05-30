@@ -51,21 +51,21 @@
             <!--轮播图-->
             <div carousel-item="">
                 <div>
-                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner2.png"/>
+                    <img th:src="@{/images/6.jpg}" src="images/6.jpg"/>
                 </div>
                 <div>
-                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner5.png"/>
+                    <img th:src="@{/images/7.jpg}" src="/images/7.jpg"/>
                 </div>
                 <div>
-                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner4.png"/>
+                    <img th:src="@{/images/8.jpg}" src="images/8.jpg"/>
                 </div>
 
-                <div>
-                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner3.png"/>
+                <!--<div>
+                    <img src="../static/img/1-4.jpg"/>
                 </div>
                 <div>
-                    <img src="http://www.xudoodoo.com/Public/Home/images/home/banner6.png"/>
-                </div>
+                    <img src="../static/img/1-5.jpg"/>
+                </div>-->
 
             </div>
         </div>
@@ -380,7 +380,7 @@
             locationhref: ""
         },
         beforeMount: function () {
-            var that = this;
+            /*var that = this;
             that.locationhref = window.location.href;
             $.ajax({
                 url: "/Base/GetUserInfo",
@@ -391,7 +391,7 @@
                     that.User = data;
 
                 }
-            });
+            });*/
         },
         methods: {}
     })
