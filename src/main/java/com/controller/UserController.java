@@ -291,4 +291,9 @@ public class UserController {
         return resMap;
     }
 
+    @RequestMapping(value = "/detail")
+    public String detail(){
+        return "/user/detail";
+    }
+
 }

@@ -23,7 +23,7 @@
                     管理员
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="#">基本资料</a></dd>
+                    <dd><a th:href="@{/user/detail}" href="#" target="target">基本资料</a></dd>
                     <dd><a href="#">安全设置</a></dd>
                 </dl>
             </li>
@@ -80,7 +80,7 @@
                         <dd><a th:href="@{/index/testEchart}" href="test/echartsDemo/demo-3.html" class="layui-col-md-offset2" target="target"> 测试Echart</a></dd>
                     </dl>
                     <dl class="layui-nav-child">
-                        <dd><a th:href="@{/risk/show1}"  href="../risk/show.html" class="layui-col-md-offset2" target="target">风险管理</a></dd>
+                        <dd><a th:href="@{/risk/show1}"  href="../risk/show.html" class="layui-col-md-offset2" target="target">风险评估管理</a></dd>
                     </dl>
                 </li>
             </ul>

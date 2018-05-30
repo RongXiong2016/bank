@@ -29,10 +29,6 @@ public class AdminController {
         model.addAttribute("login", new Login());
         return "login";
     }
-   /* @RequestMapping("/login")
-    public String login() {
-        return "/admin/login";
-    }*/
 
     @RequestMapping("/list")
     public String list() {
