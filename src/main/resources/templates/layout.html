@@ -32,63 +32,34 @@
                         <div carousel-item="">
                             <ul class="layui-row layui-col-space10 layui-this">
                                 <li class="layui-col-xs3">
-                                    <a href="http://www.layui.com/doc/" target="_blank">
+                                    <a th:href="@{/user/list}" href="#" target="target">
                                         <i class="layui-icon">&#xe612;</i>
                                         <cite>用户信息</cite>
                                         <p><span>查看当前系统内的用户信息</span></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs3">
-                                    <a href="http://www.layui.com/admin/" target="_blank">
+                                    <a th:href="@{/product/list-admin}" href="#" target="target">
                                         <i class="layui-icon">&#xe62d;</i>
                                         <cite>理财产品</cite>
                                         <p><span>查看目前系统内的产品信息</span></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs3">
-                                    <a href="http://layim.layui.com/" target="_blank">
+                                    <a th:href="@{/trade/list}" href="#" target="target">
                                         <i class="layui-icon">&#xe606;</i>
                                         <cite>交易信息</cite>
                                         <p><span>查看当前系统的交易信息</span></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-xs3">
-                                    <a href="http://fly.layui.com/case/u/777504" target="_blank">
+                                    <a th:href="@{/notice/list}" href="#" target="target">
                                         <i class="layui-icon">&#xe6c6;</i>
                                         <cite>公告信息</cite>
                                         <p><span>请及时查看相关公告</span></p>
                                     </a>
                                 </li>
                             </ul>
-                            <!--<ul class="layui-row layui-col-space10">
-                                <li class="layui-col-xs3">
-                                    <a href="https://github.com/WangEn/WeAdmin" target="_blank">
-                                        <i class="layui-icon">&#xe600;</i>
-                                        <cite>Github下载</cite>
-                                    </a>
-                                </li>
-
-                                <li class="layui-col-xs3">
-                                    <a href="https://gitee.com/lovetime/WeAdmin" target="_blank">
-                                        <i class="layui-icon">&#xe62c;</i>
-                                        <cite>码云下载</cite>
-                                    </a>
-                                </li>
-                                <li class="layui-col-xs3">
-                                    <a href="javascript:;" target="_blank">
-                                        <i class="layui-icon layui-icon-set"></i>
-                                        <cite>设置</cite>
-                                    </a>
-                                </li>
-                                <li class="layui-col-xs3">
-                                    <a href="javascript:;" target="_blank">
-                                        <i class="layui-icon layui-icon-set"></i>
-                                        <cite>设置</cite>
-                                    </a>
-                                </li>
-
-                            </ul>-->
-
                         </div>
                         <div class="layui-carousel-ind">
                             <ul>
@@ -121,35 +92,7 @@
 
         <!--统计信息展示-->
         <fieldset class="layui-elem-field" style="padding: 5px;">
-            <!--WeAdmin公告-->
-            <!--<div class="layui-card">
-                <div class="layui-card-header layui-elem-quote">公告</div>
-                <div class="layui-card-body">
-                    <div class="layui-carousel weadmin-notice" lay-filter="notice" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 280px;">
-                        <div carousel-item="">
-                            <div class="">
-                                <a href="https://gitee.com/lovetime/WeAdmin" target="_blank" class="layui-bg-red">2018年5月26日 系统正式上线</a>
-                            </div>
-                            <div class="">
-                                <a href="http://www.layui.com/admin/" target="_blank" class="layui-bg-blue">2018年6月1日 系统进行更新</a>
-                            </div>
-                            <div class="">
-                                <a href="http://fly.layui.com/jie/24231/" target="_blank" class="layui-bg-green">更多功能，敬请期待</a>
-                            </div>
 
-                        </div>
-                        <div class="layui-carousel-ind">
-                            <ul>
-                                <li class="layui-this"></li>
-                                <li></li>
-                            </ul>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>-->
-            <!--<legend>信息统计</legend>-->
             <blockquote class="layui-elem-quote font16">信息统计</blockquote>
             <div class="">
                 <table class="layui-table" lay-even="">

@@ -245,6 +245,10 @@ public class UserController {
         return "download excel";
     }
 
+    /**
+     * 用户信息审核
+     * @return
+     */
     @RequestMapping("/review")
     public String review() {
         return "/user/review";

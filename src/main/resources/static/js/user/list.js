@@ -33,7 +33,7 @@ layui.use(['table','layer'], function(){
         if(obj.event === 'detail'){
             layer.msg('ID：'+ data.id + ' 的查看操作');
         } else if(obj.event === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('确认删除该用户？', function(index){
                 obj.del();
                 layer.close(index);
                 $.ajax({
