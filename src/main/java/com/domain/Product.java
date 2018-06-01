@@ -70,6 +70,13 @@ public class Product implements Serializable {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "review_status")
+    private String reviewStatus;
+
+    @Column(name = "delivery_status")
+    private String deliveryStatus;
+
+
    /* @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "product")
     private Set<Trade> trades = new TreeSet<>();*/

@@ -105,5 +105,20 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
+    @Override
+    public Page<Product> findAllByNameLike(String name, Pageable pageable) {
+        name = "%"+name+"%";
+        Page<Product> products = productRepository.findAllByNameLike(name,pageable);
+        return products;
+    }
+
+    @Override
+    public void review(long id) {
+        Product product = productRepository.findOne(id);
+        product.setReviewStatus("Y");
+        product.setDeliveryStatus("Y");
+        productRepository.save(product);
+    }
+
 
 }

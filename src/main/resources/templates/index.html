@@ -39,9 +39,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test" lay-shrink="all">
-               <!-- <li class="layui-nav-item" id="shouye" href="www.baidu.com" target="target">首页</li>-->
                 <li class="layui-nav-item">
-                   <!-- layui-nav-itemed-->
                     <a  href="javascript:;"  ><i class="layui-icon menu-icon">&#xe612;</i> 用户管理</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/user/list}" href="user/list.html" class="layui-col-md-offset2" target="target">客户列表</a></dd>
@@ -55,8 +53,9 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;"><i class="layui-icon menu-icon">&#xe62d;</i>产品管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a th:href="@{/project/list}" href="project/list.html" class="layui-col-md-offset2" target="target">理财项目</a></dd>
-                        <dd><a th:href="@{/product/list-admin}" href="product/list-admin.html" class="layui-col-md-offset2" target="target">理财产品</a></dd>
+                        <dd><a th:href="@{/project/list}" href="project/list.html" class="layui-col-md-offset2" target="target">理财项目列表</a></dd>
+                        <dd><a th:href="@{/product/list-admin}" href="product/list-admin.html" class="layui-col-md-offset2" target="target">理财产品列表</a></dd>
+                        <dd><a th:href="@{/product/list-admin-1}" href="product/list-admin.html" class="layui-col-md-offset2" target="target">理财产品发布</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

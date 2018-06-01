@@ -1,6 +1,8 @@
 package com.dao;
 
 import com.domain.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -14,4 +16,5 @@ public interface ProductRepository extends JpaSpecificationExecutor<Product>,Jpa
 
     Product findByName(String name);
 
+    Page<Product> findAllByNameLike(String name, Pageable pageable);
 }

@@ -27,4 +27,8 @@ public interface ProductService {
     void edit(Product product);
 
     Product findByProductByProductCode(String productCode);
+
+    Page<Product> findAllByNameLike(String name, Pageable pageable);
+
+    void review(long id);
 }

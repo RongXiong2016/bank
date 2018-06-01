@@ -5,6 +5,7 @@ import com.domain.User;
 import com.service.ProductService;
 import com.util.CommonUtils;
 import com.vo.ProductVO;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author 范正荣
@@ -89,10 +91,17 @@ public class ProductController {
     @RequestMapping(value = "/list1", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> list(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
-                             @RequestParam(value = "size", defaultValue = "10") Integer limit
-                             ) {
+                             @RequestParam(value = "size", defaultValue = "10") Integer limit,
+                             @RequestParam(value = "key[name]", defaultValue = "") String name) {
+        System.out.println(name);
+        name = name.trim();
         Pageable pageable = new PageRequest(page - 1, limit);
-        Page<Product> products = productService.findAll(pageable);
+        Page<Product> products = null;
+        if("".equals(name.trim())){
+            products = productService.findAll(pageable);
+        }else{
+            products = productService.findAllByNameLike(name, pageable);
+        }
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("data", products.getContent());
         resultMap.put("count", "1000");
@@ -104,6 +113,11 @@ public class ProductController {
     @RequestMapping("/list-admin")
     public String list(){
         return "/product/list-admin";
+    }
+
+    @RequestMapping("/list-admin-1")
+    public String list1111(){
+        return "/product/list-admin-1";
     }
 
 
@@ -139,6 +153,32 @@ public class ProductController {
         return "/product/details";
     }
 
+
+    @RequestMapping(value = "/list2", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> list2(Model model, @RequestParam(value = "page", defaultValue = "1") Integer page,
+                             @RequestParam(value = "size", defaultValue = "10") Integer limit
+                             ) {
+        Pageable pageable = new PageRequest(page - 1, limit);
+        Page<Product> products = null;
+
+        products = productService.findAll(pageable);
+        List<Product> list = products.getContent().stream().filter(product ->"N".equals(product.getReviewStatus()))
+                .filter(product -> "N".equals(product.getDeliveryStatus()))
+                .collect(Collectors.toList());
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("data", list);
+        resultMap.put("count", "1000");
+        resultMap.put("code", "0");
+        resultMap.put("msg", "");
+        return resultMap;
+    }
+
+    @RequestMapping(value ="/review",method = RequestMethod.GET)
+    public String review(long id){
+        productService.review(id);
+        return "redirect:/list2";
+    }
 
 
 
