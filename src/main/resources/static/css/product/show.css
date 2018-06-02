@@ -1,0 +1,14 @@
+.f_announcelist{
+    padding: 10px 0;
+    overflow: hidden;
+}
+.f_announcelist li{
+    padding-bottom: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.f_announcelist li span{
+    color: #a9a9a9;
+    padding-right: 10px;
+}

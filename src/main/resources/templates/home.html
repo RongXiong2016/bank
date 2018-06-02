@@ -10,6 +10,23 @@
     <link href="../static/css/index/global.css" th:href="@{/css/index/global.css}" rel="stylesheet"/>
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
     <script src="../static/js/vue.js" th:src="@{/js/vue.js}"></script>
+    <style>
+        .border_blue{
+            border: 1px solid #5abef4;
+            color: #39b0f1;
+        }
+        .g-tac a{
+            display: block;
+            font-size: 20px;
+            text-decoration: none;
+            line-height: 41px;
+            margin: 0 auto;
+            width: 65.5%;
+            height: 44px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="header layui-bg-cyan">
@@ -20,9 +37,9 @@
             <li class="layui-nav-item layui-this" id="Index"><a href="#">首页</a></li>
 
             <li class="layui-nav-item" id="Agents"><a href="#" th:href="@{/product/show}">理财产品</a></li>
-            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="News"><a href="#" th:href="@{/notice/show}">理财资讯</a></li>
             <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
-            <li class="layui-nav-item" id="ques"><a th:href="@{/user/riskQuestion}" href="/user/riskQuestion">问卷调查</a></li>
+            <li class="layui-nav-item" id="ques"><a th:href="@{/user/riskQuestion}" href="/user/riskQuestion">风险评估</a></li>
 
         </ul>
 
@@ -63,7 +80,6 @@
         </div>
     </div>
 
-
     <div style="background-color: #ffffff; width: 100%; overflow: hidden;">
         <div class="g-box">
             <div class="m-not s-fs12">
@@ -89,48 +105,49 @@
                 <ul class="f1">
                     <li>
                         <div class="g-tac">
-                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img1@2x.png"/>
-                            <p class="g-mt20 f1-t1">软云小程序</p>
-                            <p class="g-mt14 s-fc-gy">完全可视化拖拽</p>
+                            <br/>
+                            <p class="g-mt20 f1-t1">慧赢成长18149</p>
+                            <p class="g-mt14 s-fc-gy">预期年化收益 5.6%</p>
                             <p class="s-fc-gy">三分钟打造自己的小程序</p>
+                            <a href="#" class="border_blue">立即购买</a>
                         </div>
                     </li>
                     <li>
                         <div class="g-tac">
-                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img2@2x.png"/>
-                            <p class="g-mt20 f1-t1">电商小程序</p>
-                            <p class="g-mt14 s-fc-gy">强大稳定的开店系统</p>
-                            <p class="s-fc-gy">快速搭建电商小程序</p>
+                            <br/>
+                            <p class="g-mt20 f1-t1">慧赢成长18149</p>
+                            <p class="g-mt14 s-fc-gy">预期年化收益 5.6%</p>
+                            <p class="s-fc-gy">三分钟打造自己的小程序</p>
+                            <a href="#" class="border_blue">立即购买</a>
                         </div>
-
                     </li>
                     <li>
                         <div class="g-tac">
-                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img3@2x.png"/>
-                            <p class="g-mt20 f1-t1">服务小程序</p>
-                            <p class="g-mt14 s-fc-gy">专业服务线下门店</p>
-                            <p class="s-fc-gy">一体化小程序解决方案</p>
+                            <br/>
+                            <p class="g-mt20 f1-t1">慧赢成长18149</p>
+                            <p class="g-mt14 s-fc-gy">预期年化收益 5.6%</p>
+                            <p class="s-fc-gy">三分钟打造自己的小程序</p>
+                            <a href="#" class="border_blue">立即购买</a>
                         </div>
-
                     </li>
                     <li>
                         <div class="g-tac">
-                            <img src="http://statichome.weimob.com/img/nweb/index/l1_img4@2x.png"/>
-                            <p class="g-mt20 f1-t1">O2O小程序</p>
-                            <p class="g-mt14 s-fc-gy">一站式全流程管理</p>
-                            <p class="s-fc-gy">轻松解决报名签到与现场互动</p>
+                            <br/>
+                            <p class="g-mt20 f1-t1">慧赢成长18149</p>
+                            <p class="g-mt14 s-fc-gy">预期年化收益 5.6%</p>
+                            <p class="s-fc-gy">三分钟打造自己的小程序</p>
+                            <a href="#" class="border_blue">立即购买</a>
                         </div>
-
                     </li>
+
                 </ul>
             </dd>
         </dl>
     </div>
 
-
     <div style="background-color: #ffffff; overflow: hidden;">
         <div class="t-box1 wrap">
-            <h1 class="font28 grey333 f-tac">让您的资产稳定增长</h1>
+            <h1 class="font28 grey333 f-tac">为您推荐</h1>
             <p class="f-tac f-db font16 grey666">科学理财、轻松赢利、快捷办理、收益稳定</p>
             <div class="t-con-new f-cb">
                 <ul>
@@ -264,7 +281,7 @@
     <div class="develop-step">
         <div class="develop-step-title">购买理财产品流程</div>
         <div class="develop-step-content clearfix">
-            <div class="develop-first-step">风险评估</div>
+            <div class="develop-first-step">完成风险评估</div>
             <div class="develop-second-step">选择理财产品</div>
             <div class="develop-third-step">阅读产品说明书</div>
             <div class="develop-firth-step">完成理财投资</div>
@@ -333,16 +350,10 @@
                         <span class="foot-qq"></span>
                     </a>
                 </p>
-                <p class="mb-10">企业邮箱：13588034686@163.com</p>
+                <p class="mb-10">企业邮箱:13588034686@163.com</p>
 
             </div>
             <div class="footer-block w-12">
-                <!--<div class="footer-tit">关注公众号</div>
-                <div class="footer-ewm">
-                    <img src="http://soft.softseeks.cn/zhouyuan/20171221/201712211734075216.jpg" alt="长沙软诚网络科技有限公司"
-                         class="loading"/>
-                </div>-->
-
             </div>
             <div class="clear"></div>
         </div>

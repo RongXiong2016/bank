@@ -46,4 +46,9 @@ public class NoticeController {
         resultMap.put("msg", "");
         return resultMap;
     }
+
+    @RequestMapping("/show")
+    public String show(){
+        return "/notice/show";
+    }
 }

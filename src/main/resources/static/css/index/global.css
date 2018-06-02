@@ -419,3 +419,19 @@ textarea[name="localmarket_analysis_plan"] {  resize: none;   width: 400px; heig
 .btn-container button { background: #0087D1;   border: none;   color: white; width: 120px;   height: 40px;  letter-spacing: 3px; font-size: 15px;   border-radius: 4px;  box-shadow: 1px 1px 5px #0087D1; margin-top: 10px;}
 .join_us_info label select { width: 190px;   height: 34px;  border: 1px solid #ABB1C4; border-radius: 4px;  background-color: #F7FAFA;  text-indent: 10px;}
 button, select {text-transform: none;}
+
+.border_blue{
+    border: 1px solid #5abef4;
+    color: #39b0f1;
+}
+.g-tac a{
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    line-height: 41px;
+    margin: 0 auto;
+    width: 65.5%;
+    height: 44px;
+    border-radius: 4px;
+    margin-top: 20px;
+}

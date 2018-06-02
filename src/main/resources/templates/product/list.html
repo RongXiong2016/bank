@@ -109,8 +109,9 @@
             <li class="layui-nav-item"><a href="#">银行理财平台</a></li>
             <li class="layui-nav-item"><a href="#" th:href="@{/index/home}">首页</a></li>
             <li class="layui-nav-item layui-this" id="Agents"><a href="#">理财产品</a></li>
-            <li class="layui-nav-item" id="News"><a href="#">理财资讯</a></li>
+            <li class="layui-nav-item" id="News"><a href="#" th:href="@{/notice/show}">理财资讯</a></li>
             <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+            <li class="layui-nav-item" id="ques"><a th:href="@{/user/riskQuestion}" href="/user/riskQuestion">风险评估</a></li>
         </ul>
 
         <ul class="layui-nav layui-right" th:unless="${session.user != null}">

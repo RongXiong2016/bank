@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <title>layui</title>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../../static/css/product/show.css" th:href="@{/css/product/show.css}"/>
+    <link href="../../static/css/index/global.css" th:href="@{/css/index/global.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="header layui-bg-cyan">
+    <input type="hidden" id="controller" value="Index"/>
+    <div class="layui-header">
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="#">银行理财平台</a></li>
+            <li class="layui-nav-item" id="Index"><a href="#">首页</a></li>
+
+            <li class="layui-nav-item" id="Agents"><a href="#" th:href="@{/product/show}">理财产品</a></li>
+            <li class="layui-nav-item layui-this" id="News"><a href="#" th:href="@{/notice/show}">理财资讯</a></li>
+            <li class="layui-nav-item" id="Abount"><a href="#">关于我们</a></li>
+            <li class="layui-nav-item" id="ques"><a th:href="@{/user/riskQuestion}" href="/user/riskQuestion">风险评估</a></li>
+
+        </ul>
+
+        <ul class="layui-nav layui-right" th:unless="${session.user != null}">
+            <li class="layui-nav-item">
+                <a href="#"   id="login">登录</a>
+            </li>
+            <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
+        </ul>
+        <ul class="layui-nav layui-right" th:unless="${session.user == null}">
+            <li class="layui-nav-item">
+                <a href="http://ruanyun.verdor.softseeks.cn" ></a>
+            </li>
+            <li class="layui-nav-item"><a href="#" th:href="@{/user/loginout1}">退出</a></li>
+            <li class="layui-nav-item">
+                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+<!-- 示例-970 -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:90px" data-ad-client="ca-pub-6111334333458862" data-ad-slot="3820120620"></ins>
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 65px;">
+    <ul class="layui-tab-title">
+        <li class="layui-this">成立公告</li>
+        <li>产品公告</li>
+        <li>到期公告</li>
+        <li>收益公告</li>
+        <li>理财资讯</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">
+            <ul class="f_announcelist">
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#"> 慧赢成长18150期人民币理财产品成立公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">赢稳健和信1807期净值型人民币理财产品成立公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">慧赢成长18118期人民币理财产品成立公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">乐赢稳健和信1806期净值型人民币理财产品成立公告</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-tab-item">
+            <ul class="f_announcelist">
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">中信理财之月月智信理财管理计划（财富客户委托资产管理专属产品）</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#"> 中信理财之月月智信理财管理计划（财富客户委托资产管理专属产品）</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#"> 中信理财之双赢进取全球配置季开型（私行版）人民币理财产品参考净...</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">中信理财之乐赢稳健净值月开人民币理财产品参考净值公告</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-tab-item">
+            <ul class="f_announcelist">
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">理财之惠益计划稳健系列7号189期 (理财编号：A180A8509)到期清算公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">理财之乐赢指数结构1772期人民币结构性理财产品 (理财编号：A170A5195)到期清算公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">理财之乐赢指数结构1771期人民币结构性理财产品 (理财编号：A170A5194)到期清算公告</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">理财之慧赢成长18133期人民币理财产品 (理财编号：A18SD1112)</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-tab-item">
+            <ul class="f_announcelist">
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">您的理财之惠益计划稳健系列7号189期 (理财编号：A180A8509)收益情况</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">您的理财之乐赢指数结构1772期人民币结构性理财产品 (理财编号：A170A5195)收益情况</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">您的理财之乐赢指数结构1771期人民币结构性理财产品 (理财编号：A170A5194)收益情况</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">您的理财之慧赢成长18133期人民币理财产品 (理财编号：A18SD1112)收益情况</a>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-tab-item">
+            <ul class="f_announcelist">
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行只能买一种薪金煲理财产品吗</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行智慧薪金煲怎么样</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行薪金煲转账可以自动赎回吗 </a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行薪金煲收益多久发放</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行薪金煲怎么转账_方法是什么</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行薪金煲是哪个基金_怎么样</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">银行薪金煲会亏吗</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">薪金煲的保底金额_怎么购买</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">薪金煲和支付宝余额宝有哪些不同</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">薪金煲利息如何起算</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">薪金煲如何赎回_有哪些方法</a>
+                </li>
+                <li class="col-xs-12 col-sm-12 col-md-6">
+                    <span>2018-05-30</span>
+                    <a href="#">薪金煲信诚版怎么样</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script th:inline="javascript">
+
+
+
+    layui.use('element', function(){
+        var $ = layui.jquery
+            ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+            tabAdd: function(){
+                //新增一个Tab项
+                element.tabAdd('demo', {
+                    title: '新选项'+ (Math.random()*1000|0) //用于演示
+                    ,content: '内容'+ (Math.random()*1000|0)
+                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            ,tabDelete: function(othis){
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            ,tabChange: function(){
+                //切换到指定Tab项
+                element.tabChange('demo', '22'); //切换到：用户管理
+            }
+        };
+
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function(elem){
+            location.hash = 'test='+ $(this).attr('lay-id');
+        });
+
+    });
+
+    $(function () {
+
+        var controller = $("#controller").val();
+        $(".layui-nav-item").removeClass("layui-this");
+        $("#" + controller).addClass("layui-this");
+    });
+</script>
+
+</body>
+</html>
