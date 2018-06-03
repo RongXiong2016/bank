@@ -138,4 +138,10 @@ public class UserServiceImpl implements UserService {
         return resMap;
     }
 
+    @Override
+    public List<Trade> getMyTrade(User user) {
+        List<Trade> trades = tradeRepository.findTradesByUserId(user.getId()).getContent();
+        return trades;
+    }
+
 }

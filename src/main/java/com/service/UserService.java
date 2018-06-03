@@ -1,6 +1,7 @@
 package com.service;
 
 import com.domain.Product;
+import com.domain.Trade;
 import com.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,4 +34,6 @@ public interface UserService{
     void review(long id);
 
     Map<String,Object> doRiskTest(User user, String[] data);
+
+    List<Trade> getMyTrade(User user);
 }

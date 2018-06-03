@@ -51,11 +51,15 @@
         </ul>
         <ul class="layui-nav layui-right" th:unless="${session.user == null}">
             <li class="layui-nav-item">
-                <a href="http://ruanyun.verdor.softseeks.cn" ></a>
+                <a href="http://ruanyun.verdor.softseeks.cn"></a>
             </li>
             <li class="layui-nav-item"><a href="#" th:href="@{/user/loginout1}">退出</a></li>
             <li class="layui-nav-item">
                 <a href="">个人中心<span class="layui-badge-dot"></span></a>
+                <dl class="layui-nav-child">
+                    <dd><a th:href="@{/user/..}" href="#" target="target">我的资料</a></dd>
+                    <dd><a href="#">我的交易</a></dd>
+                </dl>
             </li>
         </ul>
     </div>

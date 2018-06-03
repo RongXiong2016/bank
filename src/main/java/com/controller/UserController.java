@@ -2,6 +2,7 @@ package com.controller;
 
 import com.dao.UserRepository;
 import com.domain.Product;
+import com.domain.Trade;
 import com.dto.Login;
 import com.domain.User;
 import com.dto.Register;
@@ -298,6 +299,29 @@ public class UserController {
     @RequestMapping(value = "/detail")
     public String detail(){
         return "/user/detail";
+    }
+
+    @RequestMapping(value = "/myInfo")
+    public String myInfo(){
+        return "/user/myInfo";
+    }
+
+    @RequestMapping(value = "/myTrade")
+    public String myTrade(){
+        return "/user/myTrade";
+    }
+
+    @RequestMapping(value = "/getMyTrade")
+    @ResponseBody
+    public Map<String,Object> getMyTrade(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        List<Trade> trades = userService.getMyTrade(user);
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("data",trades);
+        resultMap.put("count", "1000");
+        resultMap.put("code", "0");
+        resultMap.put("msg", "");
+        return resultMap;
     }
 
 }

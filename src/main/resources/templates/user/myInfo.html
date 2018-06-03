@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>我的资料</title>
+    <link rel="stylesheet" th:href="@{/css/user/user.css}" href="../../static/css/user/user.css"  media="all" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" href="../../static/layui/css/layui.css" media="all" />
+</head>
+<body class="childrenBody">
+<form class="layui-form">
+    <div class="user_left">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${session.user.name}" disabled="true"  class="layui-input layui-disabled" />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">身份证号码</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${session.user.idCard}" disabled="true"  lay-verify="required" class="layui-input realName"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">账户</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${session.user.account}" disabled="true" class="layui-input layui-disabled"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机号码</label>
+            <div class="layui-input-block">
+                <input type="tel" th:value="${session.user.phone}"  lay-verify="required|phone" class="layui-input userPhone"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="tel" th:value="${session.user.email}"    class="layui-input userPhone"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">家庭住址</label>
+            <div class="layui-input-block">
+                <input type="tel" th:value="${session.user.address}"   class="layui-input userPhone"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-form-item" style="margin-left: 5%;">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="saveUser" id="save">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" th:src="@{/layui/layui.js}" src="../../static/layui/layui.js"></script>
+<script th:inline="javascript">
+    layui.use(['table','layer'], function() {
+        var table = layui.table,
+            layer = layui.layer,
+            $ = layui.jquery;
+
+        $('#save').on('click',function () {
+            parent.location.href = "/index/home";
+        })
+    });
+</script>
+</body>
+</html>
