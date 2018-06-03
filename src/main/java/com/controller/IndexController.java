@@ -57,16 +57,16 @@ public class IndexController {
         System.out.println("=============getData==============");
         Option option = new Option();
         //1.设置标题基本信息
-        option.title("Echart前后台交互")
+        option.title("")
                 .tooltip(Trigger.axis)
-                .legend("工时统计");
+                .legend("交易额统计");
         //2.横轴
         option.xAxis(new CategoryAxis().data("1月", "2月", "3月", "4月", "5月", "6月", "7月"));
         //3.纵轴
         option.yAxis(new ValueAxis());
 
         //4.柱状数据
-        Bar bar = new Bar("工时统计");
+        Bar bar = new Bar("交易额统计");
         bar.data(100, 200, 300, 400, 500, 300, 200);
         option.series(bar);
 

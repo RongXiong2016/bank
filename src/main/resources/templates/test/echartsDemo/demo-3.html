@@ -5,8 +5,20 @@
     <!-- 引入 ECharts 文件 -->
     <script src="../../../static/js/echarts.js" th:src="@{/js/echarts.js}"></script>
     <script src="../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <link rel="stylesheet" href="../../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+    <script src="../../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 <body>
+<blockquote class="layui-elem-quote quoteBox">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input searchVal" placeholder="请输入产品名称" />
+            </div>
+            <a class="layui-btn search_btn" data-type="reload">搜索</a>
+        </div>
+    </form>
+</blockquote>
 <div id="main" style="width: 600px;height:400px;"></div>
 <script type="text/javascript">
     function setChart(_url,id) {
@@ -28,13 +40,24 @@
     }
 
     function initEChart() {
-        setChart("http://localhost:8089/index/getData","main");
+        setChart("http://localhost:8099/index/getData","main");
     }
 
     $(function(){
         initEChart();
     });
 
+</script>
+<script src="../../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script th:inline="javascript">
+    layui.use(['layer','form', 'element','laydate'], function () {
+        var form = layui.form
+            , $ = layui.$
+            , element = layui.element
+            , layer = layui.layer
+            ,$ = layui.jquery
+            ,laydate = layui.laydate;
+    });
 </script>
 </body>
 </html>
