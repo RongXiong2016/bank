@@ -28,7 +28,7 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
             nativeQuery = true)
     Page<TradeProjection> findAllWithUserAndProductWithPro(Pageable pageable);
 
-    Page<Trade> findTradesByUserId(Long user_id);
+    List<Trade> findTradesByUserId(Long user_id);
 
 
 

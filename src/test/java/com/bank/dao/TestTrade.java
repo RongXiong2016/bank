@@ -5,10 +5,12 @@ import com.dao.ProductRepository;
 import com.dao.TradeRepository;
 import com.dao.UserRepository;
 import com.domain.Product;
+import com.domain.Trade;
 import com.domain.User;
 import com.dto.TradeDTO;
 import com.projection.TradeProjection;
 import com.service.UserService;
+import com.sun.tools.internal.ws.wsdl.document.soap.SOAPUse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class) // SpringJUnit支持，由此引入Spring-Test框架支持！
@@ -68,5 +71,16 @@ public class TestTrade {
         Page<TradeProjection> page = tradeRepository
                 .findAllWithUserAndProductWithPro(pageable);
         System.out.println(page.getContent().get(0).getTradeid());
+    }
+
+
+    @Test
+    public void testUserWithTradeDetail(){
+        List<Trade> ts = tradeRepository.findTradesByUserId(1l);
+        System.out.println(ts.size());
+        for(Trade t:ts){
+            System.out.println(t.getUser().getName());
+            System.out.println(t.getProduct().getName());
+        }
     }
 }

@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Trade> getMyTrade(User user) {
-        List<Trade> trades = tradeRepository.findTradesByUserId(user.getId()).getContent();
+        List<Trade> trades = tradeRepository.findTradesByUserId(user.getId());
         return trades;
     }
 

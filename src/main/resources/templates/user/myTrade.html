@@ -3,8 +3,75 @@
 <head>
     <meta charset="UTF-8"></meta>
     <title>我的交易</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" href="../../static/layui/css/layui.css" media="all" />
+    <script src="../../static/js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
 </head>
 <body>
+<div class="layui-container">
+    <blockquote class="layui-elem-quote">
+        总资产：共【<span class="sum-font">100000</span>】元<br/>
+        累计收益：共【<span class="sum-font">50.6</span>】元
+    </blockquote>
+</div>
 
+<div class="layui-colla-item">
+    <div id="demo" style="margin:auto;" lay-filter="demo"></div>
+</div>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">赎回</a>
+</script>
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script th:inline="javascript">
+    layui.use(['table','layer','element','jquery'], function(){
+        var table = layui.table
+            ,layer = layui.layer
+            ,element = layui.element
+            ,$ = layui.jquery;
+
+        table.render({
+            elem: '#demo'
+            ,height: 315
+            ,url: '/user/getMyTrade'
+            ,height: 315
+            ,width: 1300
+            ,skin: 'line'
+            ,even: true
+            ,cols: [[ //表头
+                {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'product_name', title: '产品名称', width:150}
+                ,{field: 'amount', title: '交易金额', width:140, sort: true}
+                ,{field: 'income', title: '累计收益', width:140}
+                ,{field: 'trade_time', title: '交易时间', width: 140}
+                ,{field: 'start_sale_time', title: '起售时间', width: 140, sort: true}
+                ,{field: 'end_sale_time', title: '停售时间', width: 140, sort: true}
+                ,{field: 'ran_out_time', title: '到期时间', width: 140}
+                ,{title: '操作', width:214, templet:'#barDemo',fixed:"right",align:"center"}
+            ]]
+        });
+
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data
+                ,layEvent = obj.event;
+            if(layEvent === 'detail'){
+                layer.msg('查看操作');
+            } else if(layEvent === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(layEvent === 'edit'){
+                layer.confirm('确认赎回？', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+        });
+
+    });
+
+
+</script>
 </body>
 </html>

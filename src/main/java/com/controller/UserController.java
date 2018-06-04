@@ -8,6 +8,7 @@ import com.domain.User;
 import com.dto.Register;
 import com.service.UserService;
 import com.util.ExcelUtils;
+import com.vo.TradeVO;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.springframework.beans.BeanUtils;
@@ -29,6 +30,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -316,8 +318,24 @@ public class UserController {
     public Map<String,Object> getMyTrade(HttpSession session){
         User user = (User) session.getAttribute("user");
         List<Trade> trades = userService.getMyTrade(user);
+        List<TradeVO> tradeVOS = new ArrayList<>();
+        if(trades != null){
+            for(Trade t : trades){
+                TradeVO tradeVO = new TradeVO();
+                tradeVO.setId(t.getId());
+                tradeVO.setAmount(t.getAmount());
+                tradeVO.setProduct_name(t.getProduct().getName());
+                tradeVO.setUser_name(t.getUser().getName());
+                tradeVO.setStart_sale_time(t.getProduct().getStart_sale_time());
+                tradeVO.setEnd_sale_time(t.getProduct().getEnd_sale_time());
+                tradeVO.setIncome(t.getIncome());
+                tradeVO.setTrade_time(t.getTrade_time());
+                tradeVO.setRan_out_time(t.getProduct().getRan_out_time());
+                tradeVOS.add(tradeVO);
+            }
+        }
         Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("data",trades);
+        resultMap.put("data",tradeVOS);
         resultMap.put("count", "1000");
         resultMap.put("code", "0");
         resultMap.put("msg", "");

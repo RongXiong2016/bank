@@ -53,12 +53,12 @@
             <li class="layui-nav-item">
                 <a href="http://ruanyun.verdor.softseeks.cn"></a>
             </li>
-            <li class="layui-nav-item"><a href="#" th:href="@{/user/loginout1}">退出</a></li>
-            <li class="layui-nav-item">
-                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+            <li class="layui-nav-item" lay-unselect="">
+                <a href="javascript:;">我的</a>
                 <dl class="layui-nav-child">
-                    <dd><a th:href="@{/user/..}" href="#" target="target">我的资料</a></dd>
-                    <dd><a href="#">我的交易</a></dd>
+                    <dd><a href="#" th:href="@{/user/myInfo}">修改信息</a></dd>
+                    <dd><a href="javascript:;" th:href="@{/user/myTrade}">交易管理</a></dd>
+                    <dd><a th:href="@{/user/loginout1}">退出</a></dd>
                 </dl>
             </li>
         </ul>
@@ -297,9 +297,17 @@
 
 <script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
 <script th:inline="javascript" >
-    layui.use(['carousel', 'form'], function () {
+    layui.use(['carousel', 'form','element'], function () {
         var carousel = layui.carousel
-            , form = layui.form;
+            , form = layui.form
+            , element = layui.element;
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+
         //图片轮播
         carousel.render({
             elem: '#test10'
