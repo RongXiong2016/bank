@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+    <title>购买</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}"></link>
+</head>
+<body>
+<div class="layui-container layui-form-item " style="margin-top: 20px;margin-left: 20px;margin-right: 20px">
+    <form class="layui-form" action="#" th:action="@{/user/buyProduct}" th:object="${buy}" method="post">
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input name="name" lay-verify="required" type="text" class="layui-input" placeholder="请输入姓名" th:value="${userName}" th:field="*{userName}" disabled=""/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">产品名称</label>
+            <div class="layui-input-inline">
+                <input name="idCard"  type="text" class="layui-input" th:value="*{productName}"  th:field="*{productName}" disabled=""/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">产品编码</label>
+            <div class="layui-input-inline">
+                <input name="idCard"   type="text" class="layui-input" th:value="*{productCode}"  th:field="*{productCode}" disabled=""/>
+            </div>
+        </div>
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">交易账户</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入账号"
+                 value="1234"      th:value="*{account}" th:field="*{account}"></input>
+            </div>
+        </div>
+
+        <div class="layui-form-item magt3">
+            <label class="layui-form-label">购买金额</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input newsName" lay-verify="newsName" placeholder="请输入投资的金额"
+                       th:field="*{amount}"/>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="submit" lay-filter="formDemo">购买</button>
+                <button id="cancel" type="reset" class="layui-btn layui-btn-primary">取消</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script th:inline="javascript">
+    layui.use(['layer','form', 'element'], function () {
+        var form = layui.form
+            , $ = layui.$
+            , element = layui.element
+            , layer = layui.layer
+            ,$ = layui.jquery;
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                type: 'POST',
+                url: /*[[@{/user/buyProduct}]]*/'',
+                dataType: 'json',
+                data: data.field,
+                async: true,
+                success: function (result) {
+                    console.log(result.code)
+                    //没加@Responsebody注解
+                    if (result.code == 0) {
+                        layer.msg('success:购买成功', {icon: 1, time: 1000});
+                        setTimeout(function () {
+                            /*top.layer.closeAll('iframe');
+                             //刷新父亲的页面
+                             parent.refreshIframe();*/
+                            parent.location.href = "/index/home";
+                        }, 1000);
+                    } else {
+                        console.alert(result.code);
+                        layer.msg('eles:保存失败！' + result.msg, {icon: 2, time: 1000});
+                        layer.close(index);
+                    }
+                },
+                error: function (result, type) {
+                    layer.msg('error:保存失败！', {icon: 2, time: 1000});
+                }
+            });
+            console.log(data.field)
+            return false;
+        });
+        //取消按钮 关闭弹出层
+        $('#cancel').on('click', function () {
+            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+            parent.layer.close(index); //再执行关闭
+        });
+
+    });
+
+
+
+</script>
+</body>
+</html>

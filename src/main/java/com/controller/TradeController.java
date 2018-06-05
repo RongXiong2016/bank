@@ -76,4 +76,9 @@ public class TradeController {
         resultMap.put("code", "0");
         return resultMap;
     }
+
+    @RequestMapping(value = "/analyze")
+    public String analyze(){
+        return "/test/echartsDemo/demo-5";
+    }
 }

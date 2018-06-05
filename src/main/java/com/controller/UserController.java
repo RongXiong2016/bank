@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.ProductRepository;
 import com.dao.UserRepository;
 import com.domain.Product;
 import com.domain.Trade;
@@ -8,6 +9,7 @@ import com.domain.User;
 import com.dto.Register;
 import com.service.UserService;
 import com.util.ExcelUtils;
+import com.vo.BuyVo;
 import com.vo.TradeVO;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -49,6 +51,9 @@ public class UserController {
     UserService userService;
     @Resource
     UserRepository userRepository;
+
+    @Resource
+    ProductRepository productRepository;
 
     @RequestMapping("/list")
     public String list() {
@@ -181,19 +186,31 @@ public class UserController {
         return null;
     }
 
+    @RequestMapping(value = "/toBuy")
+    public String toBuy(Model model,HttpSession session,String productCode){
+        User user = (User) session.getAttribute("user");
+        Product product = productRepository.findProductByProductCode(productCode);
+        BuyVo buyVo = new BuyVo();
+        buyVo.setProductCode(productCode);
+        buyVo.setUserName(user.getName());
+        buyVo.setProductName(product.getName());
+        model.addAttribute("buy", buyVo);
+        return "/user/buy";
+    }
 
     /**
      * 购买
      */
     @RequestMapping(value = "/buyProduct", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> buyProduct(Product product, HttpSession session) {
+    Map<String, Object> buyProduct(@ModelAttribute(value = "buy") BuyVo buy, HttpSession session) {
         Map<String, Object> resultMap = new HashMap<>();
         User user = (User) session.getAttribute("user");
+        Product product = productRepository.findProductByProductCode(buy.getProductCode());
         resultMap = userService.buyProuct(user, product, new Date());
         resultMap.put("code", "0");
         resultMap.put("success", true);
-        return null;
+        return resultMap;
     }
 
 

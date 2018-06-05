@@ -17,4 +17,6 @@ public interface ProductRepository extends JpaSpecificationExecutor<Product>,Jpa
     Product findByName(String name);
 
     Page<Product> findAllByNameLike(String name, Pageable pageable);
+
+
 }

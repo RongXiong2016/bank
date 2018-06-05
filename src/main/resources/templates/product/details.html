@@ -53,9 +53,9 @@
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show layui-row">
-                    <!--<div class="layui-col-md4"></div>-->
                     <div class="layui-col-md8 ">
                         <table class="layui-table" lay-even="" lay-skin="nob">
+
                             <thead>
                             <tr>
                                 <th colspan="4">基本信息</th>
@@ -63,10 +63,11 @@
                             </thead>
                             <tbody>
                             <tr>
+
                                 <td align="center" width="90">产品名称</td>
                                 <td th:text="${product.name}">123</td>
                                 <td align="center" width="90">产品编码</td>
-                                <td width="180" th:text="${product.productCode}">123</td>
+                                <td width="180" th:text="${product.productCode}" id="productCode">123</td>
                             </tr>
                             <tr>
                                 <td align="center" width="60">类型</td>
@@ -93,7 +94,7 @@
                         <div class="sidebar_per sidebar_first">
                             <dl>
                                 <ul class="layui-tab-title">
-                                    <li class="layui-this">为你推荐</li>
+                                    <li class="layui-this">热门推荐</li>
                                 </ul>
                                 <dd class="sidebar_articles">
                                     <span>04-21</span>
@@ -101,27 +102,27 @@
                                 </dd>
                                 <dd class="sidebar_articles">
                                 <span>04-21</span>
-                                <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                <a target="_blank"  href="#">2号保本收益理财产品</a>
                                 </dd>
                                 <dd class="sidebar_articles">
                                 <span>04-21</span>
-                                <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                <a target="_blank"  href="#">3号保本收益理财产品</a>
                                 </dd>
                                 <dd class="sidebar_articles">
                                 <span>04-09</span>
-                                <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                <a target="_blank"  href="#">4号保本收益理财产品</a>
                                 </dd>
                                 <dd class="sidebar_articles">
                                 <span>03-21</span>
-                                <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                <a target="_blank"  href="#">5号保本收益理财产品</a>
                                 </dd>
                                 <dd class="sidebar_articles">
                                     <span>03-21</span>
-                                    <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                    <a target="_blank"  href="#">6号保本收益理财产品</a>
                                 </dd>
                                 <dd class="sidebar_articles">
                                     <span>03-21</span>
-                                    <a target="_blank"  href="#">1号保本收益理财产品</a>
+                                    <a target="_blank"  href="#">7号保本收益理财产品</a>
                                 </dd>
 
                             </dl>
@@ -157,7 +158,7 @@
                 </div>
             </div>
             <div style="text-align: center;">
-                <button class="layui-btn layui-btn-warm layui-btn-radius layui-btn-lg" style="background-color: #E6162D; color: white">立即购买</button>
+                <a href="#" class="layui-btn" id="buy">立即购买</a>
             </div>
         </div>
     </div>
@@ -170,11 +171,30 @@
         var form = layui.form;
         var element = layui.element;
         var layedit = layui.layedit;
+        var layer = layui.layer;
         var editIndex = layedit.build('L_content', {
             tool: ['face', '|', 'left', 'center', 'right']
             , height: 120
         });
     });
+
+    $('#buy').on('click',function () {
+        var productCode = $("#productCode").text()
+
+        console.log(productCode)
+        layer.open({
+            type: 2,
+            maxmin: true,
+            title: '确认交易',
+            content: '/user/toBuy?productCode='+productCode,
+            area: ['600px', '450px'],
+            offset: ['50px', '250px'],
+            success: function (layero, index) {
+                /*var name = $("#name").val();*/
+            }
+        });
+    })
+
     </script>
     </body>
 </html>
