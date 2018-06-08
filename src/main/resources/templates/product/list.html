@@ -121,12 +121,17 @@
             <li class="layui-nav-item"><a href="http://sso.softseeks.cn/Reg">注册</a></li>
         </ul>
         <ul class="layui-nav layui-right" th:unless="${session.user == null}">
-            <li class="layui-nav-item">
+            <!--<li class="layui-nav-item">
                 <a href="http://ruanyun.verdor.softseeks.cn" th:text="${session.user.name}"></a>
-            </li>
-            <li class="layui-nav-item"><a href="#" id="logout" th:href="@{/user/loginout1}">退出</a></li>
+            </li>-->
+            <!--<li class="layui-nav-item"><a href="#" id="logout" th:href="@{/user/loginout1}">退出</a></li>-->
             <li class="layui-nav-item">
-                <a href="">个人中心<span class="layui-badge-dot"></span></a>
+                <a href="">我的</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="#" th:href="@{/user/myInfo}">个人信息</a></dd>
+                    <dd><a href="javascript:;" th:href="@{/user/myTrade}" target="_blank">交易管理</a></dd>
+                    <dd><a th:href="@{/user/loginout1}">退出</a></dd>
+                </dl>
             </li>
         </ul>
     </div>
@@ -142,10 +147,17 @@
 
 <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
 <script type="text/javascript" th:inline="javascript">
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','element'], function () {
         var table = layui.table
             , form = layui.form
-            , $ = layui.jquery;
+            , $ = layui.jquery
+            , element = layui.element;
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
 
         table.render({
             elem: '#product-list'

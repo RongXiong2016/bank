@@ -46,18 +46,18 @@ layui.use(['table','layer'], function(){
             layer.confirm('真的删除行么', function(index){
                 obj.del();
                 layer.close(index);
-                $.ajax({
+               /* $.ajax({
                     type:"GET",
                     url:'/user/delete?id='+data.id,
                     success:function(msg){
 
                     }
-                });
+                });*/
 
             });
         } else if(obj.event === 'edit'){
             //layer.alert('编辑行：'+ JSON.stringify(data))
-            layer.open({
+            /*layer.open({
                 type: 2,
                 maxmin: true,
                 title: '编辑用户',
@@ -67,7 +67,7 @@ layui.use(['table','layer'], function(){
                 success: function (layero, index) {
                     var name = $("#name").val();
                 }
-            });
+            });*/
         }
     });
     //搜索框
